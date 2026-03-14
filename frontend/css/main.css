@@ -17,18 +17,21 @@ body {
     align-items: center;
 }
 
-
+.logosnavbar a:last-child {
+    width: 50px;
+    display: flex;
+    justify-content: flex-end;
+}
 
 #logosite {
     width: 140px;
 }
 
-
 #logopanier {
     width: 25px;
     height: 25px;
-    padding-left: 25px;
 }
+
 
 .navbar {
     background-color: #114b5f;
@@ -82,10 +85,34 @@ a:hover {
 
 /*Format Tablette*/
 @media (min-width: 768px) {
-    ul {
-        display: flex;
-        justify-content: center;
+
+    .burger {
+        display: none;
     }
+
+    .navbar {
+        position: relative;
+    }
+
+    .menu {
+        display: flex;
+        flex-direction: row;
+        width: auto;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .menu li {
+        margin: 0 15px;
+    }
+
+    .menu a {
+        padding: 5px 10px;
+        white-space: nowrap;
+    }
+
+
 }
 
 /*Format Laptop*/
