@@ -5,3 +5,9 @@ node_modules/
 .env
 .env.local
 .env.*
+
+# Dossier WebStorm
+.idea
+
+# Dossier pour les minis tests
+test
