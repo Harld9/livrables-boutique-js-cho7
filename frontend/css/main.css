@@ -32,6 +32,17 @@ body {
     height: 25px;
 }
 
+.panier {
+    position: relative;
+    width: 50px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.panier a {
+    padding: 0;
+}
+
 
 .navbar {
     background-color: #114b5f;
@@ -81,6 +92,22 @@ a {
 
 a:hover {
     text-decoration: underline;
+}
+
+.pointrouge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: rgb(255, 51, 51);
+    color: #fff;
+    font-size: 9px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 /*Format Tablette*/
