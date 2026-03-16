@@ -1,7 +1,7 @@
-const mysql = require('mysql2');
-// permet d'utiliser les variables du .env
-require('dotenv').config(); 
+const mysql = require('mysql2');// permet à node de comprendre le SQL
+require('dotenv').config(); // permet d'utiliser les variables du .env
 
+// on initialise les credentials via dotenv
 const db = mysql.createConnection({
     host: process.env.DB_HOST,
     user: process.env.DB_USER,
@@ -9,6 +9,7 @@ const db = mysql.createConnection({
     database: process.env.DB_NAME
 });
 
+// connexion à la base de données
 db.connect((erreur) => {
     if (erreur) {
         console.error('Aïe, impossible de se connecter à la base :', erreur);
@@ -17,4 +18,4 @@ db.connect((erreur) => {
     }
 });
 
-module.exports = db;
+module.exports = db; // on exporte l'objet de connexion pour que app.js puisse l'utiliser
