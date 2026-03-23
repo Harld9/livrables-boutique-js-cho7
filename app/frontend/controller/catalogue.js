@@ -3,8 +3,8 @@ const CatalogueController = {
 
     init: () => {
         CatalogueModele.getChaussettes()
-            .then(data => CatalogueVue.render(data.chaussettes))
-            .catch(() => CatalogueVue.renderErreur())
+            .then(data => CatalogueVue.Affichage(data.chaussettes))
+            .catch(() => CatalogueVue.AffichageErreur())
     }
 
 }
