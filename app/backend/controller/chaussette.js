@@ -1,4 +1,4 @@
-const data = require('../../data.json')
+//const data = require('../../data.json')
 
 exports.getChaussetteById = async (req,res) =>{
     const id = req.params.id;
