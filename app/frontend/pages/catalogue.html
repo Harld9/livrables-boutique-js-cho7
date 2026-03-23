@@ -1,64 +1,59 @@
 <!doctype html>
 <html lang="fr">
+
 <head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Catalogue</title>
-    <link href="../static/css/main.css" rel="stylesheet"/>
-    <link
-            rel="stylesheet"
-            href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-    />
+    <link href="../static/css/main.css" rel="stylesheet" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" />
 </head>
 
 <body>
-<--! Navbar -->
-<nav class="navbar">
-    <div class="logosnavbar">
-        <button class="burger" id="boutonburger">☰</button>
-        <a href="./index.html">
-            <img
-                    src="../static/assets/imglogo/cho7.png"
-                    alt="Logo du site"
-                    id="logosite"
-            />
-        </a>
-        <div class="panier">
-            <a href="./panier.html">
-                <img
-                        src="../static/assets/icons/shopping_cart_24dp_E4FDE1_FILL0_wght400_GRAD0_opsz24.png"
-                        alt="Logo Panier"
-                        id="logopanier"
-                />
-            </a>
-            <div class="pointrouge">0</div>
-        </div>
-    </div>
+    <--! Navbar -->
+        <nav class="navbar">
+            <div class="logosnavbar">
+                <button class="burger" id="boutonburger">☰</button>
+                <a href="./index.html">
+                    <img src="../static/assets/imglogo/cho7.png" alt="Logo du site" id="logosite" />
+                </a>
+                <div class="icones">
+                    <a href="./profil.html">
+                        <img src="../static/assets/icons/account_circle_24dp_E4FDE1_FILL0_wght400_GRAD0_opsz24.png"
+                            alt="Logo Utilisateur" id="logo-utilisateur" />
+                    </a>
+                    <div class="panier">
+                        <a href="./panier.html">
+                            <img src="../static/assets/icons/shopping_cart_24dp_E4FDE1_FILL0_wght400_GRAD0_opsz24.png"
+                                alt="Logo Panier" id="logopanier" />
+                        </a>
+                        <div class="pointrouge">0</div>
+                    </div>
+                </div>
+            </div>
 
-    <ul class="menu" id="listemenu">
-        <li><a href="./index.html">Accueil</a></li>
-        <li><a href="./favoris.html">Favoris</a></li>
-        <li><a href="./panier.html">Panier</a></li>
-        <li><a href="./commandes.html">Suivi Commande</a></li>
-        <li><a href="./connexion.html">Connexion/Inscription</a></li>
-        <li><a href="./about.html">À Propos</a></li>
-    </ul>
-</nav>
+            <ul class="menu" id="listemenu">
+                <li><a href="./index.html">Accueil</a></li>
+                <li><a href="./favoris.html">Favoris</a></li>
+                <li><a href="./panier.html">Panier</a></li>
+                <li><a href="./commandes.html">Suivi Commande</a></li>
+                <li><a href="./connexion.html">Connexion/Inscription</a></li>
+                <li><a href="./about.html">À Propos</a></li>
+            </ul>
+        </nav>
 
-<h1>Nos chaussettes</h1>
+        <h1>Nos chaussettes</h1>
 
-<!-- Liste non ordonnée dont la vue va injecter les chaussettes à la plce du 'chargement...' -->
-<ul id="liste">Chargement...</ul>
+        <!-- Liste non ordonnée dont la vue va injecter les chaussettes à la plce du 'chargement...' -->
+        <ul id="liste">Chargement...</ul>
 
-<!-- Charge les fichiers JS pour utilisation
+        <!-- Charge les fichiers JS pour utilisation
      Ordre important : modèle → vue → controller -->
-<script src="../modele/catalogue.js"></script>
-<script src="../vue/catalogue.js"></script>
-<script src="../controller/catalogue.js"></script>
+        <script src="../modele/catalogue.js"></script>
+        <script src="../vue/catalogue.js"></script>
+        <script src="../controller/catalogue.js"></script>
 
-<!-- Initialise la page avec le controller, sans ça rien ne se passe -->
-<script>
-    CatalogueController.init()
-</script>
 </body>
+
 </html>

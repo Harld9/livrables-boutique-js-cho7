@@ -28,15 +28,27 @@ body {
 }
 
 #logopanier {
-    width: 25px;
-    height: 25px;
+    width: 24px;
+    height: 24px;
+}
+
+#logo-utilisateur {
+    width: 24px;
+    height: 24px;
+}
+
+.icones {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    justify-content: flex-end;
 }
 
 .panier {
     position: relative;
-    width: 50px;
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
+    align-items: center;
 }
 
 .panier a {
