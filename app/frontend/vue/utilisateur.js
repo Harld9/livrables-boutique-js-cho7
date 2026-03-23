@@ -1,11 +1,18 @@
+// Namespace qui regroupe toutes les fonctions d'affichage
 const UtilisateurVue = {
-    afficherProfil: function(utilisateur) {
+    // ===== FONCTIONS =====
+    // ----- AFFICHAGE -----
+    afficherProfil: function(res) {
+        const utilisateur = res.utilisateur;
         
         // on cible la balise HTML où on veut afficher les infos
         const conteneur = document.getElementById('profil-utilisateur');
 
         // verification que la balise existe
         if (conteneur) {
+            // On vide le contenu de la liste. Pas de donnée utilisateur donc pas de faille XSS.
+            conteneur.innerHTML = '';
+
             // on injecte le code HTML
             conteneur.innerHTML = `
                 <div class="profil-card">
