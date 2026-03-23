@@ -6,38 +6,33 @@ const CatalogueVue = {
     Affichage: (chaussettes) => {
         // On prend l'élément HTML <ul> (id= liste)
         const liste = document.getElementById('liste')
-        // On vide le contenu de la liste. Pas de donnée utilisateur donc pas de faille XSS.
-        liste.innerHTML = ''
+        
+        // verification que la balise existe
+        if (liste) {
+            // On vide le contenu de la liste. Pas de donnée utilisateur donc pas de faille XSS.
+            liste.innerHTML = ''
 
-        // Pour chaque élément de 'chaussettes'
-        chaussettes.forEach(c => {
-            // Création des balises HTML
-            const li = document.createElement('li')
-            const img = document.createElement('img')
-            const a = document.createElement('a')
-            const span = document.createElement('span')
-
-            // Modification du contenu de chaque balise
-            a.textContent = c.nom
-            span.textContent = c.prix + '€'
-
-            // Modification des attributs de chaque balise
-            img.src = '/img/' + c.image
-            img.alt = c.nom
-            a.href = '/produit?id=' + c.id
-
+            let htmlContenu = '';
+            
+            // Pour chaque élément de 'chaussettes'
+            chaussettes.forEach(c => {
+                // on injecte le code HTML
+                htmlContenu += `<div class="produit">
+                    <h3>${c.NomProduit}</h3>
+                    <p>Prix: ${c.Prix}€</p>
+                    <p>Taille: ${c.Taille}</p>
+                    <p>Genre: ${c.Genre}</p>
+                    <button data-id="${c.IdProduit}">Ajouter au panier</button>
+                </div>`;
+            })
+            
             // Ajout des balises dans la liste
-            li.appendChild(img)
-            li.appendChild(a)
-            li.appendChild(span)
-            // Ajout de la balise <li> dans le <ul>
-            liste.appendChild(li)
-        })
+            liste.innerHTML = htmlContenu;
+        }
     },
     // ----- AFFICHAGE ERREUR -----
     // Si le controller renvoie une erreur, on affiche cette erreur
     AffichageErreur: () => {
         document.getElementById('liste').innerHTML = 'Erreur de chargement'
     }
-
 }

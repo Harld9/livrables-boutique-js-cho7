@@ -8,38 +8,25 @@ exports.getChaussettes = (req, res) => {
     // Appel de la db avec la requête SQL et retourne un tableau d'objets
     db.query(sql, (err, resultat) => {
         // Si erreur avec la DB, on renvoie un code HTTP 500
-        // (rappel: 200 OK; 201 Created; 400 Bad Request; 404 Not Found; 500 Server Error.)
         if (err) {
             // On envoie un JSON avec le code erreur et un message
-            res.status(500).json({
-                code: 500,
-                message: 'Erreur serveur'
-            })
-        } else {
-            // Pareil qu'avec le code 500, on ajout le tableau d'objets qui va être convertis en json lui aussi.
-            res.status(200).json({
-                code: 200,
-                message: 'Chaussettes récupérées avec succès',
-                chaussettes: resultat
-            })
+            return res.status(500).json({ code: 500, message: 'Erreur serveur' })
         }
+        // Pareil qu'avec le code 500, on ajout le tableau d'objets qui va être convertis en json lui aussi.
+        res.status(200).json({ code: 200, message: 'Chaussettes récupérées avec succès', chaussettes: resultat })
     })
 }
 
 // ===== Fonction getChaussetteById ----- '/chaussette/:id' =====
 exports.getChaussetteById = async (req,res) =>{
-    const id = req.params.id;
-    const chaussettes = data.sneakers;
-    const chaussette = chaussettes.find(chaussette => chaussette.id === parseInt(id));
-    if (!chaussette) {
-        res.status(404).json({
-            code : 404,
-            message : 'Chaussette not found'
-        })
-    }else{
-        res.status(200.).json({
-            message: 'Chaussette trouvé Ok',
-            sneaker: chaussette
-        })
-    }
+    // on définit la requête SQL ici avec un ? pour éviter les injections sql
+    const sql = "SELECT * FROM Produit WHERE id = ?"
+    
+    // on éxécute la requête sql via db
+    db.query(sql, [req.params.id], (err, resultat) => {
+        if (err) {
+            return res.status(500).json({ code: 500, message: 'Erreur serveur' })
+        }
+        res.status(200).json({ code: 200, message: 'Chaussette trouvé Ok', sneaker: resultat[0] })
+    })
 }
