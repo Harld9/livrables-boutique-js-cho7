@@ -1,0 +1,28 @@
+// L'objet CatalogueModele contient les fonctions d'appel API
+const CatalogueModele = {
+    // ===== FONCTIONS =====
+    // ----- GET CHAUSSETTES -----
+    // Récupère toutes les chaussettes
+    getChaussettes: () => {
+        // Cache navigateur, récupère les valeurs par la clé 'chaussettes'. Si rien = NULL
+        const cache = localStorage.getItem('chaussettes')
+
+        // Si cache, on converti en JSON et on le retourne.
+        if (cache) {
+            // On crée une promise, car le controller attend une promise (.then)
+            return Promise.resolve(JSON.parse(cache))
+        }
+
+        // Sinon, on appelle l'API et on le stocke en cache
+        return fetch('/api/chaussettes')
+            // On convertit la réponse HTTP brut en objet JS via la fonction res.json (Méthode express)
+            .then(res => res.json())
+            .then(data => {
+                // On sauvegarde les datas en JSON dans le cache avec la clé 'chaussettes' pour les futurs chargements de la page.
+                localStorage.setItem('chaussettes', JSON.stringify(data))
+                // On retourne l'objet data
+                return data
+            })
+    }
+
+}
