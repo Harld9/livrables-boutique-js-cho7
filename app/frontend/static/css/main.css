@@ -32,6 +32,11 @@ body {
   height: 24px;
 }
 
+#logofavoris {
+  width: 24px;
+  height: 24px;
+}
+
 .icones {
   display: flex;
   gap: 15px;
@@ -55,15 +60,12 @@ body {
 
 .navbar {
   background-color: #ffffff;
-  /* Fond blanc pur */
   display: flex;
   align-items: center;
   justify-content: space-between;
   position: relative;
   padding: 15px 20px;
-  /* Un peu plus d'espace pour respirer */
   border-bottom: 1px solid #eeeeee;
-  /* Petite ligne grise très fine pour séparer la barre du reste */
 }
 
 .menu {
@@ -75,7 +77,6 @@ body {
   top: 100%;
   left: -20px;
   background-color: #ffffff;
-  /* Le menu déroulant devient blanc aussi */
   z-index: 10;
   border-bottom: 1px solid #eeeeee;
 }
@@ -85,7 +86,6 @@ body {
   background: none;
   border: none;
   color: #111111;
-  /* Le burger devient noir */
   cursor: pointer;
   font-size: 25px;
   flex: 1;
@@ -99,10 +99,13 @@ a {
   padding: 15px;
   text-decoration: none;
   color: #111111;
-  /* Les liens du menu deviennent noirs */
   font-weight: 500;
-  /* Texte un peu plus épais pour faire premium */
+}
 
+.icones a {
+  padding: 0;
+  display: flex;
+  align-items: center;
 }
 
 ul {
