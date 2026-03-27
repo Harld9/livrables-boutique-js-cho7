@@ -27,6 +27,38 @@ app.get('/', (req, res) =>
 app.get('/catalogue', (req, res) =>
     res.sendFile(path.join(__dirname, 'frontend/pages/catalogue.html'))
 )
+// ------ PANIER ------
+app.get('/panier', (req, res) =>
+    res.sendFile(path.join(__dirname, 'frontend/pages/panier.html'))
+)
+// ------ FAVORIS ------
+app.get('/favoris', (req, res) =>
+    res.sendFile(path.join(__dirname, 'frontend/pages/favoris.html'))
+)
+// ------ COMMANDES ------
+app.get('/commandes', (req, res) =>
+    res.sendFile(path.join(__dirname, 'frontend/pages/commandes.html'))
+)
+// ------ CONNEXION ------
+app.get('/connexion', (req, res) =>
+    res.sendFile(path.join(__dirname, 'frontend/pages/connexion.html'))
+)
+// ------ INSCRIPTION ------
+app.get('/inscription', (req, res) =>
+    res.sendFile(path.join(__dirname, 'frontend/pages/inscription.html'))
+)
+// ------ À PROPOS ------
+app.get('/about', (req, res) =>
+    res.sendFile(path.join(__dirname, 'frontend/pages/about.html'))
+)
+// ------ PROFIL ------
+app.get('/profil', (req, res) =>
+    res.sendFile(path.join(__dirname, 'frontend/pages/profil.html'))
+)
+// ------ PRODUIT ------
+app.get('/produit', (req, res) =>
+    res.sendFile(path.join(__dirname, 'frontend/pages/produit.html'))
+)
 
 // ===== ROUTES API =====
 // ------ CHAUSSETTES ------
