@@ -64,30 +64,22 @@
 
         .entete {
             align-items: center;
-            /* Centre le bloc de texte au milieu de l'écran */
             text-align: center;
-            /* Centre le texte lui-même */
             padding: 80px 20px;
-            /* Donne beaucoup plus d'espace au-dessus et en dessous sur grand écran */
         }
 
         .titre {
             font-size: 60px;
-            /* Le titre devient gigantesque sur PC */
             max-width: 800px;
-            /* Empêche le titre de s'étirer sur toute la largeur de l'écran */
         }
 
         .description {
             font-size: 18px;
-            /* Texte un peu plus gros pour la lecture sur écran éloigné */
             max-width: 600px;
-            /* Empêche la description de faire une ligne interminable */
         }
 
         .boutons {
             justify-content: center;
-            /* Centre les deux boutons l'un à côté de l'autre */
         }
     }
 }
