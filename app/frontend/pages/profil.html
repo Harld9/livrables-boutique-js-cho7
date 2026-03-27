@@ -1,54 +1,50 @@
 <!doctype html>
 <html lang="fr">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Mon Profil</title>
-    <link href="/css/main.css" rel="stylesheet" />
-    <link href="/css/profil.css" rel="stylesheet" />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-    />
-  </head>
 
-  <body>
-    <nav class="navbar">
-      <button class="burger" id="boutonburger">☰</button>
-      <a href="/" id="lienlogo"
-        ><img src="/assets/imglogo/cho7.png" alt="Logo du site" id="logosite"
-      /></a>
-      <ul class="menu" id="listemenu">
-        <li><a href="/">Accueil</a></li>
-        <li><a href="/catalogue">Notre Catalogue</a></li>
-        <li><a href="/panier">Panier</a></li>
-        <li><a href="/favoris">Favoris</a></li>
-        <li><a href="/commandes">Suivi Commande</a></li>
-        <li>
-          <a href="/connexion">Connexion/Inscription</a>
-        </li>
-        <li><a href="/about">À Propos</a></li>
-      </ul>
-      <div class="icones">
-        <div class="panier">
-          <a href="/panier">
-            <img
-              src="/assets/icons/shopping_cart_24dp_E4FDE1_FILL0_wght400_GRAD0_opsz24.png"
-              alt="Logo Panier"
-              id="logopanier"
-            />
-            <div class="pointrouge">0</div></a
-          >
-        </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mon Profil</title>
+  <link href="/css/main.css" rel="stylesheet" />
+  <link href="/css/profil.css" rel="stylesheet" />
+  <script src="/script/main.js" type="module"></script>
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" />
+</head>
+
+<body>
+  <nav class="navbar">
+    <button class="burger" id="boutonburger">☰</button>
+    <a href="/" id="lienlogo"><img src="/assets/imglogo/cho7.png" alt="Logo du site" id="logosite" /></a>
+    <ul class="menu" id="listemenu">
+      <li><a href="/">Accueil</a></li>
+      <li><a href="/catalogue">Notre Catalogue</a></li>
+      <li><a href="/panier">Panier</a></li>
+      <li><a href="/favoris">Favoris</a></li>
+      <li><a href="/commandes">Suivi Commande</a></li>
+      <li>
+        <a href="/connexion">Connexion/Inscription</a>
+      </li>
+      <li><a href="/about">À Propos</a></li>
+    </ul>
+    <div class="icones">
+      <div class="panier">
+        <a href="/panier">
+          <img src="/assets/icons/shopping_cart_24dp_111111_FILL0_wght400_GRAD0_opsz24.svg" alt="Logo Panier"
+            id="logopanier" />
+          <div class="pointrouge">0</div>
+        </a>
       </div>
-    </nav>
-
-    <div id="profil-utilisateur">
-      <p>Chargement de votre profil...</p>
     </div>
+  </nav>
 
-    <script src="../static/modele/utilisateur.js"></script>
-    <script src="../static/vue/utilisateur.js"></script>
-    <script src="../static/controller/utilisateur.js"></script>
-  </body>
+  <div id="profil-utilisateur">
+    <p>Chargement de votre profil...</p>
+  </div>
+
+  <script src="../static/modele/utilisateur.js"></script>
+  <script src="../static/vue/utilisateur.js"></script>
+  <script src="../static/controller/utilisateur.js"></script>
+</body>
+
 </html>

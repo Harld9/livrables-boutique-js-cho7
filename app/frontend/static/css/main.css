@@ -27,7 +27,7 @@ body {
   height: 24px;
 }
 
-#logo-utilisateur {
+#logoutilisateur {
   width: 24px;
   height: 24px;
 }
@@ -54,13 +54,16 @@ body {
 }
 
 .navbar {
-  background-color: #114b5f;
+  background-color: #ffffff;
+  /* Fond blanc pur */
   display: flex;
   align-items: center;
-  padding: 10px 20px;
   justify-content: space-between;
   position: relative;
-  padding: 10px 20px;
+  padding: 15px 20px;
+  /* Un peu plus d'espace pour respirer */
+  border-bottom: 1px solid #eeeeee;
+  /* Petite ligne grise très fine pour séparer la barre du reste */
 }
 
 .menu {
@@ -71,24 +74,18 @@ body {
   position: absolute;
   top: 100%;
   left: -20px;
-  background-color: #114b5f;
+  background-color: #ffffff;
+  /* Le menu déroulant devient blanc aussi */
   z-index: 10;
-}
-
-.menu.active {
-  display: flex;
-}
-
-.menu li {
-  list-style: none;
-  text-align: center;
+  border-bottom: 1px solid #eeeeee;
 }
 
 .burger {
   display: block;
   background: none;
   border: none;
-  color: #e4fde1;
+  color: #111111;
+  /* Le burger devient noir */
   cursor: pointer;
   font-size: 25px;
   flex: 1;
@@ -97,16 +94,22 @@ body {
   order: 1;
 }
 
-ul {
-  list-style: none;
-}
-
 a {
   display: block;
   padding: 15px;
   text-decoration: none;
-  color: white;
+  color: #111111;
+  /* Les liens du menu deviennent noirs */
+  font-weight: 500;
+  /* Texte un peu plus épais pour faire premium */
+
 }
+
+ul {
+  list-style: none;
+}
+
+
 
 a:hover {
   text-decoration: underline;
@@ -129,8 +132,7 @@ a:hover {
 }
 
 /*Format Tablette*/
-@media (min-width: 768px) {
-}
+@media (min-width: 768px) {}
 
 /*Format Laptop*/
 @media (min-width: 1024px) {
@@ -148,6 +150,7 @@ a:hover {
     width: auto;
     order: 0;
     position: static;
+    border-bottom: none;
   }
 
   .menu li {
@@ -172,5 +175,4 @@ a:hover {
 }
 
 /*Format Grand écran de bureau*/
-@media (min-width: 1280px) {
-}
+@media (min-width: 1280px) {}

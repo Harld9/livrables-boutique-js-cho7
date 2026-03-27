@@ -1,10 +1,94 @@
 /* CSS uniquement pour l'accueil */
 
+.entete {
+    display: flex;
+    flex-direction: column;
+    padding: 40px 20px;
+    background-color: #f9f9f9;
+}
+
+.etiquette {
+    background-color: #fbe9e7;
+    color: #d83c18;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+    width: fit-content;
+    margin-bottom: 20px;
+}
+
+.titre {
+    font-size: 40px;
+    color: black;
+    margin-bottom: 15px;
+}
+
+.italique {
+    font-style: italic;
+    color: #d83c18;
+}
+
+.description {
+    color: #555555;
+    font-size: 16px;
+    margin-bottom: 25px;
+}
+
+.boutons {
+    display: flex;
+}
+
+.primaire {
+    background-color: #d83c18;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: bold;
+    margin-right: 15px;
+}
+
+.secondaire {
+    background-color: #e0e0e0;
+    color: black;
+    padding: 10px 20px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
 /*Format Tablette*/
 @media (min-width: 768px) {
-    ul {
-        display: flex;
-        justify-content: center;
+    @media (min-width: 768px) {
+
+        .entete {
+            align-items: center;
+            /* Centre le bloc de texte au milieu de l'écran */
+            text-align: center;
+            /* Centre le texte lui-même */
+            padding: 80px 20px;
+            /* Donne beaucoup plus d'espace au-dessus et en dessous sur grand écran */
+        }
+
+        .titre {
+            font-size: 60px;
+            /* Le titre devient gigantesque sur PC */
+            max-width: 800px;
+            /* Empêche le titre de s'étirer sur toute la largeur de l'écran */
+        }
+
+        .description {
+            font-size: 18px;
+            /* Texte un peu plus gros pour la lecture sur écran éloigné */
+            max-width: 600px;
+            /* Empêche la description de faire une ligne interminable */
+        }
+
+        .boutons {
+            justify-content: center;
+            /* Centre les deux boutons l'un à côté de l'autre */
+        }
     }
 }
 
