@@ -17,33 +17,110 @@ const CatalogueVue = {
         chaussettes.forEach(c => {
             console.log('5 - Vue : élément', c)
             // Création des éléments
-            const div = document.createElement('div')
+            /* doit suivre ce template :
+            <div class="produit">
+                <img class="imgProd" src="/assets/imgchaussettes/CatMeme/cho7-meme-3d-1.png" alt="">
+                <div class="infos">
+                    <h3 class="nom">Nom Produit</h3>
+                    <div class="prix-reduction">
+                        <p class="prix">Prix</p>
+                        <p class="reduction">réduction</p>
+                    </div>
+                    <div class="categorie-genre">
+                        <p class="categorie">Catégorie</p>
+                        <p class="genre ">genre</p>
+                    </div>
+                    <div class="divBtn">
+                        <button class="btnProd">Ajouter panier</button>
+                    </div>
+                </div>
+            </div>
+             */
+            const produit = document.createElement('div')
+
+            const imgProd = document.createElement('img')
+
+            const infos = document.createElement('div')
             const nom = document.createElement('h3')
+
+            const prixReduction = document.createElement('div')
             const prix = document.createElement('p')
-            const pointure = document.createElement('p')
+            const reduction = document.createElement('p')
+
+            const categorieGenre = document.createElement('div')
+            const categorie = document.createElement('p')
             const genre = document.createElement('p')
+
+            const divBtn = document.createElement('div')
             const bouton = document.createElement('button')
 
-            div.classList.add('produit')
+            const srcImg = '/asset/imgchaussettes/' + (() => {
+                switch (NomCategorie) {
+                    case 'Memes':
+                        return 'CatMeme'
+                    case 'Unies':
+                        return 'CatUni'
+                    case 'Motifs':
+                        return 'CatMotif'
+                }
+            }) + c.Image3D;
+            // Ajout des classes CSS
+            produit.classList.add('produit')
+            imgProd.classList.add('imgProd')
+            infos.classList.add('infos')
+            nom.classList.add('nom')
+
+            prixReduction.classList.add('prix-reduction')
+            prix.classList.add('prix')
+            reduction.classList.add('reduction')
+
+            categorieGenre.classList.add('categorie-genre')
+            categorie.classList.add('categorie')
+            genre.classList.add('genre')
+
+            divBtn.classList.add('divBtn')
+            bouton.classList.add('btnProd')
 
             // textContent pour toutes les données BDD
+            // Image
+            imgProd.src = srcImg
+            imgProd.alt = c.NomProduit
+
+            // Infos
             nom.textContent = c.NomProduit
-            prix.textContent = 'Prix : ' + c.Prix + '€'
-            pointure.textContent = 'Pointure : ' + c.Pointure
-            genre.textContent = 'Genre : ' + c.Genre
+            // Prix et Réduction
+            prix.textContent = c.Prix + '€'
+            if (c.Reduction > 0) {
+                prix.classList.add('barrer')
+                reduction.textContent = c.prix * c.Reduction
+            }
+            // Catégorie et Genre
+            categorie.textContent = c.NomCategorie
+            genre.textContent = c.Genre
+
+            // Bouton
             bouton.textContent = 'Ajouter au panier'
 
             // Attribut direct pour la donnée BDD
             bouton.dataset.id = c.IdProduit
 
             // Assemblage
-            div.appendChild(nom)
-            div.appendChild(prix)
-            div.appendChild(pointure)
-            div.appendChild(genre)
-            div.appendChild(bouton)
 
-            liste.appendChild(div)
+            prixReduction.appendChild(prix)
+            prixReduction.appendChild(reduction)
+            categorieGenre.appendChild(categorie)
+            categorieGenre.appendChild(genre)
+            divBtn.appendChild(bouton)
+
+            infos.appendChild(nom)
+            infos.appendChild(prixReduction)
+            infos.appendChild(categorieGenre)
+            infos.appendChild(divBtn)
+
+            produit.appendChild(imgProd)
+            produit.appendChild(infos)
+
+            liste.appendChild(produit)
         })
     },
     // ----- AFFICHAGE ERREUR -----

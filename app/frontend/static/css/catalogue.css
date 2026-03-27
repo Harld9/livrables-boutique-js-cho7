@@ -1,0 +1,82 @@
+#liste {
+    background-color: #d200ff;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+/*<div class="produit">
+    <img class="imgProd" src="/assets/imgchaussettes/CatMeme/cho7-meme-3d-1.png" alt="">
+    <div class="infos">
+        <h3 class="nom">Nom Produit</h3>
+        <div class="prix-reduction">
+            <p class="prix">Prix</p>
+            <p class="reduction">réduction</p>
+        </div>
+        <div class="categorie-genre">
+            <p class="categorie">Catégorie</p>
+            <p class="genre ">genre</p>
+        </div>
+        <div class="divBtn">
+            <button class="btnProd">Ajouter panier</button>
+        </div>
+    </div>
+</div>*/
+.produit {
+    background-color: aqua  ;
+
+    margin: 10px;
+    padding: 2px;
+    width: 200px;
+    height: auto;
+}
+
+.imgProd {
+    width: 100%;
+    height: auto;
+}
+
+.infos {
+    background-color: lightgrey;
+}
+
+.nom {
+    background-color: red;
+}
+
+.prix-reduction {
+    background-color: yellow;
+    display: flex;
+}
+.prix {
+    background-color: #a6a600;
+    margin-right: 10%;
+}
+.barrer {
+    text-decoration: line-through;
+    color: grey;
+}
+.reduction {
+    background-color: #6c6c00;
+    color: red;
+}
+
+.categorie-genre {
+    display: flex;
+    background-color: greenyellow;
+}
+.categorie {
+    background-color: green;
+    margin-right: 10%;
+}
+.genre {
+    background-color: #01bc01;
+}
+
+.divBtn {
+    display: flex;
+    justify-content: center;
+}
+.btnProd {
+    background-color: #0000ff;
+}

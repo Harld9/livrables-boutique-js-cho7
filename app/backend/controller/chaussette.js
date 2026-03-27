@@ -3,7 +3,23 @@ const db = require('../database/connexion.js')
 // ===== Fonction getChaussettes ----- '/chaussettes' ======
 exports.getChaussettes = (req, res) => {
     // Requête SQL à envoyé à la db
-    const sql = "SELECT * FROM Produit"
+        const sql = "SELECT\n" +
+            "    Produit.IdProduit,\n" +
+            "    Produit.NomProduit,\n" +
+            "    Produit.Longueur,\n" +
+            "    Produit.Prix,\n" +
+            "    Categorie.NomCategorie,\n" +
+            "    Produit.Reduction,\n" +
+            "    Produit.Description,\n" +
+            "    Produit.Pointure,\n" +
+            "    Produit.Genre,\n" +
+            "    Produit.Stock,\n" +
+            "    Produit.Image3D,\n" +
+            "    Produit.ImagePortee\n" +
+            "\n" +
+            "FROM Produit\n" +
+            "\n" +
+            "INNER JOIN Categorie ON Categorie.IdCategorie = Produit.IdCategorie"
 
     // Appel de la db avec la requête SQL et retourne un tableau d'objets
     db.query(sql, (err, resultat) => {
