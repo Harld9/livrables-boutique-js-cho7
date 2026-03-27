@@ -12,50 +12,12 @@ body {
   min-height: 160px;
 }
 
-#lienlogo {
-  order: 2;
-  display: flex;
-  justify-content: center;
+a {
+  text-decoration: none;
 }
 
-#logosite {
-  width: 140px;
-}
-
-#logopanier {
-  width: 24px;
-  height: 24px;
-}
-
-#logoutilisateur {
-  width: 24px;
-  height: 24px;
-}
-
-#logofavoris {
-  width: 24px;
-  height: 24px;
-}
-
-.icones {
-  display: flex;
-  gap: 15px;
-  align-items: center;
-  justify-content: flex-end;
-  order: 3;
-  flex: 1;
-}
-
-.panier {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.panier a {
-  padding: 0;
-  position: relative;
+ul {
+  list-style: none;
 }
 
 .navbar {
@@ -68,17 +30,14 @@ body {
   border-bottom: 1px solid #eeeeee;
 }
 
-.menu {
-  display: none;
-  flex-direction: column;
-  width: calc(100% + 40px);
-  order: 4;
-  position: absolute;
-  top: 100%;
-  left: -20px;
-  background-color: #ffffff;
-  z-index: 10;
-  border-bottom: 1px solid #eeeeee;
+#lienlogo {
+  order: 2;
+  display: flex;
+  justify-content: center;
+}
+
+#logosite {
+  width: 140px;
 }
 
 .burger {
@@ -94,39 +53,82 @@ body {
   order: 1;
 }
 
-a {
+.menu {
+  display: none;
+  flex-direction: column;
+  width: 100%;
+  order: 4;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #ffffff;
+  z-index: 10;
+}
+
+.menu.active {
+  display: flex;
+}
+
+.menu li {
+  text-align: center;
+}
+
+.menu a {
   display: block;
   padding: 15px;
-  text-decoration: none;
   color: #111111;
   font-weight: 500;
+  transition: 0.3s;
+}
+
+.menu a:hover {
+  color: #d83c18;
+}
+
+.icones {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  justify-content: flex-end;
+  order: 3;
+  flex: 1;
+}
+
+#logopanier,
+#logoutilisateur,
+#logofavoris {
+  width: 24px;
+  height: 24px;
 }
 
 .icones a {
   padding: 0;
   display: flex;
   align-items: center;
+  transition: 0.3s;
 }
 
-ul {
-  list-style: none;
+.icones a:hover {
+  opacity: 0.5;
 }
 
 
-
-a:hover {
-  text-decoration: underline;
+.panier {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .pointrouge {
   position: absolute;
-  top: -5px;
-  right: -5px;
+  top: -8px;
+  right: -8px;
   width: 18px;
   height: 18px;
   border-radius: 50%;
-  background: rgb(255, 51, 51);
-  color: #fff;
+  background-color: rgb(255, 51, 51);
+  color: #ffffff;
   font-size: 9px;
   font-weight: 600;
   display: flex;
@@ -134,10 +136,8 @@ a:hover {
   justify-content: center;
 }
 
-/*Format Tablette*/
 @media (min-width: 768px) {}
 
-/*Format Laptop*/
 @media (min-width: 1024px) {
   .burger {
     display: none;
@@ -153,7 +153,6 @@ a:hover {
     width: auto;
     order: 0;
     position: static;
-    border-bottom: none;
   }
 
   .menu li {
@@ -162,7 +161,6 @@ a:hover {
 
   .menu a {
     padding: 5px 10px;
-    white-space: nowrap;
   }
 
   #lienlogo {
@@ -176,6 +174,3 @@ a:hover {
     justify-content: flex-end;
   }
 }
-
-/*Format Grand écran de bureau*/
-@media (min-width: 1280px) {}

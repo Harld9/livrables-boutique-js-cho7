@@ -44,9 +44,13 @@
     color: white;
     padding: 10px 20px;
     border-radius: 25px;
-    text-decoration: none;
     font-weight: bold;
     margin-right: 15px;
+    transition: 0.3s;
+}
+
+.primaire:hover {
+    background-color: #a82e10;
 }
 
 .secondaire {
@@ -54,46 +58,36 @@
     color: black;
     padding: 10px 20px;
     border-radius: 25px;
-    text-decoration: none;
     font-weight: bold;
+    transition: 0.3s;
 }
 
-/*Format Tablette*/
+.secondaire:hover {
+    background-color: #c0c0c0;
+}
+
 @media (min-width: 768px) {
-    @media (min-width: 768px) {
+    .entete {
+        align-items: center;
+        text-align: center;
+        padding: 80px 20px;
+    }
 
-        .entete {
-            align-items: center;
-            /* Centre le bloc de texte au milieu de l'écran */
-            text-align: center;
-            /* Centre le texte lui-même */
-            padding: 80px 20px;
-            /* Donne beaucoup plus d'espace au-dessus et en dessous sur grand écran */
-        }
+    .titre {
+        font-size: 60px;
+        max-width: 800px;
+    }
 
-        .titre {
-            font-size: 60px;
-            /* Le titre devient gigantesque sur PC */
-            max-width: 800px;
-            /* Empêche le titre de s'étirer sur toute la largeur de l'écran */
-        }
+    .description {
+        font-size: 18px;
+        max-width: 600px;
+    }
 
-        .description {
-            font-size: 18px;
-            /* Texte un peu plus gros pour la lecture sur écran éloigné */
-            max-width: 600px;
-            /* Empêche la description de faire une ligne interminable */
-        }
-
-        .boutons {
-            justify-content: center;
-            /* Centre les deux boutons l'un à côté de l'autre */
-        }
+    .boutons {
+        justify-content: center;
     }
 }
 
-/*Format Laptop*/
 @media (min-width: 1024px) {}
 
-/*Format Grand écran de bureau*/
 @media (min-width: 1280px) {}
