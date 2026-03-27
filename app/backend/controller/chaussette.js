@@ -18,9 +18,9 @@ exports.getChaussettes = (req, res) => {
 }
 
 // ===== Fonction getChaussetteById ----- '/chaussette/:id' =====
-exports.getChaussetteById = async (req,res) =>{
+exports.getChaussetteById = (req,res) =>{
     // on définit la requête SQL ici avec un ? pour éviter les injections sql
-    const sql = "SELECT * FROM Produit WHERE id = ?"
+    const sql =  "SELECT * FROM Produit WHERE IdProduit = ?"
     
     // on éxécute la requête sql via db
     db.query(sql, [req.params.id], (err, resultat) => {

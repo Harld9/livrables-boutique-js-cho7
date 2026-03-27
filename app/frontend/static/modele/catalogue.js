@@ -4,6 +4,7 @@ const CatalogueModele = {
     // ----- GET CHAUSSETTES -----
     // Récupère toutes les chaussettes
     getChaussettes: () => {
+        console.log('1 - Model : appel API')
         // Cache navigateur, récupère les valeurs par la clé 'chaussettes'. Si rien = NULL
         const cache = localStorage.getItem('chaussettes')
 
@@ -21,6 +22,7 @@ const CatalogueModele = {
                 // On sauvegarde les datas en JSON dans le cache avec la clé 'chaussettes' pour les futurs chargements de la page.
                 localStorage.setItem('chaussettes', JSON.stringify(data))
                 // On retourne l'objet data
+                console.log('2 - Model : données reçues', data)
                 return data
             })
     }

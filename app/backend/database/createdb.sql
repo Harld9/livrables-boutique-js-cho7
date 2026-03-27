@@ -33,7 +33,7 @@ CREATE TABLE Produit (
    Genre VARCHAR(50),
    IdCategorie INT,
    Stock INT,
-   Image VARCHAR(100)
+   Image VARCHAR(100),
    PRIMARY KEY(IdProduit),
    FOREIGN KEY(IdCategorie) REFERENCES Categorie(IdCategorie)
 );
