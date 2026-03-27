@@ -14,7 +14,7 @@ app.use(cors({
 app.use(express.json());
 
 //routes vers les fichiers statiques
-app.use(express.static(path.join(__dirname, 'frontend/static/css')));
+app.use(express.static(path.join(__dirname, 'frontend/static')));
 
 // ===== ROUTES HTML =====
 // ------ INDEX ------
