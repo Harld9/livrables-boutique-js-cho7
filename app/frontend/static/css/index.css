@@ -1,9 +1,13 @@
 /* CSS uniquement pour l'accueil */
 
+body {
+    overflow-x: hidden;
+}
+
 .entete {
     display: flex;
     flex-direction: column;
-    padding: 40px 20px;
+    padding: 20px;
     background-color: #f9f9f9;
 }
 
@@ -15,13 +19,13 @@
     font-size: 12px;
     font-weight: bold;
     width: fit-content;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
 .titre {
-    font-size: 40px;
+    font-size: 30px;
     color: black;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
 }
 
 .italique {
@@ -31,12 +35,13 @@
 
 .description {
     color: #555555;
-    font-size: 16px;
-    margin-bottom: 25px;
+    font-size: 15px;
+    margin-bottom: 15px;
 }
 
 .boutons {
     display: flex;
+    margin-bottom: 15px;
 }
 
 .primaire {
@@ -66,28 +71,95 @@
     background-color: #c0c0c0;
 }
 
+.carrousselpiste {
+    display: flex;
+    gap: 20px;
+    padding: 0;
+}
+
+.carteproduit {
+    display: block;
+    scroll-snap-align: center;
+    background-color: transparent;
+    border-radius: 15px;
+    padding: 0;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    min-width: 280px;
+    transition: transform 0.3s, box-shadow 0.3s;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.carteproduit:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+.carteproduit img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    margin: 0;
+    display: block;
+}
+
+.carrousselfenetre {
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 10px;
+    padding-bottom: 15px;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.carrousselfenetre::-webkit-scrollbar {
+    display: none;
+    width: 0;
+    height: 0;
+}
+
+.soustitre {
+    font-size: 22px;
+    font-weight: bold;
+    color: #333333;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
 @media (min-width: 768px) {
     .entete {
         align-items: center;
         text-align: center;
-        padding: 80px 20px;
+        padding: 10px 20px;
     }
 
     .titre {
-        font-size: 60px;
+        font-size: 40px;
         max-width: 800px;
     }
 
     .description {
-        font-size: 18px;
         max-width: 600px;
+        margin-bottom: 20px;
     }
 
     .boutons {
         justify-content: center;
+        margin-bottom: 20px;
+    }
+
+    .carteproduit {
+        min-width: 300px;
+    }
+
+    .carteproduit img {
+        height: 280px;
     }
 }
-
-@media (min-width: 1024px) {}
-
-@media (min-width: 1280px) {}
