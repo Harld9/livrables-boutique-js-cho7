@@ -67,7 +67,7 @@ const chaussetteRouter = require('./backend/router/chaussette')
 app.use('/api', chaussetteRouter)
 // pour les utilisateurs
 const utilisateurRouter = require('./backend/router/utilisateur')
-app.use(utilisateurRouter)
+app.use('/api' ,utilisateurRouter)
 
 // ===== GESTIONNAIRES 404 =====
 // Placé en dernier exprès, Express parcourt toutes les routes dans l'ordre, et si aucune ne correspond à l'URL demandée, il tombe sur celle-ci et renvoie la page d'erreur.
