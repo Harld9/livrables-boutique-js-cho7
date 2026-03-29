@@ -71,6 +71,9 @@ app.use('/api' ,utilisateurRouter)
 // pour l'inscription
 const inscriptionRouter = require('./backend/router/inscription')
 app.use('/api' ,inscriptionRouter)
+// pour la connexion
+const connexionRouter = require('./backend/router/connexionUtilisateur');
+app.use('/api', connexionRouter);
 // ===== GESTIONNAIRES 404 =====
 // Placé en dernier exprès, Express parcourt toutes les routes dans l'ordre, et si aucune ne correspond à l'URL demandée, il tombe sur celle-ci et renvoie la page d'erreur.
 app.use((req, res) => {

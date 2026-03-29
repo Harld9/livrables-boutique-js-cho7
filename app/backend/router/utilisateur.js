@@ -1,8 +1,15 @@
-const express = require('express')
-const router = express.Router()
-const utilisateurCont = require('../controller/utilisateur')
+const express = require('express');
+const router = express.Router();
 
-router.get('/api/utilisateur/:id', utilisateurCont.getUtilisateurById);
-router.get('/api/utilisateur/favoris', utilisateurCont.getUtilisateurFavoris);
+// import du controller
+const utilisateur = require('../controller/utilisateur');
 
-module.exports = router
+// lien entre la route inscription et le controller
+router.post('/inscription', utilisateur.inscrireClient);
+// lien entre la route conenxion et le controller
+router.post('/connexion', utilisateur.connecterClient);
+
+router.get('/api/utilisateur/:id', utilisateur.getUtilisateurById);
+router.get('/api/utilisateur/favoris', utilisateur.getUtilisateurFavoris);
+
+module.exports = router;
