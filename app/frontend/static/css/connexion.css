@@ -1,8 +1,8 @@
-/* CSS spécifique pour la page d'inscription */
-
+/* --- Mise en page globale --- */
 body {
     background-color: #f9f9f9;
     font-family: 'Poppins', sans-serif;
+    margin: 0;
 }
 
 .conteneurformulaire {
@@ -19,7 +19,7 @@ body {
     border-radius: 15px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
     width: 100%;
-    max-width: 500px;
+    max-width: 450px;
 }
 
 .titreformulaire {
@@ -37,8 +37,9 @@ body {
 }
 
 .separateur {
-    border: 1px solid #e0e0e0;
-    margin-bottom: 20px;
+    border: none;
+    border-top: 1px solid #e0e0e0;
+    margin-bottom: 25px;
 }
 
 input[type=text],
@@ -55,9 +56,7 @@ input[type=email] {
     transition: border 0.3s;
 }
 
-input[type=text]:focus,
-input[type=password]:focus,
-input[type=email]:focus {
+input:focus {
     border-color: #d83c18;
     outline: none;
 }
@@ -65,19 +64,13 @@ input[type=email]:focus {
 label {
     font-size: 14px;
     color: #333;
-}
-
-.groupechamps {
-    display: flex;
-    gap: 15px;
-}
-
-.champ {
-    flex: 1;
+    font-weight: 600;
 }
 
 .souvenirmoi {
-    display: block;
+    display: flex;
+    align-items: center;
+    gap: 10px;
     margin-bottom: 25px;
     font-size: 14px;
     color: #555;
@@ -95,9 +88,7 @@ label {
     border-radius: 25px;
     cursor: pointer;
     font-weight: bold;
-    font-family: 'Poppins', sans-serif;
     width: 50%;
-    transition: 0.3s;
 }
 
 .boutonvalidation {
@@ -105,20 +96,12 @@ label {
     color: white;
 }
 
-.boutonvalidation:hover {
-    background-color: #a82e10;
-}
-
 .boutonannulation {
     background-color: #e0e0e0;
     color: black;
 }
 
-.boutonannulation:hover {
-    background-color: #c0c0c0;
-}
-
-.pconnexion {
+.pinscription {
     text-align: center;
     margin-top: 20px;
     font-size: 14px;
@@ -136,11 +119,6 @@ label {
 }
 
 @media (max-width: 600px) {
-    .groupechamps {
-        flex-direction: column;
-        gap: 0;
-    }
-
     .boutonsformulaire {
         flex-direction: column;
     }
