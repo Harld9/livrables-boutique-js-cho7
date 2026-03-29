@@ -1,6 +1,6 @@
 const bcrypt = require('bcrypt');
-const db = require('../database/connexion'); 
-const mysql = require('mysql2');
+const db = require('../database/connexiondb'); 
+
 
 exports.inscrireClient = async (req, res) => {
     

@@ -1,4 +1,4 @@
-const db = require('../database/connexion');
+const db = require('../database/connexiondb');
 
 // ===== Fonction : Récupérer un utilisateur par son ID =====
 exports.getUtilisateurById = async (req,res) =>{

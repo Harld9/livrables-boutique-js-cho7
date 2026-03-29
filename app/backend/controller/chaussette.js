@@ -1,4 +1,4 @@
-const db = require('../database/connexion.js')
+const db = require('../database/connexiondb.js')
 
 // ===== Fonction getChaussettes ----- '/chaussettes' ======
 exports.getChaussettes = (req, res) => {

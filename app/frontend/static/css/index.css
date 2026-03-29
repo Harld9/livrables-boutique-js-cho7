@@ -1,107 +1,98 @@
 /* CSS uniquement pour l'accueil */
 
+:root {
+    --couleur-primaire: #d83c18;
+    --couleur-primaire-hover: #a82e10;
+    --couleur-secondaire: #e0e0e0;
+    --couleur-secondaire-hover: #c0c0c0;
+    --couleur-fond: #f9f9f9;
+    --couleur-texte: #333333;
+    --couleur-texte-leger: #555555;
+    --blanc: #ffffff;
+    --ombre: rgba(0, 0, 0, 0.05);
+    --ombre-hover: rgba(0, 0, 0, 0.15);
+}
+
 body {
-    overflow-x: hidden;
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    color: var(--couleur-texte);
 }
 
 .entete {
     display: flex;
     flex-direction: column;
-    padding: 20px;
-    background-color: #f9f9f9;
+    padding: 40px 20px;
+    background-color: var(--couleur-fond);
 }
 
 .etiquette {
     background-color: #fbe9e7;
-    color: #d83c18;
+    color: var(--couleur-primaire);
     padding: 5px 15px;
     border-radius: 20px;
     font-size: 12px;
     font-weight: bold;
     width: fit-content;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
 }
 
 .titre {
-    font-size: 30px;
+    font-size: 32px;
     color: black;
     margin-bottom: 10px;
+    line-height: 1.2;
 }
 
 .italique {
     font-style: italic;
-    color: #d83c18;
+    color: var(--couleur-primaire);
 }
 
 .description {
-    color: #555555;
-    font-size: 15px;
-    margin-bottom: 15px;
+    color: var(--couleur-texte-leger);
+    font-size: 16px;
+    margin-bottom: 25px;
+    max-width: 500px;
 }
 
 .boutons {
     display: flex;
-    margin-bottom: 15px;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.primaire,
+.secondaire {
+    display: inline-block;
+    text-decoration: none;
+    padding: 12px 25px;
+    border-radius: 25px;
+    font-weight: bold;
+    text-align: center;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: none;
 }
 
 .primaire {
-    background-color: #d83c18;
-    color: white;
-    padding: 10px 20px;
-    border-radius: 25px;
-    font-weight: bold;
-    margin-right: 15px;
-    transition: 0.3s;
+    background-color: var(--couleur-primaire);
+    color: var(--blanc);
 }
 
 .primaire:hover {
-    background-color: #a82e10;
+    background-color: var(--couleur-primaire-hover);
+    transform: translateY(-2px);
 }
 
 .secondaire {
-    background-color: #e0e0e0;
+    background-color: var(--couleur-secondaire);
     color: black;
-    padding: 10px 20px;
-    border-radius: 25px;
-    font-weight: bold;
-    transition: 0.3s;
 }
 
 .secondaire:hover {
-    background-color: #c0c0c0;
-}
-
-.carrousselpiste {
-    display: flex;
-    gap: 20px;
-    padding: 0;
-}
-
-.carteproduit {
-    display: block;
-    scroll-snap-align: center;
-    background-color: transparent;
-    border-radius: 15px;
-    padding: 0;
-    text-align: center;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-    min-width: 280px;
-    transition: transform 0.3s, box-shadow 0.3s;
-    overflow: hidden;
-    cursor: pointer;
-}
-
-.carteproduit:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
-}
-
-.carteproduit img {
-    width: 100%;
-    height: 250px;
-    object-fit: cover;
-    margin: 0;
-    display: block;
+    background-color: var(--couleur-secondaire-hover);
+    transform: translateY(-2px);
 }
 
 .carrousselfenetre {
@@ -109,26 +100,52 @@ body {
     scroll-snap-type: x mandatory;
     scroll-behavior: smooth;
     max-width: 1200px;
-    margin-left: auto;
-    margin-right: auto;
-    padding-top: 10px;
-    padding-bottom: 15px;
+    margin: 0 auto;
+    padding: 20px 10px;
     scrollbar-width: none;
     -ms-overflow-style: none;
 }
 
 .carrousselfenetre::-webkit-scrollbar {
     display: none;
-    width: 0;
-    height: 0;
+}
+
+.carrousselpiste {
+    display: flex;
+    gap: 20px;
+}
+
+.carteproduit {
+    flex: 0 0 280px;
+    scroll-snap-align: center;
+    background-color: var(--blanc);
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 4px 10px var(--ombre);
+    transition: transform 0.3s, box-shadow 0.3s;
+    overflow: hidden;
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+}
+
+.carteproduit:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 25px var(--ombre-hover);
+}
+
+.carteproduit img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    display: block;
 }
 
 .soustitre {
-    font-size: 22px;
+    font-size: 20px;
     font-weight: bold;
-    color: #333333;
-    margin-top: 10px;
-    margin-bottom: 10px;
+    color: var(--couleur-texte);
+    margin: 15px 0;
     text-transform: uppercase;
     letter-spacing: 1px;
 }
@@ -137,29 +154,27 @@ body {
     .entete {
         align-items: center;
         text-align: center;
-        padding: 10px 20px;
+        padding: 60px 20px;
     }
 
     .titre {
-        font-size: 40px;
+        font-size: 48px;
         max-width: 800px;
     }
 
     .description {
-        max-width: 600px;
-        margin-bottom: 20px;
+        max-width: 650px;
     }
 
     .boutons {
         justify-content: center;
-        margin-bottom: 20px;
     }
 
     .carteproduit {
-        min-width: 300px;
+        flex: 0 0 320px;
     }
 
     .carteproduit img {
-        height: 280px;
+        height: 300px;
     }
 }
