@@ -3,8 +3,8 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const mysql = require('mysql2');
 
+    // ===== Fonction : inscription =====
 exports.inscrireClient = async (req, res) => {
-    
     // définit les constantes que l'utilisateur écrit dans les inputs en html
     const nom = req.body.nom;
     const prenom = req.body.prenom;

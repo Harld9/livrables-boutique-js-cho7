@@ -28,10 +28,19 @@ const donneesClient = {
     numeroTel: numeroTel,
     motDePasse: mdp};
 
-await fetch("http://localhost:8080/api/inscription",{
-    method : "POST",
-    headers : { "Content-Type" : "application/json"},
-    body : JSON.stringify(donneesClient)
-})
-});
+try {
+       //on attend que le serveur réponde et on stocke sa réponse dans une variable
+        const reponse = await fetch("http://localhost:8080/api/inscription", {
+            method : "POST",
+            headers : { "Content-Type" : "application/json"},
+            body : JSON.stringify(donneesClient)
+        });
 
+        //on regarde le statut de la réponse si c'est ok on badcule l'utilisateur de la page d'inscription à la page connexion
+        if (reponse.ok) {
+            window.location.href = "/connexion";
+        } 
+    } catch (erreur) {
+       console.log(erreur)
+    }
+});
