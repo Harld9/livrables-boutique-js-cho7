@@ -1,5 +1,6 @@
 const bcrypt = require('bcrypt');
-const db = require('../database/db'); 
+const db = require('../database/connexion'); 
+const mysql = require('mysql2');
 
 exports.inscrireClient = async (req, res) => {
     
@@ -16,7 +17,7 @@ exports.inscrireClient = async (req, res) => {
         const motDePasseHache = await bcrypt.hash(motDePasse, 10);
 
         // requete sql qui écrit les infos d'un user dans la db
-        const sql = 'INSERT INTO Client (Nom, Prenom, Adresse, Mail, NumeroTel, MotDePasse) VALUES (?, ?, ?, ?, ?, ?)';
+        const sql = 'INSERT INTO client (Nom, Prenom, Adresse, Mail, NumeroTel, motDePasse) VALUES (?, ?, ?, ?, ?, ?)';
         
         //envoit à la db la requete du dessus
         await db.query(sql, [nom, prenom, adresse, mail, numeroTel, motDePasseHache]);

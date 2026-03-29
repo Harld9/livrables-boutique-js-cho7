@@ -1,0 +1,135 @@
+/* CSS spécifique pour la page d'inscription */
+
+body {
+    background-color: #f9f9f9;
+    font-family: 'Poppins', sans-serif;
+}
+
+.conteneurformulaire {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 80px);
+    padding: 20px;
+}
+
+.boiteformulaire {
+    background-color: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    width: 100%;
+    max-width: 500px;
+}
+
+.titreformulaire {
+    font-size: 28px;
+    color: black;
+    margin-bottom: 5px;
+    text-align: center;
+}
+
+.descriptionformulaire {
+    color: #555555;
+    font-size: 14px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.separateur {
+    border: 1px solid #e0e0e0;
+    margin-bottom: 20px;
+}
+
+input[type=text],
+input[type=password],
+input[type=email] {
+    width: 100%;
+    padding: 12px 15px;
+    margin: 8px 0 20px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    transition: border 0.3s;
+}
+
+input[type=text]:focus,
+input[type=password]:focus,
+input[type=email]:focus {
+    border-color: #d83c18;
+    outline: none;
+}
+
+label {
+    font-size: 14px;
+    color: #333;
+}
+
+.groupechamps {
+    display: flex;
+    gap: 15px;
+}
+
+.champ {
+    flex: 1;
+}
+
+.souvenirmoi {
+    display: block;
+    margin-bottom: 25px;
+    font-size: 14px;
+    color: #555;
+}
+
+.boutonsformulaire {
+    display: flex;
+    gap: 15px;
+}
+
+.boutonvalidation,
+.boutonannulation {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: bold;
+    font-family: 'Poppins', sans-serif;
+    width: 50%;
+    transition: 0.3s;
+}
+
+.boutonvalidation {
+    background-color: #d83c18;
+    color: white;
+}
+
+.boutonvalidation:hover {
+    background-color: #a82e10;
+}
+
+.boutonannulation {
+    background-color: #e0e0e0;
+    color: black;
+}
+
+.boutonannulation:hover {
+    background-color: #c0c0c0;
+}
+
+@media (max-width: 600px) {
+    .groupechamps {
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .boutonsformulaire {
+        flex-direction: column;
+    }
+
+    .boutonvalidation,
+    .boutonannulation {
+        width: 100%;
+    }
+}
