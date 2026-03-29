@@ -65,15 +65,10 @@ app.get('/produit', (req, res) =>
 // On ajoute le '/api' afin d'éviter les confusions entre les routes API et page HTML (JSON ou HTML)
 const chaussetteRouter = require('./backend/router/chaussette')
 app.use('/api', chaussetteRouter)
-// pour les utilisateurs
+// pour les utilisateurs (inscription/connxion/données de l'utilisateur etc...)
 const utilisateurRouter = require('./backend/router/utilisateur')
 app.use('/api' ,utilisateurRouter)
-// pour l'inscription
-const inscriptionRouter = require('./backend/router/inscription')
-app.use('/api' ,inscriptionRouter)
-// pour la connexion
-const connexionRouter = require('./backend/router/connexionUtilisateur');
-app.use('/api', connexionRouter);
+
 // ===== GESTIONNAIRES 404 =====
 // Placé en dernier exprès, Express parcourt toutes les routes dans l'ordre, et si aucune ne correspond à l'URL demandée, il tombe sur celle-ci et renvoie la page d'erreur.
 app.use((req, res) => {
