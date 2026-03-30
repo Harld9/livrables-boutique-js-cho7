@@ -58,6 +58,15 @@ body {
   text-decoration: underline;
 }
 
+.boitemessagecache {
+  display: none;
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  text-align: center;
+  font-weight: bold;
+}
+
 input[type="text"],
 input[type="password"],
 input[type="email"] {

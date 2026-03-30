@@ -47,7 +47,7 @@ exports.connecterClient = async (req, res) => {
         const utilisateur = resultats[0];
 
         // check si le mot de passe est le bon en comparant les hash
-        const mdpCorrect = await bcrypt.compare(motDePasse, utilisateur.motDePasse);
+        const mdpCorrect = await bcrypt.compare(motDePasse, utilisateur.MotDePasse);
 
         if (!mdpCorrect) {
             return res.status(401).json({ message: "Email ou mot de passe incorrect." });

@@ -14,3 +14,10 @@ const UtilisateurController = {
 
 // On lance le script
 UtilisateurController.initialisation();
+
+const token = localStorage.getItem('token');
+
+// si pas de jeton, on bloque l'accès et on redirige l'utilsiateur vers connexion
+if (!token) {
+    window.location.href = '/connexion';
+}
