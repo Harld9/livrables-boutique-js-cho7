@@ -6,6 +6,22 @@ const port = 8080;
 const path = require("node:path");
 // Le CORS autorise toutes les adresses IP
 const cors = require('cors');
+// pour le rate limit
+const rateLimit = require('express-rate-limit')
+
+
+const limiteurAPI = rateLimit({
+    //calcul pour 10 minutes windowMs = window in miliseconds
+    windowMs: 10 * 60 * 1000,
+    max: 50, // nb max d'essai toutes les 10 minutes avant de se faire bloquer ( l'user a le droit a 50 essais toutes les 10 minutes )
+    message: "Oups ! Trop de requêtes envoyées depuis cette adresse IP. Veuillez réessayer dans 10 minutes.",
+    standardHeaders: true, // Envoie le nombre d'essais restants de façon invisible dans l'en-tête (Header) de la réponse HTTP.
+    legacyHeaders: false, // On désactive les anciennes méthodes d'en-tête pour garder un code propre et moderne.
+});
+
+// pour toutes les routes qui commencent par /api on utilise le limiteurApi
+app.use('/api', limiteurAPI);
+
 app.use(cors({
     origin: '*'
 }))
