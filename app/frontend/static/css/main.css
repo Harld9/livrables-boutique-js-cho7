@@ -1,161 +1,176 @@
 /* CSS général pour les classes communes à toutes les pages */
 
 * {
-    padding: 0;
-    margin: 0;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
 
 body {
-    font-family: Poppins, sans-serif
-}
-
-.logosnavbar {
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.logosnavbar a:last-child {
-    width: 50px;
-    display: flex;
-    justify-content: flex-end;
-}
-
-#logosite {
-    width: 140px;
-}
-
-#logopanier {
-    width: 24px;
-    height: 24px;
-}
-
-#logo-utilisateur {
-    width: 24px;
-    height: 24px;
-}
-
-.icones {
-    display: flex;
-    gap: 15px;
-    align-items: center;
-    justify-content: flex-end;
-}
-
-.panier {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.panier a {
-    padding: 0;
-}
-
-
-.navbar {
-    background-color: #114b5f;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    padding: 10px 20px;
-}
-
-.menu {
-    display: none;
-    flex-direction: column;
-    width: 100%;
-}
-
-.menu.active {
-    display: flex;
-}
-
-.menu li {
-    list-style: none;
-    text-align: center;
-}
-
-.burger {
-    display: block;
-    background: none;
-    border: none;
-    color: #e4fde1;
-    cursor: pointer;
-    font-size: 25px;
-    width: 50px;
-    text-align: left;
-    padding: 0;
-}
-
-ul {
-    list-style: none;
+  font-family: Poppins, sans-serif;
+  min-width: 320px;
+  min-height: 160px;
 }
 
 a {
-    display: block;
-    padding: 15px;
-    text-decoration: none;
-    color: white;
+  text-decoration: none;
 }
 
-a:hover {
-    text-decoration: underline;
+ul {
+  list-style: none;
+}
+
+.navbar {
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  padding: 15px 20px;
+  border-bottom: 1px solid #eeeeee;
+}
+
+#lienlogo {
+  order: 2;
+  display: flex;
+  justify-content: center;
+}
+
+#logosite {
+  width: 140px;
+}
+
+.burger {
+  display: block;
+  background: none;
+  border: none;
+  color: #111111;
+  cursor: pointer;
+  font-size: 25px;
+  flex: 1;
+  text-align: left;
+  padding: 0;
+  order: 1;
+}
+
+.menu {
+  display: none;
+  flex-direction: column;
+  width: 100%;
+  order: 4;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #ffffff;
+  z-index: 10;
+}
+
+.menu.active {
+  display: flex;
+}
+
+.menu li {
+  text-align: center;
+}
+
+.menu a {
+  display: block;
+  padding: 15px;
+  color: #111111;
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+.menu a:hover {
+  color: #d83c18;
+}
+
+.icones {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  justify-content: flex-end;
+  order: 3;
+  flex: 1;
+}
+
+#logopanier,
+#logoutilisateur,
+#logofavoris {
+  width: 24px;
+  height: 24px;
+}
+
+.icones a {
+  padding: 0;
+  display: flex;
+  align-items: center;
+  transition: 0.3s;
+}
+
+.icones a:hover {
+  opacity: 0.5;
+}
+
+
+.panier {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .pointrouge {
-    position: absolute;
-    top: -5px;
-    right: -5px;
-    width: 18px;
-    height: 18px;
-    border-radius: 50%;
-    background: rgb(255, 51, 51);
-    color: #fff;
-    font-size: 9px;
-    font-weight: 600;
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background-color: rgb(255, 51, 51);
+  color: #ffffff;
+  font-size: 9px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (min-width: 768px) {}
+
+@media (min-width: 1024px) {
+  .burger {
+    display: none;
+  }
+
+  .navbar {
+    position: relative;
+  }
+
+  .menu {
     display: flex;
-    align-items: center;
-    justify-content: center;
+    flex-direction: row;
+    width: auto;
+    order: 0;
+    position: static;
+  }
+
+  .menu li {
+    margin: 0 15px;
+  }
+
+  .menu a {
+    padding: 5px 10px;
+  }
+
+  #lienlogo {
+    order: 0;
+    flex: 1;
+    justify-content: flex-start;
+  }
+
+  .icones {
+    order: 0;
+    justify-content: flex-end;
+  }
 }
-
-/*Format Tablette*/
-@media (min-width: 768px) {
-
-    .burger {
-        display: none;
-    }
-
-    .navbar {
-        position: relative;
-    }
-
-    .menu {
-        display: flex;
-        flex-direction: row;
-        width: auto;
-        position: absolute;
-        left: 50%;
-        transform: translateX(-50%);
-    }
-
-    .menu li {
-        margin: 0 15px;
-    }
-
-    .menu a {
-        padding: 5px 10px;
-        white-space: nowrap;
-    }
-
-
-}
-
-/*Format Laptop*/
-@media (min-width: 1024px) {}
-
-/*Format Grand écran de bureau*/
-@media (min-width: 1280px) {}

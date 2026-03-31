@@ -1,51 +1,97 @@
 <!doctype html>
 <html lang="fr">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="/css/main.css" rel="stylesheet" />
-    <link href="/css/index.css" rel="stylesheet" />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-    />
-    <title>Accueil</title>
-  </head>
 
-  <body>
-    <nav class="navbar">
-      <div class="logosnavbar">
-        <button class="burger" id="boutonburger">☰</button>
-        <a href="/"
-          ><img src="/assets/imglogo/cho7.png" alt="Logo du site" id="logosite"
-        /></a>
-        <div class="icones">
-          <a href="/profil"
-            ><img
-              src="/assets/icons/account_circle_24dp_E4FDE1_FILL0_wght400_GRAD0_opsz24.png"
-              alt="Logo Utilisateur"
-              id="logo-utilisateur"
-          /></a>
-          <div class="panier">
-            <a href="/panier">
-              <img
-                src="/assets/icons/shopping_cart_24dp_E4FDE1_FILL0_wght400_GRAD0_opsz24.png"
-                alt="Logo Panier"
-                id="logopanier"
-            /></a>
-            <div class="pointrouge">0</div>
-          </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="/css/main.css" rel="stylesheet" />
+  <link href="/css/index.css" rel="stylesheet" />
+  <script src="/script/main.js" type="module"></script>
+  <script src="/script/index.js" type="module"></script>
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" />
+  <title>Accueil</title>
+</head>
+
+<body>
+  <nav class="navbar">
+    <button class="burger" id="boutonburger">☰</button>
+    <a href="/" id="lienlogo"><img src="/assets/imglogo/cho7.png" alt="Logo du site" id="logosite" /></a>
+    <ul class="menu" id="listemenu">
+      <li><a href="/catalogue">Notre Catalogue</a></li>
+      <li><a href="/commandes">Suivi Commande</a></li>
+      <li>
+        <a href="/connexion">Connexion/Inscription</a>
+      </li>
+      <li><a href="/about">À Propos</a></li>
+    </ul>
+    <div class="icones">
+      <a href="/favoris"><img src="/assets/icons/favorite_24dp_111111_FILL0_wght400_GRAD0_opsz24.svg" alt="Logo Favoris"
+          id="logofavoris" /></a>
+      <a href="/profil"><img src="/assets/icons/account_circle_24dp_111111_FILL0_wght400_GRAD0_opsz24.svg"
+          alt="Logo Utilisateur" id="logoutilisateur" /></a>
+      <div class="panier">
+        <a href="/panier">
+          <img src="/assets/icons/shopping_cart_24dp_111111_FILL0_wght400_GRAD0_opsz24.svg" alt="Logo Panier"
+            id="logopanier" />
+          <div class="pointrouge">0</div>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <section class="entete">
+
+      <p class="etiquette">Nouvelle Collection 2026 !</p>
+
+      <h1 class="titre">
+        Bienvenue sur LA<span class="italique"> Cho7</span>
+      </h1>
+
+      <p class="description">
+        Le premier site e-commerce de chaussettes développé avec passion. Fini les orteils congelés, découvrez une
+        collection codée sur mesure.
+      </p>
+
+      <div class="boutons">
+        <a href="/catalogue" class="primaire">Voir le catalogue</a>
+        <a href="/about" class="secondaire">À propos du projet</a>
+      </div>
+
+      <h2 class="soustitre">Nos best-sellers</h2>
+
+      <!-- J'ai mit le lien vers catalogue mais après on mettre le lien vers le produit spécifique et également mettre les photos depuis la db-->
+      <div class="carrousselfenetre">
+        <div class="carrousselpiste">
+          <div class="carteproduit"><a href="/catalogue"><img src="\assets\imgchaussettes\CatUni\cho7-uni-portee-1.png"
+                alt="1" /></a></div>
+          <div class="carteproduit"><a href="/catalogue"><img src="\assets\imgchaussettes\CatUni\cho7-uni-portee-2.png"
+                alt="2" /></a></div>
+          <div class="carteproduit"><a href="/catalogue"><img src="\assets\imgchaussettes\CatUni\cho7-uni-portee-3.png"
+                alt="3" /></a></div>
+          <div class="carteproduit"><a href="/catalogue"><img src="\assets\imgchaussettes\CatUni\cho7-uni-portee-4.png"
+                alt="4" /></a></div>
+          <div class="carteproduit"><a href="/catalogue"><img src="\assets\imgchaussettes\CatUni\cho7-uni-portee-5.png"
+                alt="5" /></a></div>
+          <div class="carteproduit"><a href="/catalogue"><img src="\assets\imgchaussettes\CatUni\cho7-uni-portee-1.png"
+                alt="1" /></a></div>
+          <div class="carteproduit"><a href="/catalogue"><img src="\assets\imgchaussettes\CatUni\cho7-uni-portee-2.png"
+                alt="2" /></a></div>
+          <div class="carteproduit"><a href="/catalogue"><img src="\assets\imgchaussettes\CatUni\cho7-uni-portee-3.png"
+                alt="3" /></a></div>
+          <div class="carteproduit"><a href="/catalogue"><img src="\assets\imgchaussettes\CatUni\cho7-uni-portee-4.png"
+                alt="4" /></a></div>
+          <div class="carteproduit"><a href="/catalogue"><img src="\assets\imgchaussettes\CatUni\cho7-uni-portee-5.png"
+                alt="5" /></a></div>
         </div>
       </div>
-      <ul class="menu" id="listemenu">
-        <li><a href="/catalogue">Notre Catalogue</a></li>
-        <li><a href="/favoris">Favoris</a></li>
-        <li><a href="/commandes">Suivi Commande</a></li>
-        <li>
-          <a href="/connexion">Connexion/Inscription</a>
-        </li>
-        <li><a href="/about">À Propos</a></li>
-      </ul>
-    </nav>
-  </body>
+
+
+
+    </section>
+  </main>
+
+</body>
+
 </html>
