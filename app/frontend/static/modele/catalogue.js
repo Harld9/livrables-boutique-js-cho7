@@ -15,7 +15,7 @@ const CatalogueModele = {
         }
 
         // Sinon, on appelle l'API et on le stocke en cache
-        return fetch('http://localhost:8080/api/chaussettes')
+        return fetch('/api/chaussettes')
             // On convertit la réponse HTTP brut en objet JS via la fonction res.json (Méthode express)
             .then(res => res.json())
             .then(data => {

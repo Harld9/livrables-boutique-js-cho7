@@ -54,16 +54,14 @@ const CatalogueVue = {
             const divBtn = document.createElement('div')
             const bouton = document.createElement('button')
 
-            const srcImg = '/asset/imgchaussettes/' + (() => {
-                switch (NomCategorie) {
-                    case 'Memes':
-                        return 'CatMeme'
-                    case 'Unies':
-                        return 'CatUni'
-                    case 'Motifs':
-                        return 'CatMotif'
+            const dossier = (() => {
+                switch (c.NomCategorie) {
+                    case 'Memes': return 'CatMeme/'
+                    case 'Unies': return 'CatUni/'
+                    case 'Motifs': return 'CatMotif/'
+                    default:       return ''
                 }
-            }) + c.Image3D;
+            })()
             // Ajout des classes CSS
             produit.classList.add('produit')
             imgProd.classList.add('imgProd')
@@ -83,8 +81,27 @@ const CatalogueVue = {
 
             // textContent pour toutes les données BDD
             // Image
-            imgProd.src = srcImg
+            const src3D     = '/assets/imgchaussettes/' + dossier + c.Image3D
+            const srcPortee = '/assets/imgchaussettes/' + dossier + c.ImagePortee
+
+            imgProd.src = src3D
             imgProd.alt = c.NomProduit
+
+            // Event pour le hover de l'image
+            imgProd.addEventListener('mouseenter', () => {
+                imgProd.style.opacity = '0'
+                setTimeout(() => {
+                    imgProd.src = srcPortee
+                    imgProd.style.opacity = '1'
+                }, 150)
+            })
+            imgProd.addEventListener('mouseleave', () => {
+                imgProd.style.opacity = '0'
+                setTimeout(() => {
+                    imgProd.src = src3D
+                    imgProd.style.opacity = '1'
+                }, 150)
+            })
 
             // Infos
             nom.textContent = c.NomProduit
@@ -92,7 +109,7 @@ const CatalogueVue = {
             prix.textContent = c.Prix + '€'
             if (c.Reduction > 0) {
                 prix.classList.add('barrer')
-                reduction.textContent = c.prix * c.Reduction
+                reduction.textContent = (c.Prix * (1 - c.Reduction)).toFixed(2) + '€'
             }
             // Catégorie et Genre
             categorie.textContent = c.NomCategorie
