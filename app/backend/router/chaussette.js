@@ -15,6 +15,8 @@ router.get('/chaussettes', chaussetteController.getChaussettes);
 router.get('/chaussette/:id', chaussetteController.getChaussetteById)
 // ----- api/chaussettes/variantes/:id ------
 router.get('/chaussettes/variantes/:id', chaussetteController.getVariantes)
+// ----- api/chaussettes/similaires/:id ------
+router.get('/chaussettes/similaires/:id', chaussetteController.getSimilaires)
 
 // On exporte le router avec ses routes pour que app.js puisse les utiliser (require)
 module.exports = router

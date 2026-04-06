@@ -6,10 +6,7 @@ const ProduitController = {
         ProduitModele.getById()
             .then(data => {
                 if (data && data.code === 200) {
-                    // 1. Affiche le produit
                     ProduitVue.affichage(data.chaussette)
-
-                    // 2. Charge et affiche les variantes
                     return ProduitModele.getVariantes(id)
                 } else {
                     ProduitVue.affichageErreur()
@@ -18,6 +15,12 @@ const ProduitController = {
             .then(data => {
                 if (data && data.code === 200) {
                     ProduitVue.affichageVariantes(data.variantes, id)
+                    return ProduitModele.getSimilaires(id) // ← enchaîne
+                }
+            })
+            .then(data => {
+                if (data && data.code === 200) {
+                    ProduitVue.affichageSimilaires(data.memeCategorie, data.memeLongueur)
                 }
             })
             .catch(err => {

@@ -238,6 +238,111 @@ const ProduitVue = {
         colonneInfos.insertBefore(wrapper, bouton)
     },
 
+    affichageSimilaires: (memeCategorie, memeLongueur) => {
+        const container = document.getElementById('produit')
+        if (!container) return
+
+        // ===== HELPER — crée une carte produit =====
+        const creerCarte = (p) => {
+            const dossier = (() => {
+                switch (p.NomCategorie.trim()) {
+                    case 'Memes':  return 'CatMeme/'
+                    case 'Unies':  return 'CatUni/'
+                    case 'Motifs': return 'CatMotif/'
+                    default:       return ''
+                }
+            })()
+
+            const carte  = document.createElement('div')
+            const img    = document.createElement('img')
+            const infos  = document.createElement('div')
+            const nom    = document.createElement('p')
+            const prix   = document.createElement('p')
+
+            carte.classList.add('carte-similaire')
+            img.classList.add('img-similaire')
+            infos.classList.add('infos-similaire')
+            nom.classList.add('nom-similaire')
+            prix.classList.add('prix-similaire')
+
+            img.src          = '/assets/imgchaussettes/' + dossier + p.Image3D
+            img.alt          = p.NomProduit
+            nom.textContent  = p.NomProduit
+            prix.textContent = p.Prix + '€'
+
+            if (p.Reduction > 0) {
+                prix.classList.add('barrer')
+                const reduction = document.createElement('p')
+                reduction.classList.add('reduction-similaire')
+                reduction.textContent = (p.Prix * (1 - p.Reduction)).toFixed(2) + '€'
+                infos.appendChild(reduction)
+            }
+
+            // Hover image
+            const src3D     = '/assets/imgchaussettes/' + dossier + p.Image3D
+            const srcPortee = '/assets/imgchaussettes/' + dossier + p.ImagePortee
+
+            img.addEventListener('mouseenter', () => {
+                img.style.opacity = '0'
+                setTimeout(() => { img.src = srcPortee; img.style.opacity = '1' }, 150)
+            })
+            img.addEventListener('mouseleave', () => {
+                img.style.opacity = '0'
+                setTimeout(() => { img.src = src3D; img.style.opacity = '1' }, 150)
+            })
+
+            // Clic → page produit
+            carte.addEventListener('click', () => {
+                window.location.href = '/produit?id=' + p.IdProduit
+            })
+
+            infos.appendChild(nom)
+            infos.appendChild(prix)
+            carte.appendChild(img)
+            carte.appendChild(infos)
+
+            return carte
+        }
+
+        // ===== SECTION MÊME CATÉGORIE =====
+        if (memeCategorie.length > 0) {
+            const sectionCategorie = document.createElement('div')
+            const titreCategorie   = document.createElement('h2')
+            const listeCategorie   = document.createElement('div')
+
+            sectionCategorie.classList.add('section-similaires')
+            titreCategorie.classList.add('titre-similaires')
+            listeCategorie.classList.add('liste-similaires')
+
+            titreCategorie.textContent = 'Même catégorie'
+
+            memeCategorie.forEach(p => listeCategorie.appendChild(creerCarte(p)))
+
+            sectionCategorie.appendChild(titreCategorie)
+            sectionCategorie.appendChild(listeCategorie)
+            container.appendChild(sectionCategorie)
+        }
+
+        // ===== SECTION MÊME LONGUEUR =====
+        if (memeLongueur.length > 0) {
+            const sectionLongueur = document.createElement('div')
+            const titreLongueur   = document.createElement('h2')
+            const listeLongueur   = document.createElement('div')
+
+            sectionLongueur.classList.add('section-similaires')
+            titreLongueur.classList.add('titre-similaires')
+            listeLongueur.classList.add('liste-similaires')
+
+            titreLongueur.textContent = 'Même longueur'
+
+            memeLongueur.forEach(p => listeLongueur.appendChild(creerCarte(p)))
+
+            sectionLongueur.appendChild(titreLongueur)
+            sectionLongueur.appendChild(listeLongueur)
+            container.appendChild(sectionLongueur)
+        }
+    },
+
     affichageErreur: () => {
         document.getElementById('produit').innerHTML = 'Produit introuvable'
     }

@@ -10,6 +10,11 @@ const ProduitModele = {
     getVariantes: (id) => {
         return fetch('/api/chaussettes/variantes/' + id)
             .then(res => res.json())
+    },
+
+    getSimilaires: (id) => {
+        return fetch('/api/chaussettes/similaires/' + id)
+            .then(res => res.json())
     }
 
 }

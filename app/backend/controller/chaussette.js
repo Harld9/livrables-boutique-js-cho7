@@ -113,3 +113,66 @@ exports.getVariantes = async (req, res) => {
         res.status(500).json({ code: 500, message: 'Erreur serveur' })
     }
 }
+
+// ===== GET /api/chaussettes/similaires/:id =====
+exports.getSimilaires = async (req, res) => {
+    try {
+        // Récupère le produit actuel
+        const sqlProduit = `
+            SELECT IdProduit, Longueur, IdCategorie
+            FROM Produit
+            WHERE IdProduit = ?
+        `
+        const [produit] = await db.query(sqlProduit, [req.params.id])
+
+        if (!produit[0]) {
+            return res.status(404).json({ code: 404, message: 'Produit introuvable' })
+        }
+
+        const { IdProduit, Longueur, IdCategorie } = produit[0]
+
+        // Même catégorie — exclut le produit actuel
+        const sqlCategorie = `
+            SELECT
+                Produit.IdProduit,
+                Produit.NomProduit,
+                Produit.Prix,
+                Produit.Reduction,
+                Produit.Image3D,
+                Categorie.NomCategorie
+            FROM Produit
+            INNER JOIN Categorie ON Categorie.IdCategorie = Produit.IdCategorie
+            WHERE Produit.IdCategorie = ?
+            AND   Produit.IdProduit  != ?
+        `
+        const [memeCategorie] = await db.query(sqlCategorie, [IdCategorie, IdProduit])
+
+        // Même longueur — exclut le produit actuel et ceux déjà dans memeCategorie
+        const sqlLongueur = `
+            SELECT
+                Produit.IdProduit,
+                Produit.NomProduit,
+                Produit.Prix,
+                Produit.Reduction,
+                Produit.Image3D,
+                Categorie.NomCategorie
+            FROM Produit
+            INNER JOIN Categorie ON Categorie.IdCategorie = Produit.IdCategorie
+            WHERE Produit.Longueur     = ?
+            AND   Produit.IdCategorie != ?
+            AND   Produit.IdProduit   != ?
+        `
+        const [memeLongueur] = await db.query(sqlLongueur, [Longueur, IdCategorie, IdProduit])
+
+        res.status(200).json({
+            code: 200,
+            message: 'Produits similaires récupérés',
+            memeCategorie: memeCategorie,
+            memeLongueur:  memeLongueur
+        })
+
+    } catch (err) {
+        console.error(err)
+        res.status(500).json({ code: 500, message: 'Erreur serveur' })
+    }
+}

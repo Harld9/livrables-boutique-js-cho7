@@ -252,6 +252,91 @@
     color: var(--couleur-primaire);
 }
 
+/* ===== PRODUITS SIMILAIRES ===== */
+.section-similaires {
+    max-width: 1100px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.titre-similaires {
+    font-size: 22px;
+    font-weight: bold;
+    color: var(--couleur-texte);
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.titre-similaires::after {
+    content: '';
+    display: block;
+    width: 50px;
+    height: 4px;
+    background-color: var(--couleur-primaire);
+    border-radius: 2px;
+    margin-top: 8px;
+}
+
+/* ===== LISTE ===== */
+.liste-similaires {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+/* ===== CARTE ===== */
+.carte-similaire {
+    background-color: var(--blanc);
+    border-radius: 15px;
+    box-shadow: 0 4px 10px var(--ombre);
+    overflow: hidden;
+    cursor: pointer;
+    width: 200px;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.carte-similaire:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 25px var(--ombre-hover);
+}
+
+.img-similaire {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    display: block;
+    transition: opacity 0.15s ease;
+}
+
+.infos-similaire {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.nom-similaire {
+    font-size: 13px;
+    font-weight: bold;
+    color: var(--couleur-texte);
+    margin: 0;
+}
+
+.prix-similaire {
+    font-size: 14px;
+    font-weight: bold;
+    color: var(--couleur-primaire);
+    margin: 0;
+}
+
+.reduction-similaire {
+    font-size: 14px;
+    font-weight: bold;
+    color: var(--couleur-primaire);
+    margin: 0;
+}
+
 /* ===== RESPONSIVE ===== */
 @media (min-width: 768px) {
     .produit-wrapper {
