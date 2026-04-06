@@ -154,5 +154,16 @@ const CatalogueVue = {
     // Si le controller renvoie une erreur, on affiche cette erreur
     AffichageErreur: () => {
         document.getElementById('liste').innerHTML = 'Erreur de chargement'
+    },
+
+    AffichageAucunResultat: () => {
+        const liste = document.getElementById('liste')
+        if (!liste) return
+        liste.innerHTML = ''
+
+        const message = document.createElement('p')
+        message.classList.add('aucun-resultat')
+        message.textContent = 'Aucun produit ne correspond à votre recherche'
+        liste.appendChild(message)
     }
 }

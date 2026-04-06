@@ -59,11 +59,40 @@
 -->
 <h1>Nos chaussettes</h1>
 
-<!-- Boutons de tri -->
-<div id="tri">
-    <button class="btn-tri actif" data-tri="defaut">Par défaut</button>
-    <button class="btn-tri" data-tri="croissant">Prix ↑</button>
-    <button class="btn-tri" data-tri="decroissant">Prix ↓</button>
+<div id="filtres">
+    <!-- Catégorie -->
+    <div class="filtre-groupe">
+        <p class="filtre-titre">Catégorie</p>
+        <div class="filtre-options" id="filtre-categorie">
+            <button class="btn-filtre actif" data-valeur="tous">Toutes</button>
+            <button class="btn-filtre" data-valeur="Unies">Unies</button>
+            <button class="btn-filtre" data-valeur="Motifs">Motifs</button>
+            <button class="btn-filtre" data-valeur="Memes">Mèmes</button>
+        </div>
+    </div>
+
+    <!-- Longueur -->
+    <div class="filtre-groupe">
+        <p class="filtre-titre">Longueur</p>
+        <div class="filtre-options" id="filtre-longueur">
+            <button class="btn-filtre actif" data-valeur="tous">Toutes</button>
+            <button class="btn-filtre" data-valeur="Courte">Courte</button>
+            <button class="btn-filtre" data-valeur="Moyenne">Moyenne</button>
+            <button class="btn-filtre" data-valeur="Haute">Haute</button>
+            <button class="btn-filtre" data-valeur="Longue">Longue</button>
+        </div>
+    </div>
+
+    <!-- Tri -->
+    <div class="filtre-groupe">
+        <p class="filtre-titre">Prix</p>
+        <div class="filtre-options" id="tri">
+            <button class="btn-tri actif" data-tri="defaut">Par défaut</button>
+            <button class="btn-tri" data-tri="croissant">Prix ↑</button>
+            <button class="btn-tri" data-tri="decroissant">Prix ↓</button>
+        </div>
+    </div>
+
 </div>
 
 <ul id="liste">Chargement...</ul>

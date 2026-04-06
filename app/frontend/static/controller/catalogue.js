@@ -3,6 +3,13 @@ const CatalogueController = {
     // Stocke les données originales pour pouvoir retrier sans refetch
     chaussettes: [],
 
+    // État des filtres
+    filtres: {
+        categorie: 'tous',
+        longueur:  'tous',
+        tri:       'defaut'
+    },
+
     // la fonction qui lance toute la logique de la page
     init: () => {
         console.log('3 - Controller : init')
@@ -13,8 +20,10 @@ const CatalogueController = {
                 if (data && data.code === 200) {
                     // Sauvegarde pour le tri
                     CatalogueController.chaussettes = data.chaussettes
-                    // une fois les données recues, on demande à la vue de les afficher
-                    CatalogueVue.Affichage(data.chaussettes)
+                    CatalogueController.appliquer()
+                    // une fois les données recues, on demande à la vue de les afficher avec les tri
+                    CatalogueController.appliquer()
+                    CatalogueController.initFiltres()
                     CatalogueController.initTri()
                 } else {
                     CatalogueVue.AffichageErreur()
@@ -27,33 +36,74 @@ const CatalogueController = {
             })
     },
 
+    // ===== APPLIQUE FILTRES + TRI =====
+    appliquer: () => {
+        let resultat = [...CatalogueController.chaussettes]
+
+        // Filtre catégorie
+        if (CatalogueController.filtres.categorie !== 'tous') {
+            resultat = resultat.filter(c =>
+                c.NomCategorie === CatalogueController.filtres.categorie
+            )
+        }
+
+        // Filtre longueur
+        if (CatalogueController.filtres.longueur !== 'tous') {
+            resultat = resultat.filter(c =>
+                c.Longueur === CatalogueController.filtres.longueur
+            )
+        }
+
+        // Tri prix
+        if (CatalogueController.filtres.tri === 'croissant') {
+            resultat.sort((a, b) => parseFloat(a.Prix) - parseFloat(b.Prix))
+        } else if (CatalogueController.filtres.tri === 'decroissant') {
+            resultat.sort((a, b) => parseFloat(b.Prix) - parseFloat(a.Prix))
+        }
+
+        // Affiche le résultat ou un message si aucun résultat
+        if (resultat.length === 0) {
+            CatalogueVue.AffichageAucunResultat()
+        } else {
+            CatalogueVue.Affichage(resultat)
+        }
+    },
+
+    // ===== INIT FILTRES CATÉGORIE ET LONGUEUR =====
+    initFiltres: () => {
+
+        // Catégorie
+        document.querySelectorAll('#filtre-categorie .btn-filtre').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('#filtre-categorie .btn-filtre')
+                    .forEach(b => b.classList.remove('actif'))
+                btn.classList.add('actif')
+                CatalogueController.filtres.categorie = btn.dataset.valeur
+                CatalogueController.appliquer()
+            })
+        })
+
+        // Longueur
+        document.querySelectorAll('#filtre-longueur .btn-filtre').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('#filtre-longueur .btn-filtre')
+                    .forEach(b => b.classList.remove('actif'))
+                btn.classList.add('actif')
+                CatalogueController.filtres.longueur = btn.dataset.valeur
+                CatalogueController.appliquer()
+            })
+        })
+    },
+
+    // ===== INIT TRI =====
     initTri: () => {
-        const boutons = document.querySelectorAll('.btn-tri')
-
-        boutons.forEach(bouton => {
-            bouton.addEventListener('click', () => {
-
-                // Met à jour le bouton actif
-                boutons.forEach(b => b.classList.remove('actif'))
-                bouton.classList.add('actif')
-
-                const tri = bouton.dataset.tri
-
-                // Copie le tableau pour ne pas modifier l'original
-                let chaussettes = [...CatalogueController.chaussettes]
-
-                // Pourquoi parseFloat ?
-                // Prix vient de la BDD en string '5.00'
-                // '5.00' - '12.00'  // ❌ NaN en JS
-                // parseFloat('5.00') - parseFloat('12.00')  // ✅ -7
-                if (tri === 'croissant') {
-                    chaussettes.sort((a, b) => parseFloat(a.Prix) - parseFloat(b.Prix))
-                } else if (tri === 'decroissant') {
-                    chaussettes.sort((a, b) => parseFloat(b.Prix) - parseFloat(a.Prix))
-                }
-                // 'defaut' → tableau original non modifié
-
-                CatalogueVue.Affichage(chaussettes)
+        document.querySelectorAll('.btn-tri').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.btn-tri')
+                    .forEach(b => b.classList.remove('actif'))
+                btn.classList.add('actif')
+                CatalogueController.filtres.tri = btn.dataset.tri
+                CatalogueController.appliquer()
             })
         })
     }
