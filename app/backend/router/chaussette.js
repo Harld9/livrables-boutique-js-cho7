@@ -13,6 +13,8 @@ const chaussetteController = require('../controller/chaussette')
 router.get('/chaussettes', chaussetteController.getChaussettes);
 // ----- API/CHAUSSETTE/:ID ------
 router.get('/chaussette/:id', chaussetteController.getChaussetteById)
+// ----- api/chaussettes/variantes/:id ------
+router.get('/chaussettes/variantes/:id', chaussetteController.getVariantes)
 
 // On exporte le router avec ses routes pour que app.js puisse les utiliser (require)
 module.exports = router

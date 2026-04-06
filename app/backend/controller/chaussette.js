@@ -74,3 +74,42 @@ exports.getChaussetteById = async (req, res) => {
         res.status(500).json({ code: 500, message: 'Erreur serveur' })
     }
 }
+
+// ===== GET /api/chaussettes/variantes/:id =====
+exports.getVariantes = async (req, res) => {
+    try {
+        // D'abord on récupère la longueur et la catégorie du produit actuel
+        const sqlProduit = `
+            SELECT IdProduit, Longueur, IdCategorie
+            FROM Produit
+            WHERE IdProduit = ?
+        `
+        const [produit] = await db.query(sqlProduit, [req.params.id])
+
+        if (!produit[0]) {
+            return res.status(404).json({ code: 404, message: 'Produit introuvable' })
+        }
+
+        // Ensuite on récupère tous les produits de même longueur et même catégorie
+        const sqlVariantes = `
+            SELECT IdProduit, NomProduit
+            FROM Produit
+            WHERE Longueur    = ?
+            AND   IdCategorie = ?
+        `
+        const [variantes] = await db.query(sqlVariantes, [
+            produit[0].Longueur,
+            produit[0].IdCategorie
+        ])
+
+        res.status(200).json({
+            code: 200,
+            message: 'Variantes récupérées',
+            variantes: variantes
+        })
+
+    } catch (err) {
+        console.error(err)
+        res.status(500).json({ code: 500, message: 'Erreur serveur' })
+    }
+}
