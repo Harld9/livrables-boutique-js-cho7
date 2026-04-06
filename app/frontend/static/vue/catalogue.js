@@ -62,6 +62,16 @@ const CatalogueVue = {
                     default:       return ''
                 }
             })()
+
+            produit.addEventListener('click', () => {
+                window.location.href = '/produit?id=' + c.IdProduit
+            })
+
+            // Empêche le clic sur le bouton d'ajout au panier de rediriger vers la page produit
+            bouton.addEventListener('click', (event) => {
+                event.stopPropagation() // ← bloque la propagation vers produit
+                // ton code panier ici plus tard
+            })
             // Ajout des classes CSS
             produit.classList.add('produit')
             imgProd.classList.add('imgProd')

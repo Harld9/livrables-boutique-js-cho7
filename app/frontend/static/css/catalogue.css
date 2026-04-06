@@ -1,83 +1,161 @@
+/* ===== TITRE PAGE ===== */
+h1 {
+    text-align: center;
+    font-size: 36px;
+    font-weight: bold;
+    color: var(--couleur-texte);
+    margin: 40px 0 10px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+h1::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 4px;
+    background-color: var(--couleur-primaire);
+    border-radius: 2px;
+    margin: 10px auto 30px;
+}
+
+/* ===== CATALOGUE ===== */
+
 #liste {
-    background-color: #d200ff;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    gap: 20px;
+    list-style: none;
+    padding: 20px;
+    margin: 0;
+    background-color: var(--couleur-fond);
 }
 
-/*<div class="produit">
-    <img class="imgProd" src="/assets/imgchaussettes/CatMeme/cho7-meme-3d-1.png" alt="">
-    <div class="infos">
-        <h3 class="nom">Nom Produit</h3>
-        <div class="prix-reduction">
-            <p class="prix">Prix</p>
-            <p class="reduction">réduction</p>
-        </div>
-        <div class="categorie-genre">
-            <p class="categorie">Catégorie</p>
-            <p class="genre ">genre</p>
-        </div>
-        <div class="divBtn">
-            <button class="btnProd">Ajouter panier</button>
-        </div>
-    </div>
-</div>*/
+/* ===== CARTE PRODUIT ===== */
 .produit {
-    background-color: aqua  ;
-
-    margin: 10px;
-    padding: 2px;
-    width: 200px;
-    height: auto;
+    background-color: var(--blanc);
+    border-radius: 15px;
+    box-shadow: 0 4px 10px var(--ombre);
+    transition: transform 0.3s, box-shadow 0.3s;
+    overflow: hidden;
+    cursor: pointer;
+    width: 260px;
 }
 
+.produit:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 25px var(--ombre-hover);
+}
+
+/* ===== IMAGE ===== */
 .imgProd {
     width: 100%;
-    height: auto;
-    transition: opacity 0.3s ease; /* ← fondu au changement */
+    height: 250px;
+    object-fit: cover;
+    display: block;
+    transition: opacity 0.15s ease;
 }
 
+/* ===== INFOS ===== */
 .infos {
-    background-color: lightgrey;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
 }
 
 .nom {
-    background-color: red;
+    font-size: 15px;
+    font-weight: bold;
+    color: var(--couleur-texte);
+    margin: 0;
 }
 
+/* ===== PRIX ET RÉDUCTION ===== */
 .prix-reduction {
-    background-color: yellow;
     display: flex;
+    align-items: center;
+    gap: 10px;
 }
+
 .prix {
-    background-color: #a6a600;
-    margin-right: 10%;
+    font-size: 16px;
+    font-weight: bold;
+    color: var(--couleur-primaire);
+    margin: 0;
 }
+
 .barrer {
     text-decoration: line-through;
-    color: grey;
-}
-.reduction {
-    background-color: #6c6c00;
-    color: red;
+    color: var(--couleur-texte-leger);
+    font-weight: normal;
 }
 
+.reduction {
+    font-size: 15px;
+    font-weight: bold;
+    color: var(--couleur-primaire);
+    margin: 0;
+}
+
+/* ===== CATÉGORIE ET GENRE ===== */
 .categorie-genre {
     display: flex;
-    background-color: greenyellow;
-}
-.categorie {
-    background-color: green;
-    margin-right: 10%;
-}
-.genre {
-    background-color: #01bc01;
+    gap: 8px;
 }
 
+.categorie,
+.genre {
+    font-size: 11px;
+    font-weight: bold;
+    padding: 3px 10px;
+    border-radius: 20px;
+    margin: 0;
+}
+
+.categorie {
+    background-color: #fbe9e7;
+    color: var(--couleur-primaire);
+}
+
+.genre {
+    background-color: var(--couleur-secondaire);
+    color: var(--couleur-texte);
+}
+
+/* ===== BOUTON ===== */
 .divBtn {
     display: flex;
     justify-content: center;
+    margin-top: 5px;
 }
+
 .btnProd {
-    background-color: #0000ff;
+    background-color: var(--couleur-primaire);
+    color: var(--blanc);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-weight: bold;
+    font-family: 'Poppins', sans-serif;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+}
+
+.btnProd:hover {
+    background-color: var(--couleur-primaire-hover);
+    transform: translateY(-2px);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (min-width: 768px) {
+    .produit {
+        width: 280px;
+    }
+
+    .imgProd {
+        height: 280px;
+    }
 }
