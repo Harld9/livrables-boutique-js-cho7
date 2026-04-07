@@ -56,3 +56,12 @@ CREATE TABLE Contient (
     FOREIGN KEY(IdProduit)  REFERENCES Produit(IdProduit),
     FOREIGN KEY(IdCommande) REFERENCES Commande(IdCommande)
 );
+
+-- ===== TABLE FAVORIS =====
+CREATE TABLE Favoris (
+    IdClient  INT,
+    IdProduit INT,
+    PRIMARY KEY(IdClient, IdProduit),
+    FOREIGN KEY(IdClient) REFERENCES Client(IdClient) ON DELETE CASCADE,
+    FOREIGN KEY(IdProduit) REFERENCES Produit(IdProduit) ON DELETE CASCADE
+);
