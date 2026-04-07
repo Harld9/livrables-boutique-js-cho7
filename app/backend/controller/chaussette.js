@@ -139,6 +139,7 @@ exports.getSimilaires = async (req, res) => {
                 Produit.Prix,
                 Produit.Reduction,
                 Produit.Image3D,
+                Produit.ImagePortee,
                 Categorie.NomCategorie
             FROM Produit
             INNER JOIN Categorie ON Categorie.IdCategorie = Produit.IdCategorie
@@ -155,6 +156,7 @@ exports.getSimilaires = async (req, res) => {
                 Produit.Prix,
                 Produit.Reduction,
                 Produit.Image3D,
+                Produit.ImagePortee,
                 Categorie.NomCategorie
             FROM Produit
             INNER JOIN Categorie ON Categorie.IdCategorie = Produit.IdCategorie

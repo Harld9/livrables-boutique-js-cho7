@@ -284,11 +284,17 @@ const ProduitVue = {
 
             img.addEventListener('mouseenter', () => {
                 img.style.opacity = '0'
-                setTimeout(() => { img.src = srcPortee; img.style.opacity = '1' }, 150)
+                setTimeout(() => {
+                    img.src = srcPortee
+                    img.style.opacity = '1'
+                }, 150)
             })
             img.addEventListener('mouseleave', () => {
                 img.style.opacity = '0'
-                setTimeout(() => { img.src = src3D; img.style.opacity = '1' }, 150)
+                setTimeout(() => {
+                    img.src = src3D
+                    img.style.opacity = '1'
+                }, 150)
             })
 
             // Clic → page produit
