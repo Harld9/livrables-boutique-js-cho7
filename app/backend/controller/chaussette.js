@@ -1,4 +1,5 @@
 const db = require('../database/connexiondb.js')
+const jwt = require('jsonwebtoken')
 
 // ===== Fonction getChaussettes ----- '/chaussettes' ======
 exports.getChaussettes = async (req, res) => {
@@ -176,5 +177,51 @@ exports.getSimilaires = async (req, res) => {
     } catch (err) {
         console.error(err)
         res.status(500).json({ code: 500, message: 'Erreur serveur' })
+    }
+}
+// ===== POST /api/chaussettes/favoris =====
+exports.ajouterFavori = async (req, res) => {
+    try {
+        // on recupère l'id que le front nous envoie
+        const idProduit = req.body.idProduit;
+
+        // regarde dans le header si le front a bien envoyé le token
+        const authHeader = req.headers.authorization;
+        
+        // si le header ne contient pas de token ou pas de beaerer 
+        if (!authHeader || !authHeader.startsWith('Bearer ')) {
+            // alors il ne peut pas se connecter et on lui envoit une erreur 401
+            return res.status(401).json({ code: 401, message: 'Non autorisé : Veuillez vous connecter' });
+        }
+
+        // on coupe le bearer + token pour n'avoir que le token
+        const token = authHeader.split(' ')[1]; 
+
+        // on décrypte le token avec la clé secrète du .env
+        const secretKey = process.env.JWT_SECRET ;
+        const decodedToken = jwt.verify(token, secretKey);
+
+        // on récupere l'id dans le token
+        const idClient = decodedToken.IdClient; 
+
+        // ajoute en favoris via une requete sql à part si il est déjà existant c'est pour ca qu'on a mit ignore
+        const sql = `INSERT IGNORE INTO Favoris (IdClient, IdProduit) VALUES (?, ?)`;
+        
+        // on envoit la requete a la db
+        await db.query(sql, [idClient, idProduit]);
+
+        // si tout est ok on renvoit un code 200
+        res.status(200).json({ code: 200, message: 'Favori ajouté avec succès' });
+
+    } catch (err) {
+        console.error("ERREUR AJOUT FAVORI :", err);
+        
+        // si le token est incorrect ou plus valable on retourne une erreur 401
+        if (err.name === 'JsonWebTokenError' || err.name === 'TokenExpiredError') {
+            return res.status(401).json({ code: 401, message: 'Session expirée ou invalide' });
+        }
+        
+        // si ça ne fonctionne pas on renvoit une erreur serveur
+        res.status(500).json({ code: 500, message: 'Erreur serveur' });
     }
 }
