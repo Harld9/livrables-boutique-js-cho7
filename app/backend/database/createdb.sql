@@ -1,48 +1,58 @@
+CREATE DATABASE IF NOT EXISTS cho7;
+USE cho7;
+
+-- ===== TABLE CLIENT =====
 CREATE TABLE Client (
-   IdClient INT AUTO_INCREMENT,
-   Nom VARCHAR(50),
-   Prenom VARCHAR(50), 
-   Adresse VARCHAR(255), 
-   Mail VARCHAR(100),
-   NumeroTel VARCHAR(20), 
-   PRIMARY KEY(IdClient)
+IdClient   INT AUTO_INCREMENT,
+		Nom        VARCHAR(50),
+		Prenom     VARCHAR(50),
+		Adresse    VARCHAR(255),
+		Mail       VARCHAR(100) UNIQUE,
+		NumeroTel  VARCHAR(20),
+		MotDePasse VARCHAR(255) NOT NULL,
+		PRIMARY KEY(IdClient)
 );
 
+-- ===== TABLE CATEGORIE =====
 CREATE TABLE Categorie (
-   IdCategorie INT AUTO_INCREMENT,
-   NomCategorie VARCHAR(50),
-   PRIMARY KEY(IdCategorie)
+    IdCategorie  INT AUTO_INCREMENT,
+    NomCategorie VARCHAR(50),
+    PRIMARY KEY(IdCategorie)
 );
 
-CREATE TABLE Commande (
-   IdCommande INT AUTO_INCREMENT,
-   DateCommande DATETIME, 
-   IdClient INT NOT NULL,
-   PRIMARY KEY(IdCommande),
-   FOREIGN KEY(IdClient) REFERENCES Client(IdClient)
-);
-
+-- ===== TABLE PRODUIT =====
 CREATE TABLE Produit (
-   IdProduit INT AUTO_INCREMENT,
-   NomProduit VARCHAR(100),
-   Reduction DECIMAL(5,2), 
-   Type VARCHAR(50), 
-   Description TEXT, 
-   Prix DECIMAL(10,2), 
-   Taille VARCHAR(20), 
-   Genre VARCHAR(50),
-   IdCategorie INT,
-   Stock INT,
-   Image VARCHAR(100),
-   PRIMARY KEY(IdProduit),
-   FOREIGN KEY(IdCategorie) REFERENCES Categorie(IdCategorie)
+    IdProduit   INT AUTO_INCREMENT,
+    NomProduit  VARCHAR(100),
+    Longueur    ENUM('Courte', 'Moyenne', 'Haute', 'Longue'),
+    Prix        DECIMAL(5,2),
+    IdCategorie INT,
+    Reduction   DECIMAL(5,2) DEFAULT 0.00,
+    Description TEXT,
+    Pointure    VARCHAR(20),
+    Genre       ENUM('Homme', 'Femme', 'Unisexe') DEFAULT 'Unisexe',
+    Stock       INT DEFAULT 0,
+    Image3D     VARCHAR(255),
+    ImagePortee VARCHAR(255),
+    PRIMARY KEY(IdProduit),
+    FOREIGN KEY(IdCategorie) REFERENCES Categorie(IdCategorie)
 );
 
+-- ===== TABLE COMMANDE =====
+CREATE TABLE Commande (
+    IdCommande    INT AUTO_INCREMENT,
+    DateCommande  DATETIME,
+    IdClient      INT NOT NULL,
+    PRIMARY KEY(IdCommande),
+    FOREIGN KEY(IdClient) REFERENCES Client(IdClient)
+);
+
+-- ===== TABLE CONTIENT =====
 CREATE TABLE Contient (
-   IdProduit INT,
-   IdCommande INT,
-   Quantite INT,
-   PRIMARY KEY(IdProduit, IdCommande),
-   FOREIGN KEY(IdProduit) REFERENCES Produit(IdProduit),
-   FOREIGN KEY(IdCommande) REFERENCES Commande(IdCommande)
+    IdProduit  INT,
+    IdCommande INT,
+    Quantite   INT,
+    PRIMARY KEY(IdProduit, IdCommande),
+    FOREIGN KEY(IdProduit)  REFERENCES Produit(IdProduit),
+    FOREIGN KEY(IdCommande) REFERENCES Commande(IdCommande)
 );

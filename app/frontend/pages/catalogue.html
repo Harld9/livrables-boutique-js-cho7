@@ -2,40 +2,104 @@
 <html lang="fr">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Catalogue</title>
-    <link href="/css/main.css" rel="stylesheet" />
-    <script src="/script/main.js" type="module"></script>
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" />
+    <link href="/css/catalogue.css" rel="stylesheet"/>
+    <link href="/css/main.css" rel="stylesheet"/>
+    <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+    />
 </head>
 
 <body>
-    <nav class="navbar">
-        <button class="burger" id="boutonburger">☰</button>
-        <a href="/" id="lienlogo"><img src="/assets/imglogo/cho7.png" alt="Logo du site" id="logosite" /></a>
-        <ul class="menu" id="listemenu">
-            <li><a href="/">Accueil</a></li>
-            <li><a href="/panier">Panier</a></li>
-            <li><a href="/commandes">Suivi Commande</a></li>
-            <li><a href="/connexion">Connexion/Inscription</a></li>
-            <li><a href="/about">À Propos</a></li>
-        </ul>
-        <div class="icones">
-            <a href="/favoris"><img src="/assets/icons/favorite_24dp_111111_FILL0_wght400_GRAD0_opsz24.svg"
-                    alt="Logo Favoris" id="logofavoris" /></a>
-            <a href="/profil"><img src="/assets/icons/account_circle_24dp_111111_FILL0_wght400_GRAD0_opsz24.svg"
-                    alt="Logo Utilisateur" id="logo-utilisateur" /></a>
-            <div class="panier">
-                <a href="/panier">
-                    <img src="/assets/icons/shopping_cart_24dp_111111_FILL0_wght400_GRAD0_opsz24.svg" alt="Logo Panier"
-                        id="logopanier" />
-                    <div class="pointrouge">0</div>
-                </a>
-            </div>
+<nav class="navbar">
+    <button class="burger" id="boutonburger">☰</button>
+    <a href="/" id="lienlogo"><img src="/assets/imglogo/cho7.png" alt="Logo du site" id="logosite"/></a>
+    <ul class="menu" id="listemenu">
+        <li><a href="/">Accueil</a></li>
+        <li><a href="/panier">Panier</a></li>
+        <li><a href="/commandes">Suivi Commande</a></li>
+        <li><a href="/connexion">Connexion/Inscription</a></li>
+        <li><a href="/about">À Propos</a></li>
+    </ul>
+    <div class="icones">
+        <a href="/favoris"><img src="/assets/icons/favorite_24dp_111111_FILL0_wght400_GRAD0_opsz24.svg"
+                                alt="Logo Favoris" id="logofavoris"/></a>
+        <a href="/profil"><img src="/assets/icons/account_circle_24dp_111111_FILL0_wght400_GRAD0_opsz24.svg"
+                               alt="Logo Utilisateur" id="logo-utilisateur"/></a>
+        <div class="panier">
+            <a href="/panier">
+                <img src="/assets/icons/shopping_cart_24dp_111111_FILL0_wght400_GRAD0_opsz24.svg" alt="Logo Panier"
+                     id="logopanier"/>
+                <div class="pointrouge">0</div>
+            </a>
         </div>
-    </nav>
+    </div>
+</nav>
+<!-- Exemple de produit
+    <div class="produit">
+    <img class="imgProd" src="/assets/imgchaussettes/CatMeme/cho7-meme-3d-1.png" alt="">
+    <div class="infos">
+        <h3 class="nom">Nom Produit</h3>
+        <div class="prix-reduction">
+            <p class="barrer prix">Prix</p>
+            <p class="reduction">réduction</p>
+        </div>
+        <div class="categorie-genre">
+            <p class="categorie">Catégorie</p>
+            <p class="genre ">genre</p>
+        </div>
+        <div class="divBtn">
+            <button class="btnProd">Ajouter panier</button>
+        </div>
+    </div>
+</div>
+-->
+<h1>Nos chaussettes</h1>
+
+<div id="filtres">
+    <!-- Catégorie -->
+    <div class="filtre-groupe">
+        <p class="filtre-titre">Catégorie</p>
+        <div class="filtre-options" id="filtre-categorie">
+            <button class="btn-filtre actif" data-valeur="tous">Toutes</button>
+            <button class="btn-filtre" data-valeur="Unies">Unies</button>
+            <button class="btn-filtre" data-valeur="Motifs">Motifs</button>
+            <button class="btn-filtre" data-valeur="Memes">Mèmes</button>
+        </div>
+    </div>
+
+    <!-- Longueur -->
+    <div class="filtre-groupe">
+        <p class="filtre-titre">Longueur</p>
+        <div class="filtre-options" id="filtre-longueur">
+            <button class="btn-filtre actif" data-valeur="tous">Toutes</button>
+            <button class="btn-filtre" data-valeur="Courte">Courte</button>
+            <button class="btn-filtre" data-valeur="Moyenne">Moyenne</button>
+            <button class="btn-filtre" data-valeur="Haute">Haute</button>
+            <button class="btn-filtre" data-valeur="Longue">Longue</button>
+        </div>
+    </div>
+
+    <!-- Tri -->
+    <div class="filtre-groupe">
+        <p class="filtre-titre">Prix</p>
+        <div class="filtre-options" id="tri">
+            <button class="btn-tri actif" data-tri="defaut">Par défaut</button>
+            <button class="btn-tri" data-tri="croissant">Prix ↑</button>
+            <button class="btn-tri" data-tri="decroissant">Prix ↓</button>
+        </div>
+    </div>
+
+</div>
+
+<ul id="liste">Chargement...</ul>
+
+<script src="/modele/catalogue.js"></script>
+<script src="/vue/catalogue.js"></script>
+<script src="/controller/catalogue.js"></script>
 </body>
 
 </html>

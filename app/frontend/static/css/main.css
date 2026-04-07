@@ -1,5 +1,19 @@
 /* CSS général pour les classes communes à toutes les pages */
+/* ===== VARIABLES GLOBALES ===== */
+:root {
+  --couleur-primaire: #d83c18;
+  --couleur-primaire-hover: #a82e10;
+  --couleur-secondaire: #e0e0e0;
+  --couleur-secondaire-hover: #c0c0c0;
+  --couleur-fond: #f9f9f9;
+  --couleur-texte: #333333;
+  --couleur-texte-leger: #555555;
+  --blanc: #ffffff;
+  --ombre: rgba(0, 0, 0, 0.05);
+  --ombre-hover: rgba(0, 0, 0, 0.15);
+}
 
+/* CSS général pour les classes communes à toutes les pages */
 * {
   padding: 0;
   margin: 0;
