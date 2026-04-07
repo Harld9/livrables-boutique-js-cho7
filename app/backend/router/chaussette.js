@@ -19,6 +19,7 @@ router.get('/chaussettes/variantes/:id', chaussetteController.getVariantes)
 router.get('/chaussettes/similaires/:id', chaussetteController.getSimilaires)
 
 // ----- API/CHAUSSETTES ------
-router.post('/chaussettes/favoris', chaussetteController.ajouterFavori);
+router.post('/chaussettes/favoris', chaussetteController.toggleFavori);
+
 // On exporte le router avec ses routes pour que app.js puisse les utiliser (require)
 module.exports = router

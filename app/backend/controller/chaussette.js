@@ -180,48 +180,51 @@ exports.getSimilaires = async (req, res) => {
     }
 }
 // ===== POST /api/chaussettes/favoris =====
-exports.ajouterFavori = async (req, res) => {
+// ===== POST /api/chaussettes/favoris =====
+exports.toggleFavori = async (req, res) => {
     try {
-        // on recupère l'id que le front nous envoie
+        // On récupère l'id du produit envoyé par le front
         const idProduit = req.body.idProduit;
 
-        // regarde dans le header si le front a bien envoyé le token
+        // On vérifie que le header Authorization est bien présent
         const authHeader = req.headers.authorization;
-        
-        // si le header ne contient pas de token ou pas de beaerer 
         if (!authHeader || !authHeader.startsWith('Bearer ')) {
-            // alors il ne peut pas se connecter et on lui envoit une erreur 401
             return res.status(401).json({ code: 401, message: 'Non autorisé : Veuillez vous connecter' });
         }
 
-        // on coupe le bearer + token pour n'avoir que le token
-        const token = authHeader.split(' ')[1]; 
+        // On extrait le token en coupant la partie "Bearer "
+        const token = authHeader.split(' ')[1];
 
-        // on décrypte le token avec la clé secrète du .env
-        const secretKey = process.env.JWT_SECRET ;
-        const decodedToken = jwt.verify(token, secretKey);
+        // On décode le token avec la clé secrète du .env
+        const decodedToken = jwt.verify(token, process.env.CLEJWT);
 
-        // on récupere l'id dans le token
-        const idClient = decodedToken.IdClient; 
+        // On récupère l'id du client depuis le token décodé
+        const idClient = decodedToken.id;
 
-        // ajoute en favoris via une requete sql à part si il est déjà existant c'est pour ca qu'on a mit ignore
-        const sql = `INSERT IGNORE INTO Favoris (IdClient, IdProduit) VALUES (?, ?)`;
-        
-        // on envoit la requete a la db
-        await db.query(sql, [idClient, idProduit]);
+        // On vérifie si ce produit est déjà en favori pour ce client
+        const sqlCheck = `SELECT * FROM Favoris WHERE IdClient = ? AND IdProduit = ?`;
+        const [existant] = await db.query(sqlCheck, [idClient, idProduit]);
 
-        // si tout est ok on renvoit un code 200
-        res.status(200).json({ code: 200, message: 'Favori ajouté avec succès' });
+        if (existant.length > 0) {
+            // Le favori existe déjà → on le supprime
+            await db.query(`DELETE FROM Favoris WHERE IdClient = ? AND IdProduit = ?`, [idClient, idProduit]);
+            return res.status(200).json({ code: 200, favori: false, message: 'Favori retiré' });
+        } else {
+            // Le favori n'existe pas → on l'ajoute
+            await db.query(`INSERT INTO Favoris (IdClient, IdProduit) VALUES (?, ?)`, [idClient, idProduit]);
+            return res.status(200).json({ code: 200, favori: true, message: 'Favori ajouté' });
+        }
 
     } catch (err) {
-        console.error("ERREUR AJOUT FAVORI :", err);
-        
-        // si le token est incorrect ou plus valable on retourne une erreur 401
+        console.error("ERREUR TOGGLE FAVORI :", err);
+
+        // Si le token est invalide ou expiré on retourne une erreur 401
         if (err.name === 'JsonWebTokenError' || err.name === 'TokenExpiredError') {
             return res.status(401).json({ code: 401, message: 'Session expirée ou invalide' });
         }
-        
-        // si ça ne fonctionne pas on renvoit une erreur serveur
+
+        // Sinon erreur serveur
         res.status(500).json({ code: 500, message: 'Erreur serveur' });
     }
 }
+

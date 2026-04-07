@@ -12,7 +12,6 @@ const CatalogueVue = {
         // On vide le contenu de la liste. Pas de donnée utilisateur donc pas de faille XSS.
         liste.innerHTML = ''
 
-
         // Pour chaque élément de 'chaussettes'
         chaussettes.forEach(c => {
             console.log('5 - Vue : élément', c)
@@ -53,6 +52,11 @@ const CatalogueVue = {
 
             const divBtn = document.createElement('div')
             const bouton = document.createElement('button')
+            
+            // Ajout du bouton favoris
+            const boutonFavoris = document.createElement('button')
+            boutonFavoris.classList.add('boutonFavoris')
+            boutonFavoris.textContent = '🤍'
 
             const dossier = (() => {
                 switch (c.NomCategorie) {
@@ -67,11 +71,25 @@ const CatalogueVue = {
                 window.location.href = '/produit?id=' + c.IdProduit
             })
 
-            // Empêche le clic sur le bouton d'ajout au panier de rediriger vers la page produit
+            
             bouton.addEventListener('click', (event) => {
-                event.stopPropagation() // ← bloque la propagation vers produit
-                // ton code panier ici plus tard
+                event.stopPropagation() //empeche la redirection vers le produit
             })
+
+            // Gestion du clic favoris
+           boutonFavoris.addEventListener('click', (event) => {
+            event.stopPropagation()
+            CatalogueModele.toggleFavori(c.IdProduit)
+            .then(reponse => {
+                    if (reponse.status === 200) {
+                        // favori: true = ajouté, favori: false = retiré
+                        event.target.textContent = reponse.data.favori ? '❤️' : '🤍'
+                    } else if (reponse.status === 401) {
+                        window.location.href = '/connexion'
+                    }
+            })
+})
+
             // Ajout des classes CSS
             produit.classList.add('produit')
             imgProd.classList.add('imgProd')
@@ -132,12 +150,13 @@ const CatalogueVue = {
             bouton.dataset.id = c.IdProduit
 
             // Assemblage
-
             prixReduction.appendChild(prix)
             prixReduction.appendChild(reduction)
             categorieGenre.appendChild(categorie)
             categorieGenre.appendChild(genre)
+            
             divBtn.appendChild(bouton)
+            divBtn.appendChild(boutonFavoris)
 
             infos.appendChild(nom)
             infos.appendChild(prixReduction)

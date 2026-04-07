@@ -25,5 +25,17 @@ const CatalogueModele = {
                 console.log('2 - Model : données reçues', data)
                 return data
             })
+    },
+
+        toggleFavori: (idProduit) => {
+        const token = localStorage.getItem('token');
+        return fetch('/api/chaussettes/favoris', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + token
+            },
+            body: JSON.stringify({ idProduit: idProduit })
+        }).then(res => res.json().then(data => ({ status: res.status, data: data })));
     }
 }
