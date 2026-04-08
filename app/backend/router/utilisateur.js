@@ -10,12 +10,17 @@ const router      = express.Router()
 // On importe le controller qui contient toute la logique métier
 const utilisateur = require('../controller/utilisateur')
 
-// lien entre la route inscription et le controller
-router.post('/inscription', utilisateur.inscrireClient);
-// lien entre la route conenxion et le controller
-router.post('/connexion', utilisateur.connecterClient);
+// On branche POST /api/inscription → inscrit un nouveau client
+router.post('/inscription', utilisateur.inscrireClient)
 
-router.get('/api/utilisateur/:id', utilisateur.getUtilisateurById);
-router.get('/api/utilisateur/favoris', utilisateur.getUtilisateurFavoris);
+// On branche POST /api/connexion → connecte un client existant
+router.post('/connexion', utilisateur.connecterClient)
+
+// ⚠️ On place /favoris AVANT /:id — sinon Express lirait 'favoris' comme un :id
+// On branche GET /api/utilisateur/favoris → récupère les favoris de l'utilisateur
+router.get('/utilisateur/favoris', utilisateur.getUtilisateurFavoris)
+
+// On branche GET /api/utilisateur/:id → récupère un utilisateur par son id
+router.get('/utilisateur/:id', utilisateur.getUtilisateurById)
 
 module.exports = router

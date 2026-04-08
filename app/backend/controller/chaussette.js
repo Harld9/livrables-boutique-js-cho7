@@ -227,23 +227,6 @@ exports.toggleFavori = async (req, res) => {
         res.status(500).json({ code: 500, message: 'Erreur serveur' });
     }}
 
-    const CatalogueModele = {
-    // fonction toggle
-    toggleFavori: (idProduit) => {
-        const token = localStorage.getItem('token'); 
-        return fetch('/api/chaussettes/favoris', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + token
-            },
-            body: JSON.stringify({ idProduit: idProduit })
-        }).then(res => {
-            return res.json().then(data => ({ status: res.status, data: data }));
-        });
-    }
-}
-
 // ===== GET /api/favoris =====
 // Récupère tous les favoris du client connecté
 exports.getFavoris = async (req, res) => {

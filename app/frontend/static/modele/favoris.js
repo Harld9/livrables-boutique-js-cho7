@@ -1,36 +1,42 @@
-// L'objet FavorisModele contient les fonctions d'appel API liées aux favoris
+/*
+ * On gère ici les appels API liés à la page favoris.
+ * On récupère et modifie les favoris du client connecté.
+ */
+
 const FavorisModele = {
 
     // ----- GET FAVORIS -----
-    // Récupère les favoris du client connecté
     getFavoris: () => {
-        // On récupère le token dans le localStorage
-        const token = localStorage.getItem('token')
+        // On cherche le token dans les deux stockages — remember me peut utiliser l'un ou l'autre
+        const token = localStorage.getItem('token') || sessionStorage.getItem('token')
 
-        // On appelle l'API avec le token dans le header
+        // fetch GET — récupère tous les favoris du client via le token JWT
         return fetch('/api/chaussettes/favoris', {
             method: 'GET',
             headers: {
+                // Bearer — convention pour envoyer un token JWT dans le header
                 'Authorization': 'Bearer ' + token
             }
         })
-        // On convertit la réponse HTTP brute en objet JS
-        .then(res => res.json().then(data => ({ status: res.status, data: data })))
+            // On retourne le status ET les données pour gérer le 401 dans le controller
+            .then(res => res.json().then(data => ({ status: res.status, data: data })))
     },
 
     // ----- TOGGLE FAVORI -----
-    // Ajoute ou retire un favori
     toggleFavori: (idProduit) => {
-        const token = localStorage.getItem('token')
+        // On cherche le token dans les deux stockages
+        const token = localStorage.getItem('token') || sessionStorage.getItem('token')
 
+        // fetch POST — ajoute ou retire le favori selon son état actuel
         return fetch('/api/chaussettes/favoris', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': 'Bearer ' + token
             },
+            // JSON.stringify — convertit l'id en JSON pour l'envoi
             body: JSON.stringify({ idProduit: idProduit })
         })
-        .then(res => res.json().then(data => ({ status: res.status, data: data })))
+            .then(res => res.json().then(data => ({ status: res.status, data: data })))
     }
 }
