@@ -25,9 +25,11 @@ document.addEventListener('click', (e) => {
 })
 
 // ===== NAVBAR DYNAMIQUE =====
-// On récupère le token et le prénom stockés lors de la connexion
-const token  = localStorage.getItem('token')
-const prenom = localStorage.getItem('prenom')
+// On cherche le token dans localStorage d'abord, puis sessionStorage
+// localStorage.getItem — récupère la valeur persistante
+// sessionStorage.getItem — récupère la valeur de session
+const token  = localStorage.getItem('token')  || sessionStorage.getItem('token')
+const prenom = localStorage.getItem('prenom') || sessionStorage.getItem('prenom')
 
 // On récupère les éléments de la navbar
 const icones = document.querySelector('.icones')
@@ -53,9 +55,17 @@ if (token) {
 
     // On gère le clic sur déconnexion
     lienDeconnexion.addEventListener('click', (e) => {
+        // Bloque le comportement par défaut du navigateur (ici le rechargement de la page)
         e.preventDefault()
+        // On vide les deux stockages pour être sûr de tout effacer
+        // localStorage.removeItem — supprime la clé du stockage persistant
         localStorage.removeItem('token')
         localStorage.removeItem('prenom')
+
+        // On supprime la clé du stockage de session
+        sessionStorage.removeItem('token')
+        sessionStorage.removeItem('prenom')
+
         window.location.href = '/'
     })
 
