@@ -2,7 +2,6 @@
 const FavorisController = {
 
     // ----- INIT -----
-    // Appelé au chargement de la page
     init: () => {
         console.log('1 - Controller favoris : init')
 
@@ -16,17 +15,25 @@ const FavorisController = {
                     return
                 }
 
-                // Si aucun favori
+                // Si aucun favori (ON UTILISE CATALOGUEVUE ICI)
                 if (reponse.data.favoris.length === 0) {
-                    FavorisVue.AffichageAucunResultat()
+                    CatalogueVue.AffichageAucunResultat()
                     return
                 }
 
-                // Sinon on affiche les favoris
-                FavorisVue.Affichage(reponse.data.favoris)
+                // 🌟 L'ASTUCE DU MENTOR : LE FAUSSAIRE 🌟
+                // On crée le faux objet que la Vue s'attend à trouver pour colorier les coeurs.
+                // On prend la liste des favoris, et on extrait uniquement les IDs.
+                window.CatalogueController = {
+                    favorisIds: reponse.data.favoris.map(chaussette => chaussette.IdProduit)
+                };
+
+                // On envoie les données à la machine d'affichage du catalogue !
+                CatalogueVue.Affichage(reponse.data.favoris)
             })
-            .catch(() => {
-                FavorisVue.AffichageErreur()
+            .catch((erreur) => {
+                console.error(erreur)
+                CatalogueVue.AffichageErreur()
             })
     }
 }

@@ -8,7 +8,7 @@ const FavorisModele = {
         const token = localStorage.getItem('token')
 
         // On appelle l'API avec le token dans le header
-        return fetch('/api/favoris', {
+        return fetch('/api/chaussettes/favoris', {
             method: 'GET',
             headers: {
                 'Authorization': 'Bearer ' + token
