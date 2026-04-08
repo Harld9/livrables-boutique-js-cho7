@@ -1,96 +1,146 @@
-const db = require('../database/connexiondb.js');
-const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
-const mysql = require('mysql2');
+/*
+ * On gère ici toute la logique métier liée aux utilisateurs.
+ * On traite l'inscription, la connexion et la récupération des données d'un client.
+ * On utilise bcrypt pour sécuriser les mots de passe et JWT pour l'authentification.
+ */
 
-    // ===== Fonction : inscription =====
+// On importe la connexion à la base de données
+const db     = require('../database/connexiondb.js')
+// On importe bcrypt pour hacher et comparer les mots de passe
+const bcrypt = require('bcrypt')
+// On importe jsonwebtoken pour créer et signer les jetons d'authentification
+const jwt    = require('jsonwebtoken')
+// On n'importe plus mysql2 directement — on passe uniquement par connexiondb.js
+
+// ===== Inscription =====
 exports.inscrireClient = async (req, res) => {
-    // définit les constantes que l'utilisateur écrit dans les inputs en html
-    const nom = req.body.nom;
-    const prenom = req.body.prenom;
-    const adresse = req.body.adresse;
-    const mail = req.body.mail;
-    const numeroTel = req.body.numeroTel;
-    const motDePasse = req.body.motDePasse;
+
+    // On récupère les données envoyées par le formulaire d'inscription
+    // Les noms correspondent aux id des inputs dans inscription.html
+    const nom        = req.body.nom
+    const prenom     = req.body.prenom
+    const adresse    = req.body.adresse
+    const mail       = req.body.email
+    const numeroTel  = req.body.numeroTel
+    const motDePasse = req.body.mdp
 
     try {
-        // hache le mdp via bcrypt
-        const motDePasseHache = await bcrypt.hash(motDePasse, 10);
+        // On vérifie si un compte existe déjà avec cet email
+        // pour éviter les doublons en base de données
+        const [existant] = await db.query(
+            'SELECT IdClient FROM Client WHERE Mail = ?', [mail]
+        )
 
-        // requete sql qui écrit les infos d'un user dans la db
-        const sql = 'INSERT INTO client (Nom, Prenom, Adresse, Mail, NumeroTel, motDePasse) VALUES (?, ?, ?, ?, ?, ?)';
-        
-        //envoit à la db la requete du dessus
-        await db.query(sql, [nom, prenom, adresse, mail, numeroTel, motDePasseHache]);
+        // Si on trouve un résultat, on refuse l'inscription avec un code 409 (conflit)
+        if (existant.length > 0) {
+            return res.status(409).json({ message: 'Cet email est déjà utilisé.' })
+        }
 
-        res.status(201).json({ message: "Inscription réussie !" });
+        // On hache le mot de passe avant de le stocker
+        // Le 10 correspond au nombre de tours de hachage — jamais stocker un mdp en clair.
+        const motDePasseHache = await bcrypt.hash(motDePasse, 10)
+
+        // On prépare la requête d'insertion
+        // On utilise des ? pour éviter les injections SQL
+        const sql = `
+            INSERT INTO Client (Nom, Prenom, Adresse, Mail, NumeroTel, MotDePasse)
+            VALUES (?, ?, ?, ?, ?, ?)
+        `
+
+        // On envoie la requête à la base de données avec les valeurs dans le bon ordre
+        await db.query(sql, [nom, prenom, adresse, mail, numeroTel, motDePasseHache])
+
+        // On confirme que l'inscription s'est bien passée avec un code 201 (créé)
+        res.status(201).json({ message: 'Inscription réussie !' })
 
     } catch (erreur) {
-        console.error(erreur);
-        res.status(500).json({ message: "Erreur lors de l'inscription." });
+        // On affiche l'erreur dans le terminal pour déboguer
+        console.error(erreur)
+        // On informe le client qu'une erreur s'est produite côté serveur
+        res.status(500).json({ message: "Erreur lors de l'inscription." })
     }
-};
+}
 
-// ===== Fonction : Connexion =====
+// ===== Connexion =====
 exports.connecterClient = async (req, res) => {
-    const mail = req.body.mail;
-    const motDePasse = req.body.motDePasse;
-    // on regarde si l'utilisateur existe
-    try{const sql = 'SELECT * FROM client WHERE Mail = ?';
-        const [resultats] = await db.query(sql, [mail]);
 
-        //si la db renvoit un array vide donc si l'email n'existe pas on envoit une erreur
+    // On récupère les données envoyées par le formulaire de connexion
+    const mail       = req.body.email
+    const motDePasse = req.body.mdp
+
+    try {
+        // On cherche un client dans la base de données avec cet email
+        const [resultats] = await db.query(
+            'SELECT * FROM Client WHERE Mail = ?', [mail]
+        )
+
+        // Si on ne trouve personne, on renvoie une erreur générique
+        // On ne précise pas si c'est l'email ou le mot de passe qui est faux
+        // pour ne pas donner d'informations à un attaquant
         if (resultats.length === 0) {
-            return res.status(401).json({ message: "Email ou mot de passe incorrect." });
+            return res.status(401).json({ message: 'Email ou mot de passe incorrect.' })
         }
-        //on prend le premier résultat (le seul qui a cet email)
-        const utilisateur = resultats[0];
 
-        // check si le mot de passe est le bon en comparant les hash
-        const mdpCorrect = await bcrypt.compare(motDePasse, utilisateur.MotDePasse);
+        // On prend le premier résultat — un email est unique donc il ne peut y en avoir qu'un
+        const utilisateur = resultats[0]
 
+        // On compare le mot de passe tapé avec le hash stocké en base
+        // bcrypt.compare retourne true si les deux correspondent, false sinon.
+        const mdpCorrect = await bcrypt.compare(motDePasse, utilisateur.MotDePasse)
+
+        // Si le mot de passe ne correspond pas on renvoie la même erreur générique
         if (!mdpCorrect) {
-            return res.status(401).json({ message: "Email ou mot de passe incorrect." });
+            return res.status(401).json({ message: 'Email ou mot de passe incorrect.' })
         }
 
-        // après avoir importé jwt on créé in jeton et on le signe avec les infos
+        // On crée un jeton JWT signé avec les infos de l'utilisateur
+        // Ce jeton sera stocké côté client pour identifier l'utilisateur sur les prochaines requêtes.
         const jeton = jwt.sign(
-            { id: utilisateur.IdClient, prenom: utilisateur.Prenom }, 
-            process.env.CLEJWT, // clé secrete du .env 
-            { expiresIn: '24h' }
-        );
+            { id: utilisateur.IdClient, prenom: utilisateur.Prenom }, // on embarque l'id et le prénom
+            process.env.CLEJWT,  // on utilise la clé secrète du .env — jamais en dur dans le code
+            { expiresIn: '24h' } // on expire le jeton après 24h pour la sécurité
+        )
 
-        res.status(200).json({ 
-            message: "Connexion réussie !",
+        // On renvoie le jeton et le prénom pour personnaliser l'interface côté front
+        res.status(200).json({
+            message: 'Connexion réussie !',
             prenom: utilisateur.Prenom,
-            token: jeton 
-        });
+            token: jeton
+        })
 
-    }catch (erreur) {
-        console.error("Erreur dans connecterClient :", erreur);
-        res.status(500).json({ message: "Erreur serveur" });
+    } catch (erreur) {
+        console.error(erreur)
+        res.status(500).json({ message: 'Erreur serveur' })
     }
-};
+}
 
-// ===== Fonction : Récupérer un utilisateur par son ID =====
-exports.getUtilisateurById = async (req,res) =>{
-    // Sécurité : le ? évite les injections SQL
-    const sql = "SELECT * FROM client WHERE idClient = ?"
-    
-    db.query(sql, [req.params.id], (err, result) => {
-        if (err) {
-            return res.status(500).json({ code: 500, message: 'Erreur serveur' });
+// ===== Récupérer un utilisateur par son ID =====
+exports.getUtilisateurById = async (req, res) => {
+    try {
+        // On récupère l'id depuis les paramètres de l'URL → /api/utilisateur/:id
+        // On ne sélectionne pas MotDePasse — on ne renvoie jamais le mot de passe au client.
+        const [result] = await db.query(
+            'SELECT IdClient, Nom, Prenom, Adresse, Mail, NumeroTel FROM Client WHERE IdClient = ?',
+            [req.params.id]
+        )
+
+        // Si on ne trouve aucun utilisateur avec cet id, on renvoie un 404.
+        if (!result[0]) {
+            return res.status(404).json({ code: 404, message: 'Utilisateur introuvable' })
         }
-        // On renvoie un objet structuré
-        res.status(200).json({ 
-            code: 200, 
-            message: 'Succès', 
-            utilisateur: result[0] 
-        });
-    });
-};
 
-// ===== Fonction : Favoris (Nécessaire pour que le router ne plante pas) =====
+        // On renvoie les données de l'utilisateur trouvé
+        res.status(200).json({ code: 200, message: 'Succès', utilisateur: result[0] })
+
+    } catch (err) {
+        console.error(err)
+        res.status(500).json({ code: 500, message: 'Erreur serveur' })
+    }
+}
+
+// ===== Favoris =====
+// On garde cette fonction vide pour l'instant pour que le router ne plante pas
+// On la complétera quand on développera la fonctionnalité favori
 exports.getUtilisateurFavoris = (req, res) => {
-    res.status(200).json({ message: "Route favoris active" });
-};
+    res.status(200).json({ message: 'Route favoris active' })
+}

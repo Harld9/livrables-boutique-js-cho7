@@ -1,38 +1,77 @@
-const formulaire = document.getElementById('formConnexion');
+/*
+ * On gère ici toute la logique du formulaire de connexion côté front.
+ * On récupère les identifiants saisis, on les envoie à l'API et on stocke le token JWT.
+ * On redirige vers l'accueil si la connexion réussit.
+ */
 
+// On récupère le formulaire de connexion
+const formulaire = document.getElementById('formConnexion')
+
+// On attend que le formulaire soit soumis
 formulaire.addEventListener('submit', async (event) => {
-    //empeche la page de se reload apres l'inscription
-    event.preventDefault();
 
-    const mail = document.getElementById('email').value;
-    const mdp = document.getElementById('mdp').value;
-    const rememberMe = document.getElementById('rememberMe').checked; // Pour plus tard ;)
+    // On empêche le rechargement de la page — comportement par défaut du formulaire HTML
+    event.preventDefault()
 
-    console.log("Tentative de connexion pour :", mail);
+    // On récupère les valeurs saisies dans les inputs
+    const email      = document.getElementById('email').value
+    const mdp        = document.getElementById('mdp').value
+    const rememberMe = document.getElementById('rememberMe').checked // Pour plus tard
 
     try {
-        const reponse = await fetch("http://localhost:8080/api/connexion", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-                mail: mail,
-                motDePasse: mdp
-            })
-        });
+        // On envoie les identifiants à l'API en POST au format JSON
+        // On utilise une URL relative — fonctionne quel que soit le port ou l'environnement
+        const reponse = await fetch('/api/connexion', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            // On convertit l'objet JS en JSON
+            // Les clés correspondent exactement à req.body.email et req.body.mdp dans le controller
+            body: JSON.stringify({ email, mdp })
+        })
 
-        const donnees = await reponse.json();
+        // On convertit la réponse HTTP brute en objet JS
+        const donnees = await reponse.json()
 
         if (reponse.ok) {
-            //on stock le token cache
-           localStorage.setItem('token', donnees.token);
-        localStorage.setItem('prenom', donnees.prenom);
+            // On stocke le token JWT pour les futures requêtes authentifiées
+            localStorage.setItem('token', donnees.token)
+            // On stocke le prénom pour personnaliser l'interface
+            localStorage.setItem('prenom', donnees.prenom)
 
-            window.location.href = "/";
+            // On redirige vers l'accueil après connexion réussie
+            window.location.href = '/'
+
         } else {
-            alert("Erreur : " + donnees.message);
+            // On affiche le message d'erreur renvoyé par le serveur
+            afficherErreur(donnees.message)
         }
 
     } catch (erreur) {
-        console.error("Erreur de connexion :", erreur);
+        // On affiche une erreur générique si le fetch échoue (réseau, serveur down...)
+        console.error('Erreur de connexion :', erreur)
+        afficherErreur('Erreur réseau, veuillez réessayer.')
     }
-});
+})
+
+// On redirige vers l'accueil si l'utilisateur clique sur Annuler
+// On utilise addEventListener et non onclick dans le HTML — bonne pratique
+document.querySelector('.boutonannulation').addEventListener('click', () => {
+    window.location.href = '/'
+})
+
+// ===== Fonction utilitaire =====
+// On affiche un message d'erreur dans la boite prévue à cet effet dans le HTML
+function afficherErreur(message) {
+
+    // On récupère la boite de message déjà présente dans le HTML
+    const boite = document.getElementById('boiteMessage')
+
+    // On ajoute la classe d'erreur pour le style
+    boite.classList.add('message-erreur')
+
+    // On affiche la boite — elle est cachée par défaut via .boitemessagecache
+    boite.style.display = 'block'
+
+    // On utilise textContent — jamais innerHTML avec des données externes
+    boite.textContent = message
+}

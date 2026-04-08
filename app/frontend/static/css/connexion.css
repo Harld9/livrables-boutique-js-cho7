@@ -1,6 +1,7 @@
-/* --- Mise en page globale --- */
+/* CSS spécifique pour la page de connexion */
+
 body {
-    background-color: #f9f9f9;
+    background-color: var(--couleur-fond);
     font-family: 'Poppins', sans-serif;
     margin: 0;
 }
@@ -14,23 +15,23 @@ body {
 }
 
 .boiteformulaire {
-    background-color: white;
+    background-color: var(--blanc);
     padding: 30px;
     border-radius: 15px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 4px 15px var(--ombre);
     width: 100%;
     max-width: 450px;
 }
 
 .titreformulaire {
     font-size: 28px;
-    color: black;
+    color: var(--couleur-texte);
     margin-bottom: 5px;
     text-align: center;
 }
 
 .descriptionformulaire {
-    color: #555555;
+    color: var(--couleur-texte-leger);
     font-size: 14px;
     text-align: center;
     margin-bottom: 20px;
@@ -38,18 +39,19 @@ body {
 
 .separateur {
     border: none;
-    border-top: 1px solid #e0e0e0;
+    border-top: 1px solid var(--couleur-secondaire);
     margin-bottom: 25px;
 }
 
-input[type=text],
-input[type=password],
-input[type=email] {
+/* ===== INPUTS ===== */
+input[type='text'],
+input[type='password'],
+input[type='email'] {
     width: 100%;
     padding: 12px 15px;
     margin: 8px 0 20px 0;
     display: inline-block;
-    border: 1px solid #ccc;
+    border: 1px solid var(--couleur-secondaire);
     border-radius: 8px;
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
@@ -57,13 +59,13 @@ input[type=email] {
 }
 
 input:focus {
-    border-color: #d83c18;
+    border-color: var(--couleur-primaire);
     outline: none;
 }
 
 label {
     font-size: 14px;
-    color: #333;
+    color: var(--couleur-texte);
     font-weight: 600;
 }
 
@@ -73,9 +75,10 @@ label {
     gap: 10px;
     margin-bottom: 25px;
     font-size: 14px;
-    color: #555;
+    color: var(--couleur-texte-leger);
 }
 
+/* ===== BOUTONS ===== */
 .boutonsformulaire {
     display: flex;
     gap: 15px;
@@ -88,28 +91,40 @@ label {
     border-radius: 25px;
     cursor: pointer;
     font-weight: bold;
+    font-family: 'Poppins', sans-serif;
     width: 50%;
+    transition: 0.3s;
 }
 
 .boutonvalidation {
-    background-color: #d83c18;
-    color: white;
+    background-color: var(--couleur-primaire);
+    color: var(--blanc);
+}
+
+.boutonvalidation:hover {
+    background-color: var(--couleur-primaire-hover);
 }
 
 .boutonannulation {
-    background-color: #e0e0e0;
-    color: black;
+    background-color: var(--couleur-secondaire);
+    color: var(--couleur-texte);
 }
 
+.boutonannulation:hover {
+    background-color: var(--couleur-secondaire-hover);
+}
+
+/* ===== LIEN ET TEXTE BAS DE FORMULAIRE ===== */
+/* ✅ corrigé — .pinscription correspond au HTML connexion.html */
 .pinscription {
     text-align: center;
     margin-top: 20px;
     font-size: 14px;
-    color: #555;
+    color: var(--couleur-texte-leger);
 }
 
 .lienorange {
-    color: #d83c18;
+    color: var(--couleur-primaire);
     text-decoration: none;
     font-weight: bold;
 }
@@ -118,6 +133,27 @@ label {
     text-decoration: underline;
 }
 
+/* ===== MESSAGE ERREUR ===== */
+.boitemessagecache {
+    display: none;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.message-erreur {
+    color: var(--couleur-primaire);
+    background-color: #fbe9e7;
+    border-radius: 10px;
+    padding: 10px 15px;
+    font-size: 13px;
+    font-weight: bold;
+    text-align: center;
+}
+
+/* ===== RESPONSIVE ===== */
 @media (max-width: 600px) {
     .boutonsformulaire {
         flex-direction: column;
