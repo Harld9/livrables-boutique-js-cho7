@@ -33,10 +33,17 @@ formulaire.addEventListener('submit', async (event) => {
         const donnees = await reponse.json()
 
         if (reponse.ok) {
+            // On choisit le stockage selon la case "Se souvenir de moi"
+            // localStorage.setItem — persiste même après fermeture du navigateur
+            // sessionStorage.setItem — supprimé à la fermeture de l'onglet
+            // Si coché, on stocke en local (persistant), sinon en session (onglet).
+            const stockage = rememberMe ? localStorage : sessionStorage
+
+            // stockage.setItem — sauvegarde le token et le prénom dans le stockage choisi
             // On stocke le token JWT pour les futures requêtes authentifiées
-            localStorage.setItem('token', donnees.token)
+            stockage.setItem('token', donnees.token)
             // On stocke le prénom pour personnaliser l'interface
-            localStorage.setItem('prenom', donnees.prenom)
+            stockage.setItem('prenom', donnees.prenom)
 
             // On redirige vers l'accueil après connexion réussie
             window.location.href = '/'
