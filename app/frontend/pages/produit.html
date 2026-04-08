@@ -1,64 +1,66 @@
 <!doctype html>
 <html lang="fr">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Produit</title>
-    <link href="/css/main.css" rel="stylesheet" />
-    <link href="/css/produit.css" rel="stylesheet" />
+    <link href="/css/main.css" rel="stylesheet"/>
+    <link href="/css/produit.css" rel="stylesheet"/>
     <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
     />
-  </head>
-  <body>
-    <nav class="navbar">
-      <button class="burger" id="boutonburger">☰</button>
-      <a href="/" id="lienlogo">
-        <img src="/assets/imglogo/cho7.png" alt="Logo du site" id="logosite" />
-      </a>
-      <ul class="menu" id="listemenu">
-        <li><a href="/">Accueil</a></li>
-        <li><a href="/catalogue">Catalogue</a></li>
-        <li><a href="/panier">Panier</a></li>
+</head>
+<body>
+<nav class="navbar">
+    <button class="burger" id="boutonburger">☰</button>
+    <a href="/" id="lienlogo"
+    ><img src="/assets/imglogo/cho7.png" alt="Logo du site" id="logosite"
+    /></a>
+    <ul class="menu" id="listemenu">
+        <li><a href="/catalogue">Notre Catalogue</a></li>
         <li><a href="/commandes">Suivi Commande</a></li>
-        <li><a href="/connexion">Connexion/Inscription</a></li>
         <li><a href="/about">À Propos</a></li>
-      </ul>
-      <div class="icones">
-        <a href="/favoris">
-          <img
-            src="/assets/icons/favorite_24dp_111111_FILL0_wght400_GRAD0_opsz24.svg"
-            alt="Favoris"
-            id="logofavoris"
-          />
-        </a>
-        <a href="/profil">
-          <img
-            src="/assets/icons/account_circle_24dp_111111_FILL0_wght400_GRAD0_opsz24.svg"
-            alt="Profil"
-            id="logo-utilisateur"
-          />
-        </a>
-        <div class="panier">
-          <a href="/panier">
-            <img
-              src="/assets/icons/shopping_cart_24dp_111111_FILL0_wght400_GRAD0_opsz24.svg"
-              alt="Panier"
-              id="logopanier"
-            />
-            <div class="pointrouge">0</div>
-          </a>
+    </ul>
+    <div class="icones">
+        <a href="/favoris"
+        ><img
+                src="/assets/icons/favorite_24dp_111111_FILL0_wght400_GRAD0_opsz24.svg"
+                alt="Logo Favoris"
+                id="logofavoris"
+        /></a>
+        <div class="conteneurprofil">
+            <a href="/profil"
+            ><img
+                    src="/assets/icons/account_circle_24dp_111111_FILL0_wght400_GRAD0_opsz24.svg"
+                    alt="Logo Utilisateur"
+                    id="logoutilisateur"
+            /></a>
+            <span id="pastille-verte" class="pastille"></span>
         </div>
-      </div>
-    </nav>
+        <div class="panier">
+            <a href="/panier">
+                <img
+                        src="/assets/icons/shopping_cart_24dp_111111_FILL0_wght400_GRAD0_opsz24.svg"
+                        alt="Logo Panier"
+                        id="logopanier"
+                />
+                <div class="pointrouge">0</div>
+            </a>
+        </div>
+    </div>
+</nav>
 
-    <!-- Zone de chargement -->
-    <div id="produit">Chargement...</div>
+<!-- Zone de chargement -->
+<div id="produit">Chargement...</div>
 
-    <script src="/modele/catalogue.js"></script>
-    <script src="/modele/produit.js"></script>
-    <script src="/vue/produit.js"></script>
-    <script src="/controller/produit.js"></script>
-  </body>
+<script src="/script/main.js"></script>
+
+<!-- Voir si on peut faire sans appeler catalogue.js -->
+<script src="/modele/catalogue.js"></script>
+
+<script src="/modele/produit.js"></script>
+<script src="/vue/produit.js"></script>
+<script src="/controller/produit.js"></script>
+</body>
 </html>

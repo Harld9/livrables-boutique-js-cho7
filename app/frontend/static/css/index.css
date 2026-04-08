@@ -149,15 +149,6 @@ body {
   transition: opacity 0.15s ease;
 }
 
-/* ===== MESSAGE BIENVENUE ===== */
-.messagebienvenuecache {
-  display: none;
-  text-align: center;
-  color: var(--couleur-primaire);
-  font-weight: bold;
-  margin-bottom: 10px;
-}
-
 /* ===== RESPONSIVE ===== */
 @media (min-width: 768px) {
   .entete {
