@@ -1,7 +1,25 @@
 const ProduitController = {
+    // création de liste de favoris
+    favorisIds: [],
 
-    init: () => {
+    // async pour rendre la fonction init asynchrone pour attendre la réponse du serveur 
+    init: async () => {
         const id = parseInt(new URLSearchParams(window.location.search).get('id'))
+
+        try {
+            ProduitController.favorisIds = await CatalogueModele.getMesFavoris();
+        } catch (err) {
+            console.error("Impossible de charger les favoris", err)
+            //si jamais il y'a une erreur on remet la liste à vide
+            ProduitController.favorisIds = [] 
+        }
+
+
+
+
+
+
+
 
         ProduitModele.getById()
             .then(data => {
