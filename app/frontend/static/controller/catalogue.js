@@ -10,9 +10,16 @@ const CatalogueController = {
         tri:       'defaut'
     },
 
+    favorisIds: [],
+
     // la fonction qui lance toute la logique de la page
-    init: () => {
+    init: async () => {
         console.log('3 - Controller : init')
+
+        // on demande la liste des favoris au back pour savoir si les chaussettes sont deja en favoris
+        CatalogueController.favorisIds = await CatalogueModele.getMesFavoris();
+        console.log("Mes favoris au chargement :", CatalogueController.favorisIds);
+
         // on demande les données au modèle
         CatalogueModele.getChaussettes()
             .then(data => {
@@ -20,7 +27,6 @@ const CatalogueController = {
                 if (data && data.code === 200) {
                     // Sauvegarde pour le tri
                     CatalogueController.chaussettes = data.chaussettes
-                    CatalogueController.appliquer()
                     // une fois les données recues, on demande à la vue de les afficher avec les tri
                     CatalogueController.appliquer()
                     CatalogueController.initFiltres()

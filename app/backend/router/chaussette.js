@@ -30,9 +30,11 @@ router.get('/chaussette/:id', chaussetteController.getChaussetteById)
 router.get('/chaussettes/variantes/:id', chaussetteController.getVariantes)
 
 // On branche GET /api/chaussettes/similaires/:id → récupère les produits similaires
-// (même catégorie ET même longueur — deux sections distinctes)
 router.get('/chaussettes/similaires/:id', chaussetteController.getSimilaires)
 
-// On exporte le router avec toutes ses routes
-// app.js pourra l'importer via require et le brancher sur /api
+// ----- API FAVORIS ------
+router.post('/chaussettes/favoris', chaussetteController.toggleFavori);
+router.get('/chaussettes/favoris', chaussetteController.getFavoris);
+
+// On exporte le router avec ses routes pour que app.js puisse les utiliser (require)
 module.exports = router

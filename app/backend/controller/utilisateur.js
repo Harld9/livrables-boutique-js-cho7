@@ -117,19 +117,15 @@ exports.connecterClient = async (req, res) => {
 // ===== Récupérer un utilisateur par son ID =====
 exports.getUtilisateurById = async (req, res) => {
     try {
-        // On récupère l'id depuis les paramètres de l'URL → /api/utilisateur/:id
-        // On ne sélectionne pas MotDePasse — on ne renvoie jamais le mot de passe au client.
         const [result] = await db.query(
             'SELECT IdClient, Nom, Prenom, Adresse, Mail, NumeroTel FROM Client WHERE IdClient = ?',
             [req.params.id]
         )
 
-        // Si on ne trouve aucun utilisateur avec cet id, on renvoie un 404.
         if (!result[0]) {
             return res.status(404).json({ code: 404, message: 'Utilisateur introuvable' })
         }
 
-        // On renvoie les données de l'utilisateur trouvé
         res.status(200).json({ code: 200, message: 'Succès', utilisateur: result[0] })
 
     } catch (err) {
@@ -139,8 +135,6 @@ exports.getUtilisateurById = async (req, res) => {
 }
 
 // ===== Favoris =====
-// On garde cette fonction vide pour l'instant pour que le router ne plante pas
-// On la complétera quand on développera la fonctionnalité favori
 exports.getUtilisateurFavoris = (req, res) => {
     res.status(200).json({ message: 'Route favoris active' })
 }

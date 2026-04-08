@@ -58,6 +58,22 @@ const ProduitVue = {
         // Bouton
         const bouton = document.createElement('button')
 
+        // Bouton favoris
+        const boutonFavoris = document.createElement('button')
+        boutonFavoris.classList.add('boutonFavoris')
+
+        const favorisTexte = ProduitController.favorisIds.map(idFav => idFav.toString())
+        const idProduitTexte = produit.IdProduit.toString();
+
+        if (favorisTexte.includes(idProduitTexte)){
+            boutonFavoris.textContent = '❤️';
+        } else {
+            boutonFavoris.textContent = '🤍';
+        };
+
+
+
+
         // ===== CLASSES CSS =====
         wrapper.classList.add('produit-wrapper')
         colonneImg.classList.add('colonne-img')
@@ -168,6 +184,25 @@ const ProduitVue = {
         bouton.textContent = 'Ajouter au panier'
         bouton.dataset.id = produit.IdProduit
 
+//
+        boutonFavoris.addEventListener('click', (event) => {
+            event.stopPropagation();
+
+// On utilise toggle favoris pour ajouter/enlver les favoris
+            CatalogueModele.toggleFavori(produit.IdProduit)
+                .then(reponse => {
+                    if (reponse.status === 200) {
+                        if (reponse.data.favori === true) {
+                            event.target.textContent = '❤️';
+                        } else {
+                            event.target.textContent = '🤍';
+                        }
+                    } else if (reponse.status === 401) {
+                        window.location.href = '/connexion';
+                    }
+                })
+                .catch(err => console.error("Erreur favoris :", err));
+        });
         // ===== ASSEMBLAGE =====
         prixWrapper.appendChild(prix)
         prixWrapper.appendChild(reduction)
@@ -184,6 +219,7 @@ const ProduitVue = {
         colonneInfos.appendChild(description)
         colonneInfos.appendChild(infosSupp)
         colonneInfos.appendChild(bouton)
+        colonneInfos.appendChild(boutonFavoris)
 
         wrapper.appendChild(colonneImg)
         wrapper.appendChild(colonneInfos)
