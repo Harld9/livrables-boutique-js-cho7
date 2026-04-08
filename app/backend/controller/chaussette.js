@@ -179,7 +179,7 @@ exports.getSimilaires = async (req, res) => {
         res.status(500).json({ code: 500, message: 'Erreur serveur' })
     }
 }
-// ===== POST /api/chaussettes/favoris =====
+
 // ===== POST /api/chaussettes/favoris =====
 exports.toggleFavori = async (req, res) => {
     try {
@@ -225,6 +225,67 @@ exports.toggleFavori = async (req, res) => {
 
         // Sinon erreur serveur
         res.status(500).json({ code: 500, message: 'Erreur serveur' });
+    }}
+
+    const CatalogueModele = {
+    // fonction toggle
+    toggleFavori: (idProduit) => {
+        const token = localStorage.getItem('token'); 
+        return fetch('/api/chaussettes/favoris', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + token
+            },
+            body: JSON.stringify({ idProduit: idProduit })
+        }).then(res => {
+            return res.json().then(data => ({ status: res.status, data: data }));
+        });
     }
 }
+
+// ===== GET /api/favoris =====
+// Récupère tous les favoris du client connecté
+exports.getFavoris = async (req, res) => {
+    try {
+        // On vérifie que le token est bien présent dans le header
+        const authHeader = req.headers.authorization
+        if (!authHeader || !authHeader.startsWith('Bearer ')) {
+            return res.status(401).json({ code: 401, message: 'Non autorisé' })
+        }
+
+        // On décode le token pour récupérer l'id du client
+        const token       = authHeader.split(' ')[1]
+        const decodedToken = jwt.verify(token, process.env.CLEJWT)
+        const idClient    = decodedToken.id
+
+        // On récupère tous les produits en favori pour ce client
+        const sql = `
+            SELECT
+                Produit.IdProduit,
+                Produit.NomProduit,
+                Produit.Prix,
+                Produit.Reduction,
+                Produit.Genre,
+                Produit.Image3D,
+                Produit.ImagePortee,
+                Categorie.NomCategorie
+            FROM Favoris
+            INNER JOIN Produit   ON Produit.IdProduit     = Favoris.IdProduit
+            INNER JOIN Categorie ON Categorie.IdCategorie = Produit.IdCategorie
+            WHERE Favoris.IdClient = ?
+        `
+        const [favoris] = await db.query(sql, [idClient])
+
+        res.status(200).json({ code: 200, favoris: favoris })
+
+    } catch (err) {
+        console.error('ERREUR GET FAVORIS :', err)
+        if (err.name === 'JsonWebTokenError' || err.name === 'TokenExpiredError') {
+            return res.status(401).json({ code: 401, message: 'Session expirée ou invalide' })
+        }
+        res.status(500).json({ code: 500, message: 'Erreur serveur' })
+    }
+}
+
 

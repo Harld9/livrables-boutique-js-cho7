@@ -10,6 +10,5 @@ router.post('/inscription', utilisateur.inscrireClient);
 router.post('/connexion', utilisateur.connecterClient);
 
 router.get('/api/utilisateur/:id', utilisateur.getUtilisateurById);
-router.get('/api/utilisateur/favoris', utilisateur.getUtilisateurFavoris);
 
 module.exports = router;

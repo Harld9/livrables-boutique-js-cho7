@@ -89,8 +89,3 @@ exports.getUtilisateurById = async (req,res) =>{
         });
     });
 };
-
-// ===== Fonction : Favoris (Nécessaire pour que le router ne plante pas) =====
-exports.getUtilisateurFavoris = (req, res) => {
-    res.status(200).json({ message: "Route favoris active" });
-};

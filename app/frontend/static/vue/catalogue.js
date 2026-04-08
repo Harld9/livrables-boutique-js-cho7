@@ -53,10 +53,21 @@ const CatalogueVue = {
             const divBtn = document.createElement('div')
             const bouton = document.createElement('button')
             
-            // Ajout du bouton favoris
+            // gestion bouton favoris
             const boutonFavoris = document.createElement('button')
             boutonFavoris.classList.add('boutonFavoris')
-            boutonFavoris.textContent = '🤍'
+            
+            // conversion de la liste d'id en texte pour comparer
+            const favorisTexte = CatalogueController.favorisIds.map(id => id.toString());
+            // conversiond de l'id actuel de la chaussette en string
+            const idProduitTexte = c.IdProduit.toString();
+
+            // si l'id de la chaussette est dans la liste de favoris on met le coeur en rouge
+            if (favorisTexte.includes(idProduitTexte)) {
+                boutonFavoris.textContent = '❤️'; 
+            } else {
+                boutonFavoris.textContent = '🤍'; 
+            }
 
             const dossier = (() => {
                 switch (c.NomCategorie) {
@@ -71,24 +82,26 @@ const CatalogueVue = {
                 window.location.href = '/produit?id=' + c.IdProduit
             })
 
-            
-            bouton.addEventListener('click', (event) => {
-                event.stopPropagation() //empeche la redirection vers le produit
-            })
+            boutonFavoris.addEventListener('click', (event) => {
+                
+                // empêche la redirection vers le produit quand on clique sur le coeur
+                event.stopPropagation(); 
 
-            // Gestion du clic favoris
-           boutonFavoris.addEventListener('click', (event) => {
-            event.stopPropagation()
-            CatalogueModele.toggleFavori(c.IdProduit)
-            .then(reponse => {
-                    if (reponse.status === 200) {
-                        // favori: true = ajouté, favori: false = retiré
-                        event.target.textContent = reponse.data.favori ? '❤️' : '🤍'
-                    } else if (reponse.status === 401) {
-                        window.location.href = '/connexion'
-                    }
-            })
-})
+                // on appelle le modele pour ajoute ou supprimer
+                CatalogueModele.toggleFavori(c.IdProduit)
+                    .then(reponse => {
+                        if (reponse.status === 200) {
+                            if (reponse.data.favori === true) {
+                                event.target.textContent = '❤️';
+                            } else {
+                                event.target.textContent = '🤍';
+                            }
+                        } else if (reponse.status === 401) {
+                            window.location.href = '/connexion';
+                        }
+                    })
+                    .catch(err => console.error("Erreur favoris :", err));
+            });
 
             // Ajout des classes CSS
             produit.classList.add('produit')
@@ -184,5 +197,5 @@ const CatalogueVue = {
         message.classList.add('aucun-resultat')
         message.textContent = 'Aucun produit ne correspond à votre recherche'
         liste.appendChild(message)
-    }
+    },
 }

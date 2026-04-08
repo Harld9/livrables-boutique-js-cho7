@@ -37,5 +37,29 @@ const CatalogueModele = {
             },
             body: JSON.stringify({ idProduit: idProduit })
         }).then(res => res.json().then(data => ({ status: res.status, data: data })));
-    }
+    },
+
+      getMesFavoris: () => {
+        const token = localStorage.getItem('token');
+        
+        // Si l'utilisateur n'est pas connecté, il n'a pas de favoris (tableau vide)
+        if (!token) return Promise.resolve([]); 
+
+        // On appelle ta route GET pour récupérer les favoris
+        return fetch('/api/chaussettes/favoris', {
+            method: 'GET',
+            headers: { 'Authorization': 'Bearer ' + token }
+        })
+        .then(res => res.json())
+        .then(data => {
+            if (data.code === 200) {
+                return data.favoris.map(fav => fav.IdProduit);
+            }
+            return [];
+        })
+        .catch(err => {
+            console.error("Erreur récupération favoris :", err);
+            return [];
+        });
+    },
 }
