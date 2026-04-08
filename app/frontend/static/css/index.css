@@ -1,24 +1,12 @@
-/* CSS uniquement pour l'accueil */
+/* CSS uniquement pour la page d'accueil */
 
-:root {
-  --couleur-primaire: #d83c18;
-  --couleur-primaire-hover: #a82e10;
-  --couleur-secondaire: #e0e0e0;
-  --couleur-secondaire-hover: #c0c0c0;
-  --couleur-fond: #f9f9f9;
-  --couleur-texte: #333333;
-  --couleur-texte-leger: #555555;
-  --blanc: #ffffff;
-  --ombre: rgba(0, 0, 0, 0.05);
-  --ombre-hover: rgba(0, 0, 0, 0.15);
-}
-
+/* ===== BODY ===== */
+/* On surcharge uniquement ce qui diffère de main.css */
 body {
-  font-family: "Poppins", sans-serif;
-  margin: 0;
   color: var(--couleur-texte);
 }
 
+/* ===== ENTÊTE HERO ===== */
 .entete {
   display: flex;
   flex-direction: column;
@@ -26,6 +14,7 @@ body {
   background-color: var(--couleur-fond);
 }
 
+/* ===== ÉTIQUETTE BADGE ===== */
 .etiquette {
   background-color: #fbe9e7;
   color: var(--couleur-primaire);
@@ -37,9 +26,10 @@ body {
   margin-bottom: 15px;
 }
 
+/* ===== TITRE ===== */
 .titre {
   font-size: 32px;
-  color: black;
+  color: var(--couleur-texte);
   margin-bottom: 10px;
   line-height: 1.2;
 }
@@ -49,6 +39,7 @@ body {
   color: var(--couleur-primaire);
 }
 
+/* ===== DESCRIPTION ===== */
 .description {
   color: var(--couleur-texte-leger);
   font-size: 16px;
@@ -56,6 +47,7 @@ body {
   max-width: 500px;
 }
 
+/* ===== BOUTONS HERO ===== */
 .boutons {
   display: flex;
   gap: 15px;
@@ -69,6 +61,7 @@ body {
   padding: 12px 25px;
   border-radius: 25px;
   font-weight: bold;
+  font-family: 'Poppins', sans-serif;
   text-align: center;
   transition: all 0.3s ease;
   cursor: pointer;
@@ -87,7 +80,7 @@ body {
 
 .secondaire {
   background-color: var(--couleur-secondaire);
-  color: black;
+  color: var(--couleur-texte);
 }
 
 .secondaire:hover {
@@ -95,6 +88,17 @@ body {
   transform: translateY(-2px);
 }
 
+/* ===== SOUS-TITRE SECTIONS ===== */
+.soustitre {
+  font-size: 20px;
+  font-weight: bold;
+  color: var(--couleur-texte);
+  margin: 15px 0;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* ===== CARROUSEL ===== */
 .carrousselfenetre {
   overflow-x: auto;
   scroll-snap-type: x mandatory;
@@ -102,10 +106,12 @@ body {
   max-width: 1200px;
   margin: 0 auto;
   padding: 20px 10px;
+  /* On cache la scrollbar sur tous les navigateurs */
   scrollbar-width: none;
   -ms-overflow-style: none;
 }
 
+/* On cache la scrollbar sur Chrome et Safari */
 .carrousselfenetre::-webkit-scrollbar {
   display: none;
 }
@@ -115,6 +121,7 @@ body {
   gap: 20px;
 }
 
+/* ===== CARTE PRODUIT ===== */
 .carteproduit {
   flex: 0 0 280px;
   scroll-snap-align: center;
@@ -122,9 +129,7 @@ body {
   border-radius: 15px;
   text-align: center;
   box-shadow: 0 4px 10px var(--ombre);
-  transition:
-    transform 0.3s,
-    box-shadow 0.3s;
+  transition: transform 0.3s, box-shadow 0.3s;
   overflow: hidden;
   cursor: pointer;
   text-decoration: none;
@@ -141,41 +146,19 @@ body {
   height: 250px;
   object-fit: cover;
   display: block;
+  transition: opacity 0.15s ease;
 }
 
-.soustitre {
-  font-size: 20px;
-  font-weight: bold;
-  color: var(--couleur-texte);
-  margin: 15px 0;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-
-.conteneur-profil {
-  position: relative;
-  display: inline-block;
-}
-
-.pastille {
-  display: none;
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 12px;
-  height: 12px;
-  background-color: #28a745;
-  border-radius: 50%;
-  border: 2px solid white;
-}
-
+/* ===== MESSAGE BIENVENUE ===== */
 .messagebienvenuecache {
   display: none;
   text-align: center;
-  color: #d83c18;
+  color: var(--couleur-primaire);
+  font-weight: bold;
   margin-bottom: 10px;
 }
 
+/* ===== RESPONSIVE ===== */
 @media (min-width: 768px) {
   .entete {
     align-items: center;
