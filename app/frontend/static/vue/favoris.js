@@ -47,9 +47,37 @@ const FavorisVue = {
                 window.location.href = '/produit?id=' + c.IdProduit
             })
 
-            // quand l'utilisateur clique sur ajouter au panier on lui bloque la redirection
-            bouton.addEventListener('click', (event) => {
-                event.stopPropagation()
+            // On ajoute le produit au panier lors du clic sur le bouton
+            bouton.addEventListener('click', (e) => {
+                e.stopPropagation()
+
+                // On prépare l'objet produit à ajouter au panier
+                PanierModele.ajouter({
+                    id:     c.IdProduit,
+                    nom:    c.NomProduit,
+                    prix:   c.Prix,
+                    reduction: c.Reduction,
+                    image:  c.Image3D,
+                    dossier: (() => {
+                        switch (c.NomCategorie) {
+                            case 'Memes':  return 'CatMeme/'
+                            case 'Unies':  return 'CatUni/'
+                            case 'Motifs': return 'CatMotif/'
+                            default:       return ''
+                        }
+                    })()
+                })
+
+                // On met à jour le point rouge de la navbar
+                PanierModele.mettreAJourPointrouge()
+
+                // On donne un feedback visuel à l'utilisateur
+                bouton.textContent = '✓ Ajouté !'
+                bouton.style.backgroundColor = 'green'
+                setTimeout(() => {
+                    bouton.textContent = 'Ajouter au panier'
+                    bouton.style.backgroundColor = ''
+                }, 1500)
             })
 
             // Clic sur le coeur → retire des favoris et supprime la carte
