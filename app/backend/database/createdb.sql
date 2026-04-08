@@ -22,20 +22,23 @@ CREATE TABLE Categorie (
 
 -- ===== TABLE PRODUIT =====
 CREATE TABLE Produit (
-    IdProduit   INT AUTO_INCREMENT,
-    NomProduit  VARCHAR(100),
-    Longueur    ENUM('Courte', 'Moyenne', 'Haute', 'Longue'),
-    Prix        DECIMAL(5,2),
-    IdCategorie INT,
-    Reduction   DECIMAL(5,2) DEFAULT 0.00,
-    Description TEXT,
-    Pointure    VARCHAR(20),
-    Genre       ENUM('Homme', 'Femme', 'Unisexe') DEFAULT 'Unisexe',
-    Stock       INT DEFAULT 0,
-    Image3D     VARCHAR(255),
-    ImagePortee VARCHAR(255),
+    IdProduit      INT AUTO_INCREMENT,
+    NomProduit     VARCHAR(100),
+    Longueur       ENUM('Courte', 'Moyenne', 'Haute', 'Longue'),
+    Prix           DECIMAL(5,2),
+    IdCategorie    INT,
+    Reduction      DECIMAL(5,2) DEFAULT 0.00,
+    Description    TEXT,
+    Pointure       VARCHAR(20),
+    Genre          ENUM('Homme', 'Femme', 'Unisexe') DEFAULT 'Unisexe',
+    Stock          INT DEFAULT 0,
+    Image3D        VARCHAR(255),
+    ImagePortee    VARCHAR(255),
+    Couleur        VARCHAR(50),
+    IdModeleParent INT,    
     PRIMARY KEY(IdProduit),
-    FOREIGN KEY(IdCategorie) REFERENCES Categorie(IdCategorie)
+    FOREIGN KEY(IdCategorie) REFERENCES Categorie(IdCategorie),
+    FOREIGN KEY(IdModeleParent) REFERENCES Produit(IdProduit) 
 );
 
 -- ===== TABLE COMMANDE =====
