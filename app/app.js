@@ -114,6 +114,10 @@ app.use('/api', chaussetteRouter)
 const utilisateurRouter = require('./backend/router/utilisateur')
 app.use('/api', utilisateurRouter)
 
+// On importe et branche le router des commandes sur /api
+const commandeRouter = require('./backend/router/commande')
+app.use('/api', commandeRouter)
+
 // ===== GESTIONNAIRE 404 =====
 // On place ce gestionnaire en dernier — Express parcourt toutes les routes dans l'ordre
 // Si aucune route ne correspond à l'URL demandée, on renvoie la page d'erreur
