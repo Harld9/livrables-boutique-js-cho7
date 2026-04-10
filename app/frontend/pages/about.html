@@ -1,60 +1,217 @@
 <!doctype html>
 <html lang="fr">
-
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>À Propos</title>
-  <link href="/css/main.css" rel="stylesheet" />
-  <link href="/css/about.css" rel="stylesheet" />
-  <link rel="stylesheet"
-    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" />
-  <script src="../../../frontend/script/main.js" type="module"></script>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>À Propos - Cho7</title>
+  <link href="/css/main.css" rel="stylesheet"/>
+  <link href="/css/about.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"/>
 </head>
-
 <body>
+
 <nav class="navbar">
   <button class="burger" id="boutonburger">☰</button>
-  <a href="/" id="lienlogo"
-  ><img src="/assets/imglogo/cho7.png" alt="Logo du site" id="logosite"
-  /></a>
+  <a href="/" id="lienlogo">
+    <img src="/assets/imglogo/cho7.png" alt="Logo du site" id="logosite"/>
+  </a>
   <ul class="menu" id="listemenu">
     <li><a href="/catalogue">Notre Catalogue</a></li>
     <li><a href="/commandes">Suivi Commande</a></li>
+    <li><a href="/connexion">Connexion/Inscription</a></li>
     <li><a href="/about">À Propos</a></li>
   </ul>
   <div class="icones">
-    <a href="/favoris"
-    ><img
-            src="/assets/icons/favorite_24dp_111111_FILL0_wght400_GRAD0_opsz24.svg"
-            alt="Logo Favoris"
-            id="logofavoris"
-    /></a>
+    <a href="/favoris">
+      <img src="/assets/icons/favorite_24dp_111111_FILL0_wght400_GRAD0_opsz24.svg" alt="Logo Favoris" id="logofavoris"/>
+    </a>
     <div class="conteneurprofil">
-      <a href="/profil"
-      ><img
-              src="/assets/icons/account_circle_24dp_111111_FILL0_wght400_GRAD0_opsz24.svg"
-              alt="Logo Utilisateur"
-              id="logoutilisateur"
-      /></a>
+      <a href="/profil">
+        <img src="/assets/icons/account_circle_24dp_111111_FILL0_wght400_GRAD0_opsz24.svg" alt="Logo Utilisateur" id="logoutilisateur"/>
+      </a>
       <span id="pastille-verte" class="pastille"></span>
     </div>
     <div class="panier">
       <a href="/panier">
-        <img
-                src="/assets/icons/shopping_cart_24dp_111111_FILL0_wght400_GRAD0_opsz24.svg"
-                alt="Logo Panier"
-                id="logopanier"
-        />
+        <img src="/assets/icons/shopping_cart_24dp_111111_FILL0_wght400_GRAD0_opsz24.svg" alt="Logo Panier" id="logopanier"/>
         <div class="pointrouge">0</div>
       </a>
     </div>
   </div>
 </nav>
 
+<!-- ===== HERO ===== -->
+<div class="about-hero">
+  <div class="etiquette">Projet Ynov</div>
+  <h1>Boutique <span>Cho7</span></h1>
+  <p>Une boutique e-commerce de chaussettes développée en JavaScript vanilla, Node.js et Express — sans framework frontend.</p>
+</div>
+
+<div class="about-container">
+
+  <!-- ===== FONCTIONNALITÉS ===== -->
+  <div class="about-section">
+    <div class="about-section-titre">
+      <div class="numero">1</div>
+      <h2>Fonctionnalités</h2>
+    </div>
+    <div class="fonctionnalites-grille">
+      <div class="fonctionnalite-carte">
+        <div class="fonctionnalite-icone">🧦</div>
+        <div class="fonctionnalite-texte">
+          <p>Présenter le catalogue</p>
+          <span>Affichage dynamique de tous les produits</span>
+        </div>
+      </div>
+      <div class="fonctionnalite-carte">
+        <div class="fonctionnalite-icone">🔍</div>
+        <div class="fonctionnalite-texte">
+          <p>Filtrer les produits</p>
+          <span>Par catégorie et par longueur</span>
+        </div>
+      </div>
+      <div class="fonctionnalite-carte">
+        <div class="fonctionnalite-icone">↕️</div>
+        <div class="fonctionnalite-texte">
+          <p>Trier les produits</p>
+          <span>Par prix croissant ou décroissant</span>
+        </div>
+      </div>
+      <div class="fonctionnalite-carte">
+        <div class="fonctionnalite-icone">👟</div>
+        <div class="fonctionnalite-texte">
+          <p>Présenter un produit</p>
+          <span>Page détail avec carrousel et similaires</span>
+        </div>
+      </div>
+      <div class="fonctionnalite-carte">
+        <div class="fonctionnalite-icone">📦</div>
+        <div class="fonctionnalite-texte">
+          <p>Gérer les stocks</p>
+          <span>Affichage du stock disponible en temps réel</span>
+        </div>
+      </div>
+      <div class="fonctionnalite-carte">
+        <div class="fonctionnalite-icone">🏷️</div>
+        <div class="fonctionnalite-texte">
+          <p>Gérer les promotions</p>
+          <span>Prix barrés et réductions automatiques</span>
+        </div>
+      </div>
+      <div class="fonctionnalite-carte">
+        <div class="fonctionnalite-icone">🛒</div>
+        <div class="fonctionnalite-texte">
+          <p>Gérer le panier d'achat</p>
+          <span>Ajout, modification quantité, suppression</span>
+        </div>
+      </div>
+      <div class="fonctionnalite-carte">
+        <div class="fonctionnalite-icone">❤️</div>
+        <div class="fonctionnalite-texte">
+          <p>Gérer les favoris</p>
+          <span>Sauvegarde en base de données via JWT</span>
+        </div>
+      </div>
+      <div class="fonctionnalite-carte">
+        <div class="fonctionnalite-icone">📱</div>
+        <div class="fonctionnalite-texte">
+          <p>Responsive</p>
+          <span>Adapté mobile, tablette et desktop</span>
+        </div>
+      </div>
+      <div class="fonctionnalite-carte">
+        <div class="fonctionnalite-icone">🗄️</div>
+        <div class="fonctionnalite-texte">
+          <p>Base de données relationnelle</p>
+          <span>MySQL avec clés étrangères et jointures</span>
+        </div>
+      </div>
+      <div class="fonctionnalite-carte">
+        <div class="fonctionnalite-icone">🔎</div>
+        <div class="fonctionnalite-texte">
+          <p>Interroger une base de données</p>
+          <span>Requêtes SQL avec INNER JOIN et paramètres</span>
+        </div>
+      </div>
+      <div class="fonctionnalite-carte">
+        <div class="fonctionnalite-icone">⚠️</div>
+        <div class="fonctionnalite-texte">
+          <p>Gestion d'erreurs</p>
+          <span>Codes HTTP, messages et pages d'erreur</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== QUALITÉ DU CODE ===== -->
+  <div class="about-section">
+    <div class="about-section-titre">
+      <div class="numero">2</div>
+      <h2>Qualité du code</h2>
+    </div>
+    <div class="qualite-grille">
+      <div class="qualite-carte">
+        <h3>Versionner son code</h3>
+        <p>Utilisation de Git avec branches, commits conventionnels et historique propre tout au long du projet.</p>
+      </div>
+      <div class="qualite-carte">
+        <h3>Bonne architecture</h3>
+        <p>Pattern MVC côté front et back, séparation claire des responsabilités, code commenté et structuré.</p>
+      </div>
+      <div class="qualite-carte">
+        <h3>README complet</h3>
+        <p>Documentation complète du projet : installation, structure, routes API et explications techniques.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== STACK TECHNIQUE ===== -->
+  <div class="about-section">
+    <div class="about-section-titre">
+      <div class="numero">3</div>
+      <h2>Stack technique</h2>
+    </div>
+    <div class="stack-grille">
+      <span class="stack-badge primaire">Node.js</span>
+      <span class="stack-badge primaire">Express</span>
+      <span class="stack-badge primaire">MySQL</span>
+      <span class="stack-badge">JavaScript Vanilla</span>
+      <span class="stack-badge">HTML / CSS</span>
+      <span class="stack-badge">JWT</span>
+      <span class="stack-badge">bcrypt</span>
+      <span class="stack-badge">mysql2</span>
+      <span class="stack-badge">MAMP</span>
+      <span class="stack-badge">Git</span>
+    </div>
+  </div>
+
+  <!-- ===== ÉQUIPE ===== -->
+  <div class="about-section">
+    <div class="about-section-titre">
+      <div class="numero">4</div>
+      <h2>Équipe</h2>
+    </div>
+    <div class="equipe-grille">
+      <div class="membre-carte">
+        <div class="membre-avatar">A</div>
+        <div class="membre-infos">
+          <p>Harold FRANCOIS</p>
+          <span>Création de la base de données (SQL) et développement global du site, de la logique cachée jusqu'à l'interface visuelle.</span>
+        </div>
+      </div>
+      <div class="membre-carte">
+        <div class="membre-avatar">B</div>
+        <div class="membre-infos">
+          <p>Membre 2</p>
+          <span>Développement approfondi du moteur du site (Backend) et conception des pages web pour les utilisateurs.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
 
 <script src="/script/main.js"></script>
 
 </body>
-
 </html>

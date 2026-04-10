@@ -1,11 +1,11 @@
 /* ===== VARIABLES GLOBALES ===== */
 :root {
-  --couleur-primaire: #d83c18;
-  --couleur-primaire-hover: #a82e10;
+  --couleur-primaire: #22bfa8;
+  --couleur-primaire-hover: #1a9f8c;
   --couleur-secondaire: #e0e0e0;
   --couleur-secondaire-hover: #c0c0c0;
   --couleur-fond: #f9f9f9;
-  --couleur-texte: #333333;
+  --couleur-texte: #e69704;/*#333333;*/
   --couleur-texte-leger: #555555;
   --blanc: #ffffff;
   --ombre: rgba(0, 0, 0, 0.05);
