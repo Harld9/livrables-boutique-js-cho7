@@ -1,0 +1,282 @@
+/* CSS spécifique pour la page commande */
+
+/* ===== CONTAINER ===== */
+#commande-container {
+    max-width: 1100px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.commande-titre {
+    font-size: 28px;
+    font-weight: bold;
+    color: var(--couleur-texte);
+    margin-bottom: 30px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.commande-titre::after {
+    content: '';
+    display: block;
+    width: 50px;
+    height: 4px;
+    background-color: var(--couleur-primaire);
+    border-radius: 2px;
+    margin-top: 8px;
+}
+
+/* ===== GRILLE DEUX COLONNES ===== */
+.commande-grille {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    align-items: start;
+}
+
+/* ===== SECTIONS ===== */
+.commande-section {
+    background-color: var(--blanc);
+    border-radius: 15px;
+    box-shadow: 0 4px 10px var(--ombre);
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.section-titre {
+    font-size: 18px;
+    font-weight: bold;
+    color: var(--couleur-texte);
+    margin: 0 0 5px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--couleur-secondaire);
+}
+
+/* ===== LIGNE PRODUIT RÉCAP ===== */
+.recap-ligne-produit {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--couleur-secondaire);
+}
+
+.recap-ligne-produit:last-child {
+    border-bottom: none;
+}
+
+.recap-img {
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+    border-radius: 8px;
+    flex-shrink: 0;
+}
+
+.recap-infos {
+    flex: 1;
+}
+
+.recap-nom {
+    font-size: 14px;
+    font-weight: bold;
+    color: var(--couleur-texte);
+    margin: 0 0 4px;
+}
+
+.recap-details {
+    font-size: 12px;
+    color: var(--couleur-texte-leger);
+    margin: 0;
+}
+
+.recap-prix {
+    font-size: 15px;
+    font-weight: bold;
+    color: var(--couleur-primaire);
+    margin: 0;
+    white-space: nowrap;
+}
+
+/* ===== TOTAL ===== */
+.commande-total-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 15px;
+    border-top: 2px solid var(--couleur-texte);
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.commande-total {
+    font-size: 22px;
+    color: var(--couleur-primaire);
+}
+
+/* ===== ADRESSE ===== */
+label {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--couleur-texte);
+}
+
+.adresse-wrapper {
+    position: relative;
+}
+
+#adresse-livraison {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid var(--couleur-secondaire);
+    border-radius: 8px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    transition: border 0.3s;
+    box-sizing: border-box;
+}
+
+#adresse-livraison:focus {
+    border-color: var(--couleur-primaire);
+    outline: none;
+}
+
+/* ===== SUGGESTIONS ADRESSE ===== */
+.suggestions-adresse {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: var(--blanc);
+    border: 1px solid var(--couleur-secondaire);
+    border-radius: 8px;
+    box-shadow: 0 4px 10px var(--ombre);
+    z-index: 100;
+    list-style: none;
+    padding: 5px 0;
+    margin: 4px 0 0;
+}
+
+.suggestion-item {
+    padding: 10px 15px;
+    font-size: 13px;
+    color: var(--couleur-texte);
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.suggestion-item:hover {
+    background-color: #fbe9e7;
+    color: var(--couleur-primaire);
+}
+
+/* ===== REMEMBER ADRESSE ===== */
+.remember-adresse {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: var(--couleur-texte-leger);
+    font-weight: 400;
+    cursor: pointer;
+}
+
+/* ===== ERREUR ===== */
+.commande-erreur {
+    display: none;
+    color: var(--couleur-primaire);
+    background-color: #fbe9e7;
+    border-radius: 8px;
+    padding: 10px 15px;
+    font-size: 13px;
+    font-weight: bold;
+    margin: 0;
+}
+
+/* ===== BOUTON VALIDER ===== */
+.btn-valider-commande {
+    width: 100%;
+    padding: 15px;
+    border-radius: 25px;
+    border: none;
+    background-color: var(--couleur-primaire);
+    color: var(--blanc);
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-valider-commande:hover {
+    background-color: var(--couleur-primaire-hover);
+    transform: translateY(-2px);
+}
+
+.btn-valider-commande:disabled {
+    background-color: var(--couleur-texte-leger);
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* ===== PAGE SUCCÈS ===== */
+.commande-succes {
+    text-align: center;
+    padding: 80px 20px;
+    background-color: var(--blanc);
+    border-radius: 15px;
+    box-shadow: 0 4px 10px var(--ombre);
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.succes-icone {
+    font-size: 60px;
+    margin-bottom: 20px;
+}
+
+.succes-titre {
+    font-size: 28px;
+    font-weight: bold;
+    color: var(--couleur-texte);
+    margin-bottom: 10px;
+}
+
+.succes-message {
+    font-size: 16px;
+    color: var(--couleur-texte-leger);
+    margin-bottom: 10px;
+}
+
+.succes-numero {
+    font-size: 14px;
+    font-weight: bold;
+    color: var(--couleur-primaire);
+    margin-bottom: 30px;
+}
+
+.succes-bouton {
+    display: inline-block;
+    padding: 12px 30px;
+    border-radius: 25px;
+    background-color: var(--couleur-primaire);
+    color: var(--blanc);
+    font-weight: bold;
+    font-family: 'Poppins', sans-serif;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.succes-bouton:hover {
+    background-color: var(--couleur-primaire-hover);
+    transform: translateY(-2px);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+    .commande-grille {
+        grid-template-columns: 1fr;
+    }
+}

@@ -4,18 +4,20 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Panier - Cho7</title>
   <link href="/css/main.css" rel="stylesheet" />
   <link href="/css/panier.css" rel="stylesheet" />
-  <script src="/script/main.js" type="module"></script>
   <link rel="stylesheet"
     href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" />
-  <title>Panier</title>
 </head>
 
 <body>
+
   <nav class="navbar">
     <button class="burger" id="boutonburger">☰</button>
-    <a href="/" id="lienlogo"><img src="/assets/imglogo/cho7.png" alt="Logo du site" id="logosite" /></a>
+    <a href="/" id="lienlogo">
+      <img src="/assets/imglogo/cho7.png" alt="Logo du site" id="logosite" />
+    </a>
     <ul class="menu" id="listemenu">
       <li><a href="/catalogue">Notre Catalogue</a></li>
       <li><a href="/commandes">Suivi Commande</a></li>
@@ -23,84 +25,51 @@
       <li><a href="/about">À Propos</a></li>
     </ul>
     <div class="icones">
-      <a href="/favoris"><img src="/assets/icons/favorite_24dp_111111_FILL0_wght400_GRAD0_opsz24.svg" alt="Logo Favoris"
-          id="logofavoris" /></a>
-      <a href="/profil"><img src="/assets/icons/account_circle_24dp_111111_FILL0_wght400_GRAD0_opsz24.svg"
-          alt="Logo Utilisateur" id="logoutilisateur" /></a>
+      <a href="/favoris">
+        <img src="/assets/icons/favorite_24dp_111111_FILL0_wght400_GRAD0_opsz24.svg" alt="Logo Favoris"
+          id="logofavoris" />
+      </a>
+      <div class="conteneurprofil">
+        <a href="/profil">
+          <img src="/assets/icons/account_circle_24dp_111111_FILL0_wght400_GRAD0_opsz24.svg" alt="Logo Utilisateur"
+            id="logoutilisateur" />
+        </a>
+        <span id="pastille-verte" class="pastille"></span>
+      </div>
       <div class="panier">
         <a href="/panier">
           <img src="/assets/icons/shopping_cart_24dp_111111_FILL0_wght400_GRAD0_opsz24.svg" alt="Logo Panier"
             id="logopanier" />
-          <div class="pointrouge">2</div>
+          <div class="pointrouge">0</div>
         </a>
       </div>
     </div>
   </nav>
 
-  <main class="fondpanier">
-    <div class="conteneurpanier">
-      <h1 class="titrepanier">Mon Panier</h1>
+  <div id="panier-container">
+    <h1 class="titre-page">Mon panier</h1>
 
-      <div class="grillepanier">
-        <div class="listearticles">
+    <!-- Liste des produits -->
+    <div id="panier-liste">Chargement...</div>
 
-          <div class="cartearticle">
-            <img src="\assets\imgchaussettes\CatUni\cho7-uni-portee-1.png" alt="Chaussette rouge" class="imgarticle">
-            <div class="infosarticle">
-              <h3>Chaussettes Unies (Rouge)</h3>
-              <p class="taillearticle">Taille : 42-45</p>
-              <button class="btnsupprimer">Supprimer</button>
-            </div>
-            <div class="controlesarticle">
-              <div class="controlequantite">
-                <button class="btnqte">-</button>
-                <span class="quantite">1</span>
-                <button class="btnqte">+</button>
-              </div>
-              <p class="prixarticle">8.50 €</p>
-            </div>
-          </div>
-
-          <div class="cartearticle">
-            <img src="\assets\imgchaussettes\CatUni\cho7-uni-portee-2.png" alt="Chaussette bleue" class="imgarticle">
-            <div class="infosarticle">
-              <h3>Chaussettes Unies (Bleue)</h3>
-              <p class="taillearticle">Taille : 38-41</p>
-              <button class="btnsupprimer">Supprimer</button>
-            </div>
-            <div class="controlesarticle">
-              <div class="controlequantite">
-                <button class="btnqte">-</button>
-                <span class="quantite">2</span>
-                <button class="btnqte">+</button>
-              </div>
-              <p class="prixarticle">17.00 €</p>
-            </div>
-          </div>
-
-        </div>
-
-        <div class="recapitulatif">
-          <h2>Récapitulatif</h2>
-          <div class="lignerecap">
-            <span>Sous-total</span>
-            <span>25.50 €</span>
-          </div>
-          <div class="lignerecap">
-            <span>Livraison</span>
-            <span>4.99 €</span>
-          </div>
-          <hr class="separateur">
-          <div class="lignerecap total">
-            <span>Total</span>
-            <span>30.49 €</span>
-          </div>
-          <button class="btnvalider">Valider ma commande</button>
-          <a href="/catalogue" class="lienretour">Continuer mes achats</a>
-        </div>
+    <!-- Récapitulatif -->
+    <div id="panier-recap">
+      <div class="recap-ligne">
+        <span>Total</span>
+        <span id="panier-total">0.00€</span>
+      </div>
+      <div class="recap-boutons">
+        <button id="btn-vider" class="boutonannulation">Vider le panier</button>
+        <button id="btn-valider" class="boutonvalidation">Valider la commande</button>
       </div>
     </div>
-  </main>
+  </div>
+
+  <script src="/script/main.js"></script>
+  <script src="/modele/panier.js"></script>
+  <script src="/vue/panier.js"></script>
+  <script src="/controller/panier.js"></script>
+
 </body>
 
 </html>

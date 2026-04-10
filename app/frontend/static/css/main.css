@@ -1,5 +1,18 @@
-/* CSS général pour les classes communes à toutes les pages */
+/* ===== VARIABLES GLOBALES ===== */
+:root {
+  --couleur-primaire: #22bfa8;
+  --couleur-primaire-hover: #1a9f8c;
+  --couleur-secondaire: #e0e0e0;
+  --couleur-secondaire-hover: #c0c0c0;
+  --couleur-fond: #f9f9f9;
+  --couleur-texte: #e69704;/*#333333;*/
+  --couleur-texte-leger: #555555;
+  --blanc: #ffffff;
+  --ombre: rgba(0, 0, 0, 0.05);
+  --ombre-hover: rgba(0, 0, 0, 0.15);
+}
 
+/* ===== RESET ===== */
 * {
   padding: 0;
   margin: 0;
@@ -7,7 +20,7 @@
 }
 
 body {
-  font-family: Poppins, sans-serif;
+  font-family: 'Poppins', sans-serif;
   min-width: 320px;
   min-height: 160px;
 }
@@ -20,14 +33,15 @@ ul {
   list-style: none;
 }
 
+/* ===== NAVBAR ===== */
 .navbar {
-  background-color: #ffffff;
+  background-color: var(--blanc);
   display: flex;
   align-items: center;
   justify-content: space-between;
   position: relative;
   padding: 15px 20px;
-  border-bottom: 1px solid #eeeeee;
+  border-bottom: 1px solid var(--couleur-secondaire);
 }
 
 #lienlogo {
@@ -40,6 +54,7 @@ ul {
   width: 140px;
 }
 
+/* ===== BURGER ===== */
 .burger {
   display: block;
   background: none;
@@ -53,6 +68,7 @@ ul {
   order: 1;
 }
 
+/* ===== MENU ===== */
 .menu {
   display: none;
   flex-direction: column;
@@ -61,7 +77,7 @@ ul {
   position: absolute;
   top: 100%;
   left: 0;
-  background-color: #ffffff;
+  background-color: var(--blanc);
   z-index: 10;
 }
 
@@ -82,9 +98,10 @@ ul {
 }
 
 .menu a:hover {
-  color: #d83c18;
+  color: var(--couleur-primaire);
 }
 
+/* ===== ICONES ===== */
 .icones {
   display: flex;
   gap: 15px;
@@ -92,6 +109,8 @@ ul {
   justify-content: flex-end;
   order: 3;
   flex: 1;
+  /* ✅ On ajoute un padding pour que le pointrouge ne déborde pas */
+  padding-right: 10px;
 }
 
 #logopanier,
@@ -112,7 +131,26 @@ ul {
   opacity: 0.5;
 }
 
+/* ===== CONTENEUR PROFIL ===== */
+.conteneurprofil {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
 
+/* ===== PASTILLE VERTE ===== */
+.pastille {
+  position: absolute;
+  bottom: -2px;
+  right: -2px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #22c55e;
+  border: 2px solid var(--blanc);
+}
+
+/* ===== PANIER ===== */
 .panier {
   position: relative;
   display: flex;
@@ -123,12 +161,13 @@ ul {
 .pointrouge {
   position: absolute;
   top: -8px;
-  right: -8px;
+  /* ✅ On passe de right: -8px à right: 0 pour éviter le débordement */
+  right: 0;
   width: 18px;
   height: 18px;
   border-radius: 50%;
   background-color: rgb(255, 51, 51);
-  color: #ffffff;
+  color: var(--blanc);
   font-size: 9px;
   font-weight: 600;
   display: flex;
@@ -136,8 +175,77 @@ ul {
   justify-content: center;
 }
 
-@media (min-width: 768px) {}
+/* ===== BOUTONS NAVBAR NON CONNECTÉ ===== */
+.btn-nav-connexion,
+.btn-nav-inscription {
+  padding: 8px 18px;
+  border-radius: 25px;
+  font-size: 13px;
+  font-weight: bold;
+  font-family: 'Poppins', sans-serif;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+  display: none;
+}
 
+.btn-nav-connexion {
+  background-color: transparent;
+  border: 2px solid var(--couleur-primaire);
+  color: var(--couleur-primaire);
+}
+
+.btn-nav-connexion:hover {
+  background-color: var(--couleur-primaire);
+  color: var(--blanc);
+}
+
+.btn-nav-inscription {
+  background-color: var(--couleur-primaire);
+  border: 2px solid var(--couleur-primaire);
+  color: var(--blanc);
+}
+
+.btn-nav-inscription:hover {
+  background-color: var(--couleur-primaire-hover);
+  border-color: var(--couleur-primaire-hover);
+}
+
+/* ===== BOUTON BONJOUR CONNECTÉ ===== */
+.btn-bonjour {
+  font-size: 13px;
+  font-weight: bold;
+  color: var(--couleur-texte);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color 0.3s ease;
+}
+
+.btn-bonjour:hover {
+  color: var(--couleur-primaire);
+}
+
+/* ===== LIENS MENU BURGER NON CONNECTÉ ===== */
+.lien-menu-connexion {
+  color: var(--couleur-primaire) !important;
+  font-weight: bold !important;
+}
+
+.lien-menu-inscription {
+  color: var(--blanc) !important;
+  background-color: var(--couleur-primaire);
+  border-radius: 25px;
+  margin: 5px 15px;
+  text-align: center;
+}
+
+/* ===== LIEN DÉCONNEXION ===== */
+.lien-deconnexion {
+  color: var(--couleur-primaire) !important;
+  font-weight: bold !important;
+}
+
+/* ===== RESPONSIVE ===== */
 @media (min-width: 1024px) {
   .burger {
     display: none;
@@ -172,5 +280,17 @@ ul {
   .icones {
     order: 0;
     justify-content: flex-end;
+    /* ✅ On retire le padding sur desktop — plus de risque de débordement */
+    padding-right: 0;
+  }
+
+  .btn-nav-connexion,
+  .btn-nav-inscription {
+    display: flex;
+  }
+
+  .lien-menu-connexion,
+  .lien-menu-inscription {
+    display: none !important;
   }
 }

@@ -1,93 +1,113 @@
 <!doctype html>
 <html lang="fr">
-
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link href="/css/main.css" rel="stylesheet" />
-  <link href="/css/inscription.css" rel="stylesheet" />
-  <script src="/script/main.js" type="module"></script>
-  <script src="/script/inscription.js" type="module"></script>
-  <link rel="stylesheet"
-    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" />
-  <title>Inscription - Cho7</title>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link href="/css/main.css" rel="stylesheet"/>
+    <link href="/css/inscription.css" rel="stylesheet"/>
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"/>
+    <title>Inscription - Cho7</title>
 </head>
 
 <body>
-
-  <nav class="navbar">
-    <button class="burger" id="boutonburger">☰</button>
-    <a href="/" id="lienlogo"><img src="/assets/imglogo/cho7.png" alt="Logo du site" id="logosite" /></a>
-    <ul class="menu" id="listemenu">
-      <li><a href="/">Accueil</a></li>
-      <li><a href="/catalogue">Notre Catalogue</a></li>
-      <li><a href="/commandes">Suivi Commande</a></li>
-      <li><a href="/about">À Propos</a></li>
-    </ul>
-    <div class="icones">
-      <a href="/favoris"><img src="/assets/icons/favorite_24dp_111111_FILL0_wght400_GRAD0_opsz24.svg" alt="Logo Favoris"
-          id="logofavoris" /></a>
-      <a href="/profil"><img src="/assets/icons/account_circle_24dp_111111_FILL0_wght400_GRAD0_opsz24.svg"
-          alt="Logo Utilisateur" id="logo-utilisateur" /></a>
-      <div class="panier">
-        <a href="/panier">
-          <img src="/assets/icons/shopping_cart_24dp_111111_FILL0_wght400_GRAD0_opsz24.svg" alt="Logo Panier"
-            id="logopanier" />
-          <div class="pointrouge">0</div>
-        </a>
-      </div>
+<nav class="navbar">
+  <button class="burger" id="boutonburger">☰</button>
+  <a href="/" id="lienlogo"
+  ><img src="/assets/imglogo/cho7.png" alt="Logo du site" id="logosite"
+  /></a>
+  <ul class="menu" id="listemenu">
+    <li><a href="/catalogue">Notre Catalogue</a></li>
+    <li><a href="/commandes">Suivi Commande</a></li>
+    <li><a href="/about">À Propos</a></li>
+  </ul>
+  <div class="icones">
+    <a href="/favoris"
+    ><img
+            src="/assets/icons/favorite_24dp_111111_FILL0_wght400_GRAD0_opsz24.svg"
+            alt="Logo Favoris"
+            id="logofavoris"
+    /></a>
+    <div class="conteneurprofil">
+      <a href="/profil"
+      ><img
+              src="/assets/icons/account_circle_24dp_111111_FILL0_wght400_GRAD0_opsz24.svg"
+              alt="Logo Utilisateur"
+              id="logoutilisateur"
+      /></a>
+      <span id="pastille-verte" class="pastille"></span>
     </div>
-  </nav>
-
-  <div class="conteneurformulaire">
-    <form id="formInscription" class="boiteformulaire">
-      <h1 class="titreformulaire">Inscription</h1>
-      <p class="descriptionformulaire">Veuillez remplir les champs ci-dessous pour créer votre compte Cho7.</p>
-      <hr class="separateur">
-
-      <div class="groupechamps">
-        <div class="champ">
-          <label for="nom"><b>Nom</b></label>
-          <input type="text" id="nom" placeholder="ex : Drucker" name="nom" required>
-        </div>
-        <div class="champ">
-          <label for="prenom"><b>Prénom</b></label>
-          <input type="text" id="prenom" placeholder="ex : Michel" name="prenom" required>
-        </div>
-      </div>
-
-      <label for="adresse"><b>Adresse postale</b></label>
-      <input type="text" id="adresse" placeholder="ex : 12 rue de la Paix, 75000 Paris" name="adresse" required>
-
-      <div class="groupechamps">
-        <div class="champ">
-          <label for="email"><b>Email</b></label>
-          <input type="email" id="email" placeholder="ex : michel.drucker@email.com" name="email" required>
-        </div>
-        <div class="champ">
-          <label for="numeroTel"><b>Téléphone</b></label>
-          <input type="text" id="numeroTel" placeholder="ex : 0612345678" name="numeroTel">
-        </div>
-      </div>
-
-      <label for="mdp"><b>Mot de passe</b></label>
-      <input type="password" id="mdp" placeholder="Créer un mot de passe" name="mdp" required>
-
-      <label for="mdpVerif"><b>Confirmer le mot de passe</b></label>
-      <input type="password" id="mdpVerif" placeholder="Retaper le mot de passe" name="mdpVerif" required>
-
-      <div class="boutonsformulaire">
-        <button type="button" class="boutonannulation">Annuler</button>
-        <button type="submit" class="boutonvalidation">S'inscrire</button>
-      </div>
-      <p class="pconnexion">
-        Déjà un compte ? <a href="/connexion" class="lienorange">Connectez-vous ici</a>
-      </p>
-    </form>
-
-
-
+    <div class="panier">
+      <a href="/panier">
+        <img
+                src="/assets/icons/shopping_cart_24dp_111111_FILL0_wght400_GRAD0_opsz24.svg"
+                alt="Logo Panier"
+                id="logopanier"
+        />
+        <div class="pointrouge">0</div>
+      </a>
+    </div>
   </div>
-</body>
+</nav>
 
+<div class="conteneurformulaire">
+    <form id="formInscription" class="boiteformulaire">
+
+        <h1 class="titreformulaire">Inscription</h1>
+        <p class="descriptionformulaire">
+            Veuillez remplir les champs ci-dessous pour créer votre compte Cho7.
+        </p>
+        <hr class="separateur"/>
+
+        <div class="groupechamps">
+            <div class="champ">
+                <label for="nom"><b>Nom</b></label>
+                <input type="text" id="nom" placeholder="ex : Drucker" name="nom" required/>
+            </div>
+            <div class="champ">
+                <label for="prenom"><b>Prénom</b></label>
+                <input type="text" id="prenom" placeholder="ex : Michel" name="prenom" required/>
+            </div>
+        </div>
+
+        <label for="adresse"><b>Adresse postale</b></label>
+        <input type="text" id="adresse" placeholder="ex : 12 rue de la Paix, 75000 Paris" name="adresse" required/>
+
+        <div class="groupechamps">
+            <div class="champ">
+                <label for="email"><b>Email</b></label>
+                <input type="email" id="email" placeholder="ex : michel.drucker@email.com" name="email" required/>
+            </div>
+            <div class="champ">
+                <label for="numeroTel"><b>Téléphone</b></label>
+                <input type="text" id="numeroTel" placeholder="ex : 0612345678" name="numeroTel"/>
+            </div>
+        </div>
+
+        <label for="mdp"><b>Mot de passe</b></label>
+        <input type="password" id="mdp" placeholder="Créer un mot de passe" name="mdp" required/>
+
+        <label for="mdpVerif"><b>Confirmer le mot de passe</b></label>
+        <input type="password" id="mdpVerif" placeholder="Retaper le mot de passe" name="mdpVerif" required/>
+
+        <!-- Zone d'affichage des messages d'erreur ou de succès -->
+        <div id="boiteMessage" class="boitemessagecache"></div>
+
+        <div class="boutonsformulaire">
+            <button type="button" class="boutonannulation">Annuler</button>
+            <button type="submit" class="boutonvalidation">S'inscrire</button>
+        </div>
+
+        <p class="pconnexion">
+            Déjà un compte ?
+            <a href="/connexion" class="lienorange">Connectez-vous ici</a>
+        </p>
+
+    </form>
+</div>
+
+<script src="/script/main.js"></script>
+<script src="/script/inscription.js"></script>
+
+</body>
 </html>
