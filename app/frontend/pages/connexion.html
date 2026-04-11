@@ -1,90 +1,79 @@
 <!doctype html>
 <html lang="fr">
+
 <head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <link href="/css/main.css" rel="stylesheet"/>
-    <link href="/css/connexion.css" rel="stylesheet"/>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="/css/main.css" rel="stylesheet" />
+    <link href="/css/connexion.css" rel="stylesheet" />
     <link rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"/>
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" />
     <title>Connexion - Cho7</title>
 </head>
 
 <body>
-<nav class="navbar">
-    <button class="burger" id="boutonburger">☰</button>
-    <a href="/" id="lienlogo"
-    ><img src="/assets/imglogo/cho7.png" alt="Logo du site" id="logosite"
-    /></a>
-    <ul class="menu" id="listemenu">
-        <li><a href="/catalogue">Notre Catalogue</a></li>
-        <li><a href="/suivi-commandes">Suivi Commande</a></li>
-        <li><a href="/about">À Propos</a></li>
-    </ul>
-    <div class="icones">
-        <a href="/favoris"
-        ><img
-                src="/assets/icons/favorite_24dp_111111_FILL0_wght400_GRAD0_opsz24.svg"
-                alt="Logo Favoris"
-                id="logofavoris"
-        /></a>
-        <div class="conteneurprofil">
-            <a href="/profil"
-            ><img
-                    src="/assets/icons/account_circle_24dp_111111_FILL0_wght400_GRAD0_opsz24.svg"
-                    alt="Logo Utilisateur"
-                    id="logoutilisateur"
-            /></a>
-            <span id="pastille-verte" class="pastille"></span>
+    <nav class="navbar">
+        <button class="burger" id="boutonburger">☰</button>
+        <a href="/" id="lienlogo"><img src="/assets/imglogo/cho7.png" alt="Logo du site" id="logosite" /></a>
+        <ul class="menu" id="listemenu">
+            <li><a href="/catalogue">Notre Catalogue</a></li>
+            <li><a href="/suivi-commandes">Suivi Commande</a></li>
+            <li><a href="/about">À Propos</a></li>
+        </ul>
+        <div class="icones">
+            <a href="/favoris"><img src="/assets/icons/favorite_24dp_111111_FILL0_wght400_GRAD0_opsz24.svg"
+                    alt="Logo Favoris" id="logofavoris" /></a>
+            <div class="conteneurprofil">
+                <a href="/profil"><img src="/assets/icons/account_circle_24dp_111111_FILL0_wght400_GRAD0_opsz24.svg"
+                        alt="Logo Utilisateur" id="logoutilisateur" /></a>
+                <span id="pastille-verte" class="pastille"></span>
+            </div>
+            <div class="panier">
+                <a href="/panier">
+                    <img src="/assets/icons/shopping_cart_24dp_111111_FILL0_wght400_GRAD0_opsz24.svg" alt="Logo Panier"
+                        id="logopanier" />
+                    <div class="pointrouge">0</div>
+                </a>
+            </div>
         </div>
-        <div class="panier">
-            <a href="/panier">
-                <img
-                        src="/assets/icons/shopping_cart_24dp_111111_FILL0_wght400_GRAD0_opsz24.svg"
-                        alt="Logo Panier"
-                        id="logopanier"
-                />
-                <div class="pointrouge">0</div>
-            </a>
-        </div>
+    </nav>
+
+    <div class="conteneurformulaire">
+        <form id="formConnexion" class="boiteformulaire">
+
+            <h1 class="titreformulaire">Connexion</h1>
+            <p class="descriptionformulaire">Ravi de vous revoir ! Connectez-vous à votre compte Cho7.</p>
+            <hr class="separateur" />
+
+            <label for="email"><b>Email</b></label>
+            <input type="email" id="email" placeholder="votre@email.com" name="email" required />
+
+            <label for="mdp"><b>Mot de passe</b></label>
+            <input type="password" id="mdp" placeholder="Votre mot de passe" name="mdp" required />
+
+            <label class="souvenirmoi">
+                <input type="checkbox" name="remember" id="rememberMe" /> Se souvenir de moi
+            </label>
+
+            <!-- Zone d'affichage des messages d'erreur -->
+            <div id="boiteMessage" class="boitemessagecache"></div>
+
+            <div class="boutonsformulaire">
+                <button type="button" class="boutonannulation">Annuler</button>
+                <button type="submit" class="boutonvalidation">Se connecter</button>
+            </div>
+
+            <p class="pinscription">
+                Pas encore de compte ?
+                <a href="/inscription" class="lienorange">Inscrivez-vous ici</a>
+            </p>
+
+        </form>
     </div>
-</nav>
 
-<div class="conteneurformulaire">
-    <form id="formConnexion" class="boiteformulaire">
-
-        <h1 class="titreformulaire">Connexion</h1>
-        <p class="descriptionformulaire">Ravi de vous revoir ! Connectez-vous à votre compte Cho7.</p>
-        <hr class="separateur"/>
-
-        <label for="email"><b>Email</b></label>
-        <input type="email" id="email" placeholder="votre@email.com" name="email" required/>
-
-        <label for="mdp"><b>Mot de passe</b></label>
-        <input type="password" id="mdp" placeholder="Votre mot de passe" name="mdp" required/>
-
-        <label class="souvenirmoi">
-            <input type="checkbox" name="remember" id="rememberMe"/> Se souvenir de moi
-        </label>
-
-        <!-- Zone d'affichage des messages d'erreur -->
-        <div id="boiteMessage" class="boitemessagecache"></div>
-
-        <div class="boutonsformulaire">
-            <button type="button" class="boutonannulation">Annuler</button>
-            <button type="submit" class="boutonvalidation">Se connecter</button>
-        </div>
-
-        <p class="pinscription">
-            Pas encore de compte ?
-            <a href="/inscription" class="lienorange">Inscrivez-vous ici</a>
-        </p>
-
-    </form>
-</div>
-
-<script src="/script/main.js"></script>
-<script src="/script/connexion.js"></script>
+    <script src="/script/main.js"></script>
+    <script src="/script/connexion.js"></script>
 
 </body>
+
 </html>
