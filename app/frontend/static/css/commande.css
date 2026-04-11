@@ -257,6 +257,13 @@ label {
     margin-bottom: 30px;
 }
 
+.succes-boutons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
 .succes-bouton {
     display: inline-block;
     padding: 12px 30px;
@@ -272,6 +279,15 @@ label {
 .succes-bouton:hover {
     background-color: var(--couleur-primaire-hover);
     transform: translateY(-2px);
+}
+
+.succes-bouton.secondaire {
+    background-color: #f0f0f0;
+    color: var(--couleur-texte);
+}
+
+.succes-bouton.secondaire:hover {
+    background-color: #e0e0e0;
 }
 
 /* ===== RESPONSIVE ===== */
