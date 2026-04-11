@@ -1,5 +1,5 @@
 const UtilisateurModele = {
-    getUtilisateur: function(id, token) { // ← token ajouté ici
+    getUtilisateur: function(id, token) { 
         const cacheKey = 'user_data_' + id;
         const cache = localStorage.getItem(cacheKey);
 
@@ -7,9 +7,9 @@ const UtilisateurModele = {
             return Promise.resolve(JSON.parse(cache));
         }
 
-        return fetch('/api/utilisateur/' + id, { // ← URL relative, plus de localhost:8080
+        return fetch('/api/utilisateur/' + id, { 
             headers: {
-                'Authorization': 'Bearer ' + token // ← token envoyé ici
+                'Authorization': 'Bearer ' + token //
             }
         })
         .then(response => response.json())
