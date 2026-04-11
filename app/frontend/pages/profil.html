@@ -68,12 +68,20 @@
 
     </div>
 
+    <div class="profil-section-dernieres-commandes">
+      <h2 class="commandes-titre">Votre dernière commande</h2>
+      <div id="derniere-commande" class="derniere-commande-container">
+        <p class="commandes-vide">Aucune commande trouvée</p>
+      </div>
+      <a href="/commandes" class="btn-voir-commandes">Voir toutes mes commandes →</a>
+    </div>
+
     <div class="profil-boutons">
-      <a href="/commandes" class="primaire">Mes commandes</a>
-      <button class="secondaire" id="btn-deconnexion">Se déconnecter</button>
+      <button class="btn-deconnexion" id="btn-deconnexion">Se déconnecter</button>
     </div>
   </main>
   <script src="/script/main.js"></script>
+  <script src="/modele/commande.js"></script>
   <script src="/modele/utilisateur.js"></script>
   <script src="/vue/utilisateur.js"></script>
   <script src="/controller/utilisateur.js"></script>
