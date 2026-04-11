@@ -1,10 +1,22 @@
 const UtilisateurController = {
     initialisation: function() {
-        // On demande les données au modèle
-        UtilisateurModele.getUtilisateur(1)
+         const token = localStorage.getItem('token') || sessionStorage.getItem('token');
+        if (!token) {
+            window.location.href = '/connexion';
+            return; 
+        }
+
+        //    Le token JWT est en 3 parties séparées par des points : header.payload.signature
+        //    La partie centrale (payload) est en base64
+        const payload = JSON.parse(atob(token.split('.')[1]));
+        const idUtilisateur = payload.id; // correspond à ce que tu mets dans jwt.sign()
+
+        // 3. On appelle l'API avec le bon ID
+        UtilisateurModele.getUtilisateur(idUtilisateur, token)
+
             .then(data => {
+                console.log('data reçue :', data); // ← ajoute ça
                 if (data && data.code === 200) {
-                    // On demande à la vue d'afficher
                     UtilisateurVue.afficherProfil(data);
                 }
             })
@@ -12,12 +24,4 @@ const UtilisateurController = {
     }
 };
 
-// On lance le script
 UtilisateurController.initialisation();
-
-const token = localStorage.getItem('token');
-
-// si pas de jeton, on bloque l'accès et on redirige l'utilsiateur vers connexion
-if (!token) {
-    window.location.href = '/connexion';
-}

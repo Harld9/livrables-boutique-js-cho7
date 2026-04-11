@@ -1,29 +1,20 @@
-// Namespace qui regroupe toutes les fonctions d'affichage
 const UtilisateurVue = {
-    // ===== FONCTIONS =====
-    // ----- AFFICHAGE -----
     afficherProfil: function(res) {
-        const utilisateur = res.utilisateur;
-        
-        // on cible la balise HTML où on veut afficher les infos
-        const conteneur = document.getElementById('profil-utilisateur');
+        const u = res.utilisateur;
 
-        // verification que la balise existe
-        if (conteneur) {
-            // On vide le contenu de la liste. Pas de donnée utilisateur donc pas de faille XSS.
-            conteneur.innerHTML = '';
+        document.getElementById('profil-prenom').textContent  = u.Prenom;
+        document.getElementById('profil-nom').textContent     = u.Prenom + ' ' + u.Nom;
+        document.getElementById('profil-mail').textContent    = u.Mail;
+        document.getElementById('profil-tel').textContent     = u.NumeroTel;
+        document.getElementById('profil-adresse').textContent = u.Adresse;
 
-            // on injecte le code HTML
-            conteneur.innerHTML = `
-                <div class="profil-card">
-                    <h2>Profil de ${utilisateur.Prenom} ${utilisateur.Nom}</h2>
-                    <p><strong>Email :</strong> ${utilisateur.Mail}</p>
-                    <p><strong>Téléphone :</strong> ${utilisateur.NumeroTel}</p>
-                    <p><strong>Adresse :</strong> ${utilisateur.Adresse}</p>
-                </div>
-            `;
-        } else {
-            console.error("Erreur : la balise avec l'id 'profil-utilisateur' est introuvable.");
-        }
+        document.getElementById('btn-deconnexion').addEventListener('click', function() {
+            localStorage.removeItem('token');
+            sessionStorage.removeItem('token');
+            Object.keys(localStorage)
+                .filter(k => k.startsWith('user_data_'))
+                .forEach(k => localStorage.removeItem(k));
+            window.location.href = '/connexion';
+        });
     }
 };

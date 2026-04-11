@@ -1,0 +1,156 @@
+/* CSS uniquement pour la page profil */
+
+/* ===== SECTION PRINCIPALE ===== */
+.profil-section {
+    display: flex;
+    flex-direction: column;
+    padding: 40px 20px;
+    background-color: var(--couleur-fond);
+    min-height: calc(100vh - 70px);
+}
+
+/* ===== BADGE ÉTIQUETTE ===== */
+.profil-etiquette {
+    background-color: #fbe9e7;
+    color: var(--couleur-primaire);
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+    width: fit-content;
+    margin-bottom: 15px;
+}
+
+/* ===== TITRE ===== */
+.profil-titre {
+    font-size: 32px;
+    color: var(--couleur-texte);
+    margin-bottom: 6px;
+    line-height: 1.2;
+}
+
+.profil-titre span {
+    font-style: italic;
+    color: var(--couleur-primaire);
+}
+
+.profil-soustitre {
+    color: var(--couleur-texte-leger);
+    font-size: 15px;
+    margin-bottom: 35px;
+}
+
+/* ===== GRILLE DE CARTES INFOS ===== */
+.profil-grille {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+    max-width: 700px;
+    width: 100%;
+}
+
+/* ===== CARTE INFO ===== */
+.profil-carte {
+    background-color: var(--blanc);
+    border-radius: 15px;
+    padding: 20px 24px;
+    box-shadow: 0 4px 10px var(--ombre);
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.profil-carte:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 25px var(--ombre-hover);
+}
+
+/* ===== ICONE DANS LA CARTE ===== */
+.profil-carte-icone {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    background-color: #fbe9e7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.profil-carte-icone svg {
+    width: 22px;
+    height: 22px;
+    fill: var(--couleur-primaire);
+}
+
+/* ===== CONTENU TEXTE CARTE ===== */
+.profil-carte-contenu {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.profil-carte-label {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--couleur-texte-leger);
+}
+
+.profil-carte-valeur {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--couleur-texte);
+}
+
+/* ===== BOUTON DÉCONNEXION ===== */
+.profil-boutons {
+    display: flex;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+/* On réutilise les classes .primaire et .secondaire de index.css */
+
+/* ===== ETAT CHARGEMENT ===== */
+.profil-chargement {
+    color: var(--couleur-texte-leger);
+    font-size: 15px;
+    margin-top: 40px;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (min-width: 768px) {
+    .profil-section {
+        align-items: center;
+        text-align: center;
+        padding: 60px 20px;
+    }
+
+    .profil-etiquette {
+        margin: 0 auto 15px auto;
+    }
+
+    .profil-titre {
+        font-size: 48px;
+    }
+
+    .profil-grille {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    /* La carte adresse prend toute la largeur car le texte peut être long */
+    .profil-carte-adresse {
+        grid-column: 1 / -1;
+    }
+
+    .profil-boutons {
+        justify-content: center;
+    }
+
+    .profil-carte {
+        text-align: left;
+    }
+}
