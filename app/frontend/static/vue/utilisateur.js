@@ -6,7 +6,6 @@ const UtilisateurVue = {
         document.getElementById('profil-nom').textContent     = u.Prenom + ' ' + u.Nom;
         document.getElementById('profil-mail').textContent    = u.Mail;
         document.getElementById('profil-tel').textContent     = u.NumeroTel;
-        document.getElementById('profil-adresse').textContent = u.Adresse;
 
         document.getElementById('btn-deconnexion').addEventListener('click', function() {
             localStorage.removeItem('token');
