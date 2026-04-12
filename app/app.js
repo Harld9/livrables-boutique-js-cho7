@@ -35,8 +35,9 @@ const limiteurAPI = rateLimit({
 })
 
 // ===== MIDDLEWARES =====
-// On applique le limiteur sur toutes les routes qui commencent par /api
-app.use('/api', limiteurAPI)
+// On applique le limiteur surles routes de la connexion et de l'inscription
+app.use('/api/connexion', limiteurAPI)
+app.use('/api/inscription', limiteurAPI)
 
 // On autorise toutes les origines — à restreindre en production
 app.use(cors({ origin: '*' }))
