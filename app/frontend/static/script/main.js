@@ -128,3 +128,20 @@ if (token) {
     // element.appendChild(enfant) — insère boutonInscription à la fin de icones.
     icones.appendChild(boutonInscription)
 }
+
+// Met à jour le compteur du panier au chargement, sans dépendre de PanierModele.
+function mettreAJourCompteurPanierNavbar() {
+    const pointrouge = document.querySelector('.pointrouge')
+    if (!pointrouge) return
+
+    try {
+        const panierBrut = localStorage.getItem('panier')
+        const panier = panierBrut ? JSON.parse(panierBrut) : []
+        const total = panier.reduce((acc, produit) => acc + (Number(produit.quantite) || 0), 0)
+        pointrouge.textContent = total > 99 ? '99+' : String(total)
+    } catch {
+        pointrouge.textContent = '0'
+    }
+}
+
+mettreAJourCompteurPanierNavbar()

@@ -1,28 +1,30 @@
 const UtilisateurVue = {
-    // ===== FONCTIONS =====
-    // ----- AFFICHAGE -----
     afficherProfil: function (res) {
         const utilisateur = res.utilisateur;
 
-        // on cible la balise HTML où on veut afficher les infos
-        const conteneur = document.getElementById('profil-utilisateur');
+        // Remplir les IDs individuels
+        document.getElementById('profil-prenom').textContent = utilisateur.Prenom;
+        document.getElementById('profil-nom').textContent = `${utilisateur.Nom}`;
+        document.getElementById('profil-mail').textContent = utilisateur.Mail;
+        document.getElementById('profil-tel').textContent = utilisateur.NumeroTel || 'Non renseigné';
+    },
 
-        // verification que la balise existe
-        if (conteneur) {
-            // On vide le contenu de la liste. Pas de donnée utilisateur donc pas de faille XSS.
-            conteneur.innerHTML = '';
+    afficherDerniereCommande: function (commandes) {
+        const conteneur = document.getElementById('derniere-commande');
 
-            // on injecte le code HTML
-            conteneur.innerHTML = `
-                <div class="profil-card">
-                    <h2>Profil de ${utilisateur.Prenom} ${utilisateur.Nom}</h2>
-                    <p><strong>Email :</strong> ${utilisateur.Mail}</p>
-                    <p><strong>Téléphone :</strong> ${utilisateur.NumeroTel}</p>
-                    <p><strong>Adresse :</strong> ${utilisateur.Adresse}</p>
-                </div>
-            `;
-        } else {
-            console.error("Erreur : la balise avec l'id 'profil-utilisateur' est introuvable.");
+        if (!commandes || commandes.length === 0) {
+            conteneur.innerHTML = '<p class="commandes-vide">Aucune commande trouvée</p>';
+            return;
         }
+
+        const derniereCommande = commandes[0];
+        conteneur.innerHTML = `
+            <div class="commande-card">
+                <p><strong>Numéro :</strong> #${derniereCommande.idCommande}</p>
+                <p><strong>Date :</strong> ${new Date(derniereCommande.dateCommande).toLocaleDateString('fr-FR')}</p>
+                <p><strong>Adresse :</strong> ${derniereCommande.adresseLivraison}</p>
+                <p><strong>Produits :</strong> ${derniereCommande.produits.length}</p>
+            </div>
+        `;
     }
 };

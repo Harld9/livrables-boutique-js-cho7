@@ -362,6 +362,8 @@
   cursor: pointer;
   padding: 5px;
   transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  -webkit-text-stroke: 1px black;
+  paint-order: stroke fill;
 }
 
 .boutonFavoris:hover {

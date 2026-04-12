@@ -13,7 +13,6 @@ document.getElementById('formInscription').addEventListener('submit', async (e) 
     // On récupère les valeurs saisies dans chaque input
     const nom = document.getElementById('nom').value
     const prenom = document.getElementById('prenom').value
-    const adresse = document.getElementById('adresse').value
     const email = document.getElementById('email').value
     const numeroTel = document.getElementById('numeroTel').value
     const mdp = document.getElementById('mdp').value

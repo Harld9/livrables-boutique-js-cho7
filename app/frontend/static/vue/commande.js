@@ -82,7 +82,9 @@ const CommandeVue = {
         const titre = document.createElement('h2')
         const message = document.createElement('p')
         const numero = document.createElement('p')
-        const bouton = document.createElement('a')
+        const boutons = document.createElement('div')
+        const btnSuivi = document.createElement('a')
+        const btnCatalogue = document.createElement('a')
 
         succes.classList.add('commande-succes')
         icone.classList.add('succes-icone')
@@ -97,8 +99,10 @@ const CommandeVue = {
         titre.textContent = 'Commande confirmée !'
         message.textContent = 'Votre commande a bien été enregistrée.'
         numero.textContent = 'Numéro de commande : #' + idCommande
-        bouton.textContent = 'Continuer mes achats'
-        bouton.href = '/catalogue'
+        btnSuivi.textContent = 'Voir mon suivi'
+        btnSuivi.href = '/suivi-commandes'
+        btnCatalogue.textContent = 'Continuer mes achats'
+        btnCatalogue.href = '/catalogue'
 
         succes.appendChild(icone)
         succes.appendChild(titre)

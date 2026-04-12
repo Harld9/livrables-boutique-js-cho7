@@ -85,5 +85,5 @@ const PanierModele = {
         const total = panier.reduce((acc, p) => acc + p.quantite, 0)
         // Si limite au dela de 99, on affiche 99+
         pointrouge.textContent = total > 99 ? '99+' : total
-    },
+    }
 }
