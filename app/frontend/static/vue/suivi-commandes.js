@@ -1,7 +1,7 @@
 const SuiviCommandesVue = {
-    afficherCommandes: function(commandes) {
+    afficherCommandes: function (commandes) {
         const container = document.getElementById('suivi-conteneur');
-        
+
         if (!commandes || commandes.length === 0) {
             container.innerHTML = `
                 <div class="suivi-vide">
@@ -19,11 +19,11 @@ const SuiviCommandesVue = {
             const statut = this.obtenirStatutLivraison(commande);
             const pourcentage = this.calculerPourcentageProgression(commande);
             const total = commande.produits.reduce((sum, p) => sum + (p.prix * p.quantite), 0);
-            
+
             const date = new Date(commande.dateCommande);
-            const dateFormatee = date.toLocaleDateString('fr-FR', { 
-                year: 'numeric', 
-                month: 'long', 
+            const dateFormatee = date.toLocaleDateString('fr-FR', {
+                year: 'numeric',
+                month: 'long',
                 day: 'numeric',
                 hour: '2-digit',
                 minute: '2-digit'
@@ -83,7 +83,7 @@ const SuiviCommandesVue = {
         container.innerHTML = html;
     },
 
-    obtenirStatutLivraison: function(commande) {
+    obtenirStatutLivraison: function (commande) {
         const delaiMs = this.obtenirDelaiMs(commande);
         const maintenant = Date.now();
         const dateCommande = new Date(commande.dateCommande).getTime();
@@ -106,22 +106,22 @@ const SuiviCommandesVue = {
         }
     },
 
-    obtenirDelaiMs: function(commande) {
+    obtenirDelaiMs: function (commande) {
         const cleDelai = `commande_delai_${commande.idCommande}`;
         const delaiStocke = localStorage.getItem(cleDelai);
-        
+
         if (delaiStocke) {
             return parseInt(delaiStocke);
         }
-        
+
         const delaiAleatoire = Math.floor(Math.random() * 7) + 1;
         const delaiMs = delaiAleatoire * 24 * 60 * 60 * 1000;
         localStorage.setItem(cleDelai, delaiMs);
-        
+
         return delaiMs;
     },
 
-    calculerPourcentageProgression: function(commande) {
+    calculerPourcentageProgression: function (commande) {
         const delaiMs = this.obtenirDelaiMs(commande);
         const maintenant = Date.now();
         const dateCommande = new Date(commande.dateCommande).getTime();

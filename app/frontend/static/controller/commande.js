@@ -115,13 +115,13 @@ const CommandeController = {
                 // On vide le panier après la commande
                 PanierModele.vider()
                 PanierModele.mettreAJourPointrouge()
-                
+
                 // On génère et stocke un délai aléatoire de livraison (1 à 7 jours)
                 const idCommande = reponse.data.idCommande
                 const delaiAleatoire = Math.floor(Math.random() * 7) + 1 // 1 à 7 jours
                 const delaiMs = delaiAleatoire * 24 * 60 * 60 * 1000
                 localStorage.setItem(`commande_delai_${idCommande}`, delaiMs)
-                
+
                 // On affiche la page de confirmation
                 CommandeVue.affichageSucces(reponse.data.idCommande)
 
