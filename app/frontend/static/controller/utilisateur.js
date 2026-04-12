@@ -1,7 +1,21 @@
 const UtilisateurController = {
     initialisation: function () {
-        // On demande les données au modèle
-        UtilisateurModele.getUtilisateur(1)
+        // On récupère le token stocké lors de la connexion
+        const token = localStorage.getItem('token') || sessionStorage.getItem('token');
+        
+        if (!token) {
+            console.warn('Aucun token trouvé, redirection vers connexion');
+            window.location.href = '/pages/connexion.html';
+            return;
+        }
+        
+        // On décode le token JWT pour extraire l'ID utilisateur
+        // Format: header.payload.signature — on prend la partie payload (index 1)
+        const payload = JSON.parse(atob(token.split('.')[1]));
+        const userId = payload.id;
+        
+        // On demande les données au modèle avec l'ID réel
+        UtilisateurModele.getUtilisateur(userId)
             .then(data => {
                 console.log('data reçue :', data);
                 if (data && data.code === 200) {

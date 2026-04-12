@@ -8,9 +8,12 @@ const UtilisateurModele = {
             return Promise.resolve(JSON.parse(cache));
         }
 
+        // On récupère le token depuis le stockage
+        const token = localStorage.getItem('token') || sessionStorage.getItem('token');
+
         return fetch('/api/utilisateur/' + id, {
             headers: {
-                'Authorization': 'Bearer ' + token //
+                'Authorization': 'Bearer ' + token
             }
         })
             .then(response => response.json())
