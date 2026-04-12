@@ -1,5 +1,5 @@
 const UtilisateurModele = {
-    getUtilisateur: function(id) {
+    getUtilisateur: function (id) {
         // On vérifie le cache avec une clé unique
         const cacheKey = 'user_data_' + id;
         const cache = localStorage.getItem(cacheKey);

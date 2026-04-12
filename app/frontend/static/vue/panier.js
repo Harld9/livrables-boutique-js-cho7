@@ -8,7 +8,7 @@ const PanierVue = {
 
     affichage: (panier, total) => {
         const container = document.getElementById('panier-liste')
-        const totalEl   = document.getElementById('panier-total')
+        const totalEl = document.getElementById('panier-total')
         if (!container) return
 
         container.innerHTML = ''
@@ -19,17 +19,17 @@ const PanierVue = {
         }
 
         panier.forEach(p => {
-            const ligne      = document.createElement('div')
-            const img        = document.createElement('img')
-            const infos      = document.createElement('div')
-            const nom        = document.createElement('p')
-            const prixUnite  = document.createElement('p')
+            const ligne = document.createElement('div')
+            const img = document.createElement('img')
+            const infos = document.createElement('div')
+            const nom = document.createElement('p')
+            const prixUnite = document.createElement('p')
             const quantiteWrapper = document.createElement('div')
-            const btnMoins   = document.createElement('button')
+            const btnMoins = document.createElement('button')
             const quantiteEl = document.createElement('span')
-            const btnPlus    = document.createElement('button')
-            const prixTotal  = document.createElement('p')
-            const btnSuppr   = document.createElement('button')
+            const btnPlus = document.createElement('button')
+            const prixTotal = document.createElement('p')
+            const btnSuppr = document.createElement('button')
 
             ligne.classList.add('panier-ligne')
             img.classList.add('panier-img')
@@ -48,7 +48,7 @@ const PanierVue = {
             img.alt = p.nom
 
             // textContent — données localStorage
-            nom.textContent        = p.nom
+            nom.textContent = p.nom
             // calcule le prix réduit si réduction > 0
             const prixFinal = p.reduction > 0
                 ? parseFloat(p.prix) * (1 - parseFloat(p.reduction))
@@ -66,16 +66,16 @@ const PanierVue = {
             } else {
                 prixUnite.textContent = 'Prix unitaire : ' + prixFinal.toFixed(2) + '€'
             }
-            btnMoins.textContent   = '−'
+            btnMoins.textContent = '−'
             quantiteEl.textContent = p.quantite
-            btnPlus.textContent    = '+'
+            btnPlus.textContent = '+'
             // Prix total avec réduction appliquée
             prixTotal.textContent = (prixFinal * p.quantite).toFixed(2) + '€'
-            btnSuppr.textContent   = '🗑'
+            btnSuppr.textContent = '🗑'
 
             // dataset — stocke l'id pour le controller
             btnMoins.dataset.id = p.id
-            btnPlus.dataset.id  = p.id
+            btnPlus.dataset.id = p.id
             btnSuppr.dataset.id = p.id
 
             // Events — le controller écoute ces boutons via délégation
@@ -96,7 +96,7 @@ const PanierVue = {
 
             // Empêche la propagation des boutons vers la ligne
             btnMoins.addEventListener('click', e => e.stopPropagation())
-            btnPlus.addEventListener('click',  e => e.stopPropagation())
+            btnPlus.addEventListener('click', e => e.stopPropagation())
             btnSuppr.addEventListener('click', e => e.stopPropagation())
 
             // Assemblage
@@ -122,7 +122,7 @@ const PanierVue = {
 
     affichageVide: () => {
         const container = document.getElementById('panier-liste')
-        const totalEl   = document.getElementById('panier-total')
+        const totalEl = document.getElementById('panier-total')
         if (!container) return
 
         container.innerHTML = ''

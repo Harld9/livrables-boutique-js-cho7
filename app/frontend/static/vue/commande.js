@@ -12,12 +12,12 @@ const CommandeVue = {
         container.innerHTML = ''
 
         panier.forEach(p => {
-            const ligne      = document.createElement('div')
-            const img        = document.createElement('img')
-            const infos      = document.createElement('div')
-            const nom        = document.createElement('p')
-            const details    = document.createElement('p')
-            const prixTotal  = document.createElement('p')
+            const ligne = document.createElement('div')
+            const img = document.createElement('img')
+            const infos = document.createElement('div')
+            const nom = document.createElement('p')
+            const details = document.createElement('p')
+            const prixTotal = document.createElement('p')
 
             ligne.classList.add('recap-ligne-produit')
             img.classList.add('recap-img')
@@ -31,7 +31,7 @@ const CommandeVue = {
             img.alt = p.nom
 
             // textContent — données localStorage
-            nom.textContent     = p.nom
+            nom.textContent = p.nom
             details.textContent = 'Quantité : ' + p.quantite + ' × ' + parseFloat(p.prix).toFixed(2) + '€'
 
             // On calcule le prix avec réduction si besoin
@@ -67,7 +67,7 @@ const CommandeVue = {
     affichageErreur: (message) => {
         const erreur = document.getElementById('commande-erreur')
         if (!erreur) return
-        erreur.textContent  = message
+        erreur.textContent = message
         erreur.style.display = 'block'
     },
 
@@ -77,12 +77,12 @@ const CommandeVue = {
 
         container.innerHTML = ''
 
-        const succes  = document.createElement('div')
-        const icone   = document.createElement('p')
-        const titre   = document.createElement('h2')
+        const succes = document.createElement('div')
+        const icone = document.createElement('p')
+        const titre = document.createElement('h2')
         const message = document.createElement('p')
-        const numero  = document.createElement('p')
-        const bouton  = document.createElement('a')
+        const numero = document.createElement('p')
+        const bouton = document.createElement('a')
 
         succes.classList.add('commande-succes')
         icone.classList.add('succes-icone')
@@ -91,12 +91,12 @@ const CommandeVue = {
         numero.classList.add('succes-numero')
         bouton.classList.add('primaire', 'succes-bouton')
 
-        icone.textContent   = '✅'
-        titre.textContent   = 'Commande confirmée !'
+        icone.textContent = '✅'
+        titre.textContent = 'Commande confirmée !'
         message.textContent = 'Votre commande a bien été enregistrée.'
-        numero.textContent  = 'Numéro de commande : #' + idCommande
-        bouton.textContent  = 'Continuer mes achats'
-        bouton.href         = '/catalogue'
+        numero.textContent = 'Numéro de commande : #' + idCommande
+        bouton.textContent = 'Continuer mes achats'
+        bouton.href = '/catalogue'
 
         succes.appendChild(icone)
         succes.appendChild(titre)

@@ -27,12 +27,12 @@ const ProduitVue = {
         const colonneInfos = document.createElement('div')
 
         // Fil d'ariane
-        const filAriane  = document.createElement('p')
-        const lienAccueil   = document.createElement('a')
-        const sep1          = document.createElement('span')
+        const filAriane = document.createElement('p')
+        const lienAccueil = document.createElement('a')
+        const sep1 = document.createElement('span')
         const lienCatalogue = document.createElement('a')
-        const sep2          = document.createElement('span')
-        const nomProduit    = document.createElement('span')
+        const sep2 = document.createElement('span')
+        const nomProduit = document.createElement('span')
 
         // Catégorie badge
         const badge = document.createElement('span')
@@ -65,7 +65,7 @@ const ProduitVue = {
         const favorisTexte = ProduitController.favorisIds.map(idFav => idFav.toString())
         const idProduitTexte = produit.IdProduit.toString();
 
-        if (favorisTexte.includes(idProduitTexte)){
+        if (favorisTexte.includes(idProduitTexte)) {
             boutonFavoris.textContent = '❤️';
         } else {
             boutonFavoris.textContent = '🤍';
@@ -140,12 +140,12 @@ const ProduitVue = {
         colonneImg.appendChild(carrousel)
 
         // Fil d'ariane
-        lienAccueil.href        = '/'
+        lienAccueil.href = '/'
         lienAccueil.textContent = 'Accueil'
 
         sep1.textContent = ' > '
 
-        lienCatalogue.href        = '/catalogue'
+        lienCatalogue.href = '/catalogue'
         lienCatalogue.textContent = 'Catalogue'
 
         sep2.textContent = ' > '
@@ -190,17 +190,17 @@ const ProduitVue = {
 
             // On prépare l'objet produit à ajouter au panier
             PanierModele.ajouter({
-                id:     produit.IdProduit,
-                nom:    produit.NomProduit,
-                prix:   produit.Prix,
+                id: produit.IdProduit,
+                nom: produit.NomProduit,
+                prix: produit.Prix,
                 reduction: produit.Reduction,
-                image:  produit.Image3D,
+                image: produit.Image3D,
                 dossier: (() => {
                     switch (produit.NomCategorie) {
-                        case 'Memes':  return 'CatMeme/'
-                        case 'Unies':  return 'CatUni/'
+                        case 'Memes': return 'CatMeme/'
+                        case 'Unies': return 'CatUni/'
                         case 'Motifs': return 'CatMotif/'
-                        default:       return ''
+                        default: return ''
                     }
                 })()
             })
@@ -265,8 +265,8 @@ const ProduitVue = {
         if (!colonneInfos) return
 
         const wrapper = document.createElement('div')
-        const label   = document.createElement('label')
-        const select  = document.createElement('select')
+        const label = document.createElement('label')
+        const select = document.createElement('select')
 
         wrapper.classList.add('variantes-wrapper')
         label.classList.add('variantes-label')
@@ -315,18 +315,18 @@ const ProduitVue = {
         const creerCarte = (p) => {
             const dossier = (() => {
                 switch (p.NomCategorie.trim()) {
-                    case 'Memes':  return 'CatMeme/'
-                    case 'Unies':  return 'CatUni/'
+                    case 'Memes': return 'CatMeme/'
+                    case 'Unies': return 'CatUni/'
                     case 'Motifs': return 'CatMotif/'
-                    default:       return ''
+                    default: return ''
                 }
             })()
 
-            const carte  = document.createElement('div')
-            const img    = document.createElement('img')
-            const infos  = document.createElement('div')
-            const nom    = document.createElement('p')
-            const prix   = document.createElement('p')
+            const carte = document.createElement('div')
+            const img = document.createElement('img')
+            const infos = document.createElement('div')
+            const nom = document.createElement('p')
+            const prix = document.createElement('p')
 
             carte.classList.add('carte-similaire')
             img.classList.add('img-similaire')
@@ -334,9 +334,9 @@ const ProduitVue = {
             nom.classList.add('nom-similaire')
             prix.classList.add('prix-similaire')
 
-            img.src          = '/assets/imgchaussettes/' + dossier + p.Image3D
-            img.alt          = p.NomProduit
-            nom.textContent  = p.NomProduit
+            img.src = '/assets/imgchaussettes/' + dossier + p.Image3D
+            img.alt = p.NomProduit
+            nom.textContent = p.NomProduit
             prix.textContent = p.Prix + '€'
 
             if (p.Reduction > 0) {
@@ -348,7 +348,7 @@ const ProduitVue = {
             }
 
             // Hover image
-            const src3D     = '/assets/imgchaussettes/' + dossier + p.Image3D
+            const src3D = '/assets/imgchaussettes/' + dossier + p.Image3D
             const srcPortee = '/assets/imgchaussettes/' + dossier + p.ImagePortee
 
             img.addEventListener('mouseenter', () => {
@@ -382,8 +382,8 @@ const ProduitVue = {
         // ===== SECTION MÊME CATÉGORIE =====
         if (memeCategorie.length > 0) {
             const sectionCategorie = document.createElement('div')
-            const titreCategorie   = document.createElement('h2')
-            const listeCategorie   = document.createElement('div')
+            const titreCategorie = document.createElement('h2')
+            const listeCategorie = document.createElement('div')
 
             sectionCategorie.classList.add('section-similaires')
             titreCategorie.classList.add('titre-similaires')
@@ -401,8 +401,8 @@ const ProduitVue = {
         // ===== SECTION MÊME LONGUEUR =====
         if (memeLongueur.length > 0) {
             const sectionLongueur = document.createElement('div')
-            const titreLongueur   = document.createElement('h2')
-            const listeLongueur   = document.createElement('div')
+            const titreLongueur = document.createElement('h2')
+            const listeLongueur = document.createElement('div')
 
             sectionLongueur.classList.add('section-similaires')
             titreLongueur.classList.add('titre-similaires')

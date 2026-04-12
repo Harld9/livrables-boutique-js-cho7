@@ -6,8 +6,8 @@
 
 // On importe Express et on crée l'application
 const express = require('express')
-const app     = express()
-const port    = 8080
+const app = express()
+const port = 8080
 
 // On importe path pour construire les chemins de fichiers
 // node: est le préfixe moderne pour les modules natifs Node.js

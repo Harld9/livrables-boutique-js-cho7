@@ -4,8 +4,8 @@
  * On n'écrit pas de logique ici — on se contente de brancher les routes.
  */
 
-const express     = require('express')
-const router      = express.Router()
+const express = require('express')
+const router = express.Router()
 
 // On importe le controller qui contient toute la logique métier
 const utilisateur = require('../controller/utilisateur')

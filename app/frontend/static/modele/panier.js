@@ -29,7 +29,7 @@ const PanierModele = {
             existant.quantite += 1
         } else {
             // Sinon, on ajoute le produit avec une quantité de 1.
-            panier.push({...produit, quantite: 1})
+            panier.push({ ...produit, quantite: 1 })
         }
 
         PanierModele.sauvegarder(panier)

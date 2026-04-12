@@ -38,7 +38,7 @@ const CommandeController = {
 
     // Autocomplétion via l'API Adresse gouvernementale
     initAutocomplete: () => {
-        const input       = document.getElementById('adresse-livraison')
+        const input = document.getElementById('adresse-livraison')
         const suggestions = document.getElementById('suggestions-adresse')
         if (!input || !suggestions) return
 
@@ -66,7 +66,7 @@ const CommandeController = {
                             li.textContent = feature.properties.label
 
                             li.addEventListener('click', () => {
-                                input.value          = feature.properties.label
+                                input.value = feature.properties.label
                                 suggestions.innerHTML = ''
                             })
 
@@ -87,9 +87,9 @@ const CommandeController = {
         if (!btnValider) return
 
         btnValider.addEventListener('click', async () => {
-            const adresse  = document.getElementById('adresse-livraison').value.trim()
+            const adresse = document.getElementById('adresse-livraison').value.trim()
             const remember = document.getElementById('remember-adresse').checked
-            const panier   = PanierModele.getPanier()
+            const panier = PanierModele.getPanier()
 
             // On vérifie que l'adresse est renseignée
             if (!adresse) {
@@ -105,8 +105,8 @@ const CommandeController = {
             }
 
             // On désactive le bouton pour éviter le double clic
-            btnValider.disabled     = true
-            btnValider.textContent  = 'Traitement en cours...'
+            btnValider.disabled = true
+            btnValider.textContent = 'Traitement en cours...'
 
             // On envoie la commande à l'API
             const reponse = await CommandeModele.passerCommande(panier, adresse)
@@ -123,7 +123,7 @@ const CommandeController = {
 
             } else {
                 CommandeVue.affichageErreur(reponse.data.message || 'Erreur lors de la commande.')
-                btnValider.disabled    = false
+                btnValider.disabled = false
                 btnValider.textContent = 'Valider ma commande'
             }
         })

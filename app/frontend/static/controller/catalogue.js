@@ -6,8 +6,8 @@ const CatalogueController = {
     // État des filtres
     filtres: {
         categorie: 'tous',
-        longueur:  'tous',
-        tri:       'defaut'
+        longueur: 'tous',
+        tri: 'defaut'
     },
 
     favorisIds: [],

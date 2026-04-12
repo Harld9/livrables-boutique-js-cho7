@@ -7,7 +7,7 @@
 // On importe Express pour créer le router
 const express = require('express')
 // On crée une instance de router — un mini Express dédié aux routes chaussettes
-const router  = express.Router()
+const router = express.Router()
 // On importe le controller qui contient toute la logique métier
 const chaussetteController = require('../controller/chaussette')
 

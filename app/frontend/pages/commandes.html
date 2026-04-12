@@ -1,98 +1,110 @@
 <!doctype html>
 <html lang="fr">
-<head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Commande - Cho7</title>
-  <link href="/css/main.css" rel="stylesheet"/>
-  <link href="/css/commande.css" rel="stylesheet"/>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"/>
-</head>
-<body>
-
-<nav class="navbar">
-  <button class="burger" id="boutonburger">☰</button>
-  <a href="/" id="lienlogo">
-    <img src="/assets/imglogo/cho7.png" alt="Logo du site" id="logosite"/>
-  </a>
-  <ul class="menu" id="listemenu">
-    <li><a href="/catalogue">Notre Catalogue</a></li>
-    <li><a href="/commandes">Suivi Commande</a></li>
-    <li><a href="/connexion">Connexion/Inscription</a></li>
-    <li><a href="/about">À Propos</a></li>
-  </ul>
-  <div class="icones">
-    <a href="/favoris">
-      <img src="/assets/icons/favorite_24dp_111111_FILL0_wght400_GRAD0_opsz24.svg" alt="Logo Favoris" id="logofavoris"/>
-    </a>
-    <div class="conteneurprofil">
-      <a href="/profil">
-        <img src="/assets/icons/account_circle_24dp_111111_FILL0_wght400_GRAD0_opsz24.svg" alt="Logo Utilisateur" id="logoutilisateur"/>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Commande - Cho7</title>
+    <link href="/css/main.css" rel="stylesheet" />
+    <link href="/css/commande.css" rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+    />
+  </head>
+  <link rel="icon" type="image/x-icon" href="/assets/imglogo/cho7juste7.png" />
+  <body>
+    <nav class="navbar">
+      <button class="burger" id="boutonburger">☰</button>
+      <a href="/" id="lienlogo">
+        <img src="/assets/imglogo/cho7.png" alt="Logo du site" id="logosite" />
       </a>
-      <span id="pastille-verte" class="pastille"></span>
-    </div>
-    <div class="panier">
-      <a href="/panier">
-        <img src="/assets/icons/shopping_cart_24dp_111111_FILL0_wght400_GRAD0_opsz24.svg" alt="Logo Panier" id="logopanier"/>
-        <div class="pointrouge">0</div>
-      </a>
-    </div>
-  </div>
-</nav>
+      <ul class="menu" id="listemenu">
+        <li><a href="/catalogue">Notre Catalogue</a></li>
+        <li><a href="/commandes">Suivi Commande</a></li>
+        <li><a href="/connexion">Connexion/Inscription</a></li>
+        <li><a href="/about">À Propos</a></li>
+      </ul>
+      <div class="icones">
+        <a href="/favoris">
+          <img
+            src="/assets/icons/favorite_24dp_111111_FILL0_wght400_GRAD0_opsz24.svg"
+            alt="Logo Favoris"
+            id="logofavoris"
+          />
+        </a>
+        <div class="conteneurprofil">
+          <a href="/profil">
+            <img
+              src="/assets/icons/account_circle_24dp_111111_FILL0_wght400_GRAD0_opsz24.svg"
+              alt="Logo Utilisateur"
+              id="logoutilisateur"
+            />
+          </a>
+          <span id="pastille-verte" class="pastille"></span>
+        </div>
+        <div class="panier">
+          <a href="/panier">
+            <img
+              src="/assets/icons/shopping_cart_24dp_111111_FILL0_wght400_GRAD0_opsz24.svg"
+              alt="Logo Panier"
+              id="logopanier"
+            />
+            <div class="pointrouge">0</div>
+          </a>
+        </div>
+      </div>
+    </nav>
 
-<div id="commande-container">
-  <h1 class="commande-titre">Ma commande</h1>
+    <div id="commande-container">
+      <h1 class="commande-titre">Ma commande</h1>
 
-  <div class="commande-grille">
+      <div class="commande-grille">
+        <!-- ===== RÉCAP PANIER ===== -->
+        <div class="commande-section">
+          <h2 class="section-titre">Récapitulatif</h2>
+          <div id="commande-recap">Chargement...</div>
+          <div class="commande-total-wrapper">
+            <span>Total</span>
+            <span id="commande-total" class="commande-total">0.00€</span>
+          </div>
+        </div>
 
-    <!-- ===== RÉCAP PANIER ===== -->
-    <div class="commande-section">
-      <h2 class="section-titre">Récapitulatif</h2>
-      <div id="commande-recap">Chargement...</div>
-      <div class="commande-total-wrapper">
-        <span>Total</span>
-        <span id="commande-total" class="commande-total">0.00€</span>
+        <!-- ===== ADRESSE DE LIVRAISON ===== -->
+        <div class="commande-section">
+          <h2 class="section-titre">Adresse de livraison</h2>
+
+          <label for="adresse-livraison"><b>Adresse</b></label>
+          <div class="adresse-wrapper">
+            <input
+              type="text"
+              id="adresse-livraison"
+              placeholder="ex : 12 rue de la Paix, 75000 Paris"
+              autocomplete="off"
+            />
+            <!-- Liste de suggestions de l'API adresse -->
+            <ul id="suggestions-adresse" class="suggestions-adresse"></ul>
+          </div>
+
+          <!-- Case remember me pour l'adresse -->
+          <label class="remember-adresse">
+            <input type="checkbox" id="remember-adresse" />
+            Sauvegarder cette adresse pour mes prochaines commandes
+          </label>
+
+          <!-- Zone d'affichage des erreurs -->
+          <p id="commande-erreur" class="commande-erreur"></p>
+
+          <button id="btn-valider-commande" class="btn-valider-commande">
+            Valider ma commande
+          </button>
+        </div>
       </div>
     </div>
 
-    <!-- ===== ADRESSE DE LIVRAISON ===== -->
-    <div class="commande-section">
-      <h2 class="section-titre">Adresse de livraison</h2>
-
-      <label for="adresse-livraison"><b>Adresse</b></label>
-      <div class="adresse-wrapper">
-        <input
-                type="text"
-                id="adresse-livraison"
-                placeholder="ex : 12 rue de la Paix, 75000 Paris"
-                autocomplete="off"
-        />
-        <!-- Liste de suggestions de l'API adresse -->
-        <ul id="suggestions-adresse" class="suggestions-adresse"></ul>
-      </div>
-
-      <!-- Case remember me pour l'adresse -->
-      <label class="remember-adresse">
-        <input type="checkbox" id="remember-adresse"/>
-        Sauvegarder cette adresse pour mes prochaines commandes
-      </label>
-
-      <!-- Zone d'affichage des erreurs -->
-      <p id="commande-erreur" class="commande-erreur"></p>
-
-      <button id="btn-valider-commande" class="btn-valider-commande">
-        Valider ma commande
-      </button>
-    </div>
-
-  </div>
-</div>
-
-<script src="/script/main.js"></script>
-<script src="/modele/panier.js"></script>
-<script src="/modele/commande.js"></script>
-<script src="/vue/commande.js"></script>
-<script src="/controller/commande.js"></script>
-
-</body>
+    <script src="/script/main.js"></script>
+    <script src="/modele/panier.js"></script>
+    <script src="/modele/commande.js"></script>
+    <script src="/vue/commande.js"></script>
+    <script src="/controller/commande.js"></script>
+  </body>
 </html>

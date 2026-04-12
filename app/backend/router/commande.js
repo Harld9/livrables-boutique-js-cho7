@@ -3,8 +3,8 @@
  * On fait le lien entre les URLs et les fonctions du controller commande.
  */
 
-const express           = require('express')
-const router            = express.Router()
+const express = require('express')
+const router = express.Router()
 const commandeController = require('../controller/commande')
 
 // On branche POST /api/commande → passe une nouvelle commande

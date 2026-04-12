@@ -8,7 +8,7 @@ const PanierController = {
     init: () => {
         // On récupère et affiche le panier au chargement
         const panier = PanierModele.getPanier()
-        const total  = PanierModele.calculerTotal(panier)
+        const total = PanierModele.calculerTotal(panier)
         PanierVue.affichage(panier, total)
         PanierController.initBoutons()
         PanierModele.mettreAJourPointrouge()
@@ -17,7 +17,7 @@ const PanierController = {
     // Modifie la quantité d'un produit et rafraîchit l'affichage
     modifierQuantite: (id, nouvelleQuantite) => {
         const panier = PanierModele.modifierQuantite(id, nouvelleQuantite)
-        const total  = PanierModele.calculerTotal(panier)
+        const total = PanierModele.calculerTotal(panier)
         PanierVue.affichage(panier, total)
         PanierModele.mettreAJourPointrouge()
     },
@@ -25,7 +25,7 @@ const PanierController = {
     // Supprime un produit et rafraîchit l'affichage
     supprimer: (id) => {
         const panier = PanierModele.supprimer(id)
-        const total  = PanierModele.calculerTotal(panier)
+        const total = PanierModele.calculerTotal(panier)
         PanierVue.affichage(panier, total)
         PanierModele.mettreAJourPointrouge()
     },

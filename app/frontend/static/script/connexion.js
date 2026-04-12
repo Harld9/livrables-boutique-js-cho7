@@ -14,8 +14,8 @@ formulaire.addEventListener('submit', async (event) => {
     event.preventDefault()
 
     // On récupère les valeurs saisies dans les inputs
-    const email      = document.getElementById('email').value
-    const mdp        = document.getElementById('mdp').value
+    const email = document.getElementById('email').value
+    const mdp = document.getElementById('mdp').value
     const rememberMe = document.getElementById('rememberMe').checked // Pour plus tard
 
     try {

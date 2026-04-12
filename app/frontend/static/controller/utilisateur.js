@@ -1,5 +1,5 @@
 const UtilisateurController = {
-    initialisation: function() {
+    initialisation: function () {
         // On demande les données au modèle
         UtilisateurModele.getUtilisateur(1)
             .then(data => {

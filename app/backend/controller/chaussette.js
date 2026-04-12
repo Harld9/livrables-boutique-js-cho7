@@ -4,8 +4,8 @@ const jwt = require('jsonwebtoken')
 // ===== Fonction getChaussettes ----- '/chaussettes' ======
 exports.getChaussettes = async (req, res) => {
     try {
-    // Requête SQL à envoyé à la db
-    const sql = `
+        // Requête SQL à envoyé à la db
+        const sql = `
     SELECT
         Produit.IdProduit,
         Produit.NomProduit,
@@ -23,7 +23,7 @@ exports.getChaussettes = async (req, res) => {
     INNER JOIN Categorie ON Categorie.IdCategorie = Produit.IdCategorie
     `
 
-    // Appel de la db avec la requête SQL et retourne un tableau d'objets
+        // Appel de la db avec la requête SQL et retourne un tableau d'objets
         const [resultat] = await db.query(sql)
         // Pareil qu'avec le code 500, on ajout le tableau d'objets qui va être convertis en json lui aussi.
         res.status(200).json({
@@ -33,8 +33,8 @@ exports.getChaussettes = async (req, res) => {
         })
         // Si erreur avec la DB, on renvoie un code HTTP 500
     } catch (err) {
-            // On envoie un JSON avec le code erreur et un message
-            return res.status(500).json({ code: 500, message: 'Erreur serveur' })
+        // On envoie un JSON avec le code erreur et un message
+        return res.status(500).json({ code: 500, message: 'Erreur serveur' })
 
     }
 }
@@ -171,7 +171,7 @@ exports.getSimilaires = async (req, res) => {
             code: 200,
             message: 'Produits similaires récupérés',
             memeCategorie: memeCategorie,
-            memeLongueur:  memeLongueur
+            memeLongueur: memeLongueur
         })
 
     } catch (err) {
@@ -225,7 +225,8 @@ exports.toggleFavori = async (req, res) => {
 
         // Sinon erreur serveur
         res.status(500).json({ code: 500, message: 'Erreur serveur' });
-    }}
+    }
+}
 
 // ===== GET /api/favoris =====
 // Récupère tous les favoris du client connecté
@@ -238,9 +239,9 @@ exports.getFavoris = async (req, res) => {
         }
 
         // On décode le token pour récupérer l'id du client
-        const token       = authHeader.split(' ')[1]
+        const token = authHeader.split(' ')[1]
         const decodedToken = jwt.verify(token, process.env.CLEJWT)
-        const idClient    = decodedToken.id
+        const idClient = decodedToken.id
 
         // On récupère tous les produits en favori pour ce client
         const sql = `

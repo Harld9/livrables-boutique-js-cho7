@@ -11,7 +11,7 @@ const ProduitController = {
         } catch (err) {
             console.error("Impossible de charger les favoris", err)
             //si jamais il y'a une erreur on remet la liste à vide
-            ProduitController.favorisIds = [] 
+            ProduitController.favorisIds = []
         }
 
 

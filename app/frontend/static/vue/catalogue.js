@@ -52,11 +52,11 @@ const CatalogueVue = {
 
             const divBtn = document.createElement('div')
             const bouton = document.createElement('button')
-            
+
             // gestion bouton favoris
             const boutonFavoris = document.createElement('button')
             boutonFavoris.classList.add('boutonFavoris')
-            
+
             // conversion de la liste d'id en texte pour comparer
             const favorisTexte = CatalogueController.favorisIds.map(id => id.toString());
             // conversiond de l'id actuel de la chaussette en string
@@ -64,9 +64,9 @@ const CatalogueVue = {
 
             // si l'id de la chaussette est dans la liste de favoris on met le coeur en rouge
             if (favorisTexte.includes(idProduitTexte)) {
-                boutonFavoris.textContent = '❤️'; 
+                boutonFavoris.textContent = '❤️';
             } else {
-                boutonFavoris.textContent = '🤍'; 
+                boutonFavoris.textContent = '🤍';
             }
 
             const dossier = (() => {
@@ -74,7 +74,7 @@ const CatalogueVue = {
                     case 'Memes': return 'CatMeme/'
                     case 'Unies': return 'CatUni/'
                     case 'Motifs': return 'CatMotif/'
-                    default:       return ''
+                    default: return ''
                 }
             })()
 
@@ -83,9 +83,9 @@ const CatalogueVue = {
             })
 
             boutonFavoris.addEventListener('click', (event) => {
-                
+
                 // empêche la redirection vers le produit quand on clique sur le coeur
-                event.stopPropagation(); 
+                event.stopPropagation();
 
                 // on appelle le modele pour ajoute ou supprimer
                 CatalogueModele.toggleFavori(c.IdProduit)
@@ -122,7 +122,7 @@ const CatalogueVue = {
 
             // textContent pour toutes les données BDD
             // Image
-            const src3D     = '/assets/imgchaussettes/' + dossier + c.Image3D
+            const src3D = '/assets/imgchaussettes/' + dossier + c.Image3D
             const srcPortee = '/assets/imgchaussettes/' + dossier + c.ImagePortee
 
             imgProd.src = src3D
@@ -168,17 +168,17 @@ const CatalogueVue = {
 
                 // On prépare l'objet produit à ajouter au panier
                 PanierModele.ajouter({
-                    id:     c.IdProduit,
-                    nom:    c.NomProduit,
-                    prix:   c.Prix,
+                    id: c.IdProduit,
+                    nom: c.NomProduit,
+                    prix: c.Prix,
                     reduction: c.Reduction,
-                    image:  c.Image3D,
+                    image: c.Image3D,
                     dossier: (() => {
                         switch (c.NomCategorie) {
-                            case 'Memes':  return 'CatMeme/'
-                            case 'Unies':  return 'CatUni/'
+                            case 'Memes': return 'CatMeme/'
+                            case 'Unies': return 'CatUni/'
                             case 'Motifs': return 'CatMotif/'
-                            default:       return ''
+                            default: return ''
                         }
                     })()
                 })
@@ -200,7 +200,7 @@ const CatalogueVue = {
             prixReduction.appendChild(reduction)
             categorieGenre.appendChild(categorie)
             categorieGenre.appendChild(genre)
-            
+
             divBtn.appendChild(bouton)
             divBtn.appendChild(boutonFavoris)
 

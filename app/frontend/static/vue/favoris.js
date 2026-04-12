@@ -14,31 +14,31 @@ const FavorisVue = {
 
         // pour chaque favoris on créé un élément avec les informations du favori
         chaussettes.forEach(c => {
-            const produit         = document.createElement('div')
-            const imgProd         = document.createElement('img')
-            const infos           = document.createElement('div')
-            const nom             = document.createElement('h3')
-            const prixReduction   = document.createElement('div')
-            const prix            = document.createElement('p')
-            const reduction       = document.createElement('p')
-            const categorieGenre  = document.createElement('div')
-            const categorie       = document.createElement('p')
-            const genre           = document.createElement('p')
-            const divBtn          = document.createElement('div')
-            const bouton          = document.createElement('button')
+            const produit = document.createElement('div')
+            const imgProd = document.createElement('img')
+            const infos = document.createElement('div')
+            const nom = document.createElement('h3')
+            const prixReduction = document.createElement('div')
+            const prix = document.createElement('p')
+            const reduction = document.createElement('p')
+            const categorieGenre = document.createElement('div')
+            const categorie = document.createElement('p')
+            const genre = document.createElement('p')
+            const divBtn = document.createElement('div')
+            const bouton = document.createElement('button')
 
             // si un élément est déjà en favoris on lui met le coeur rouge direct
-            const boutonFavoris       = document.createElement('button')
+            const boutonFavoris = document.createElement('button')
             boutonFavoris.classList.add('boutonFavoris')
             boutonFavoris.textContent = '❤️'
 
             // on détermine le dossier d'image selon la catégorie meme/uni etc...
             const dossier = (() => {
                 switch (c.NomCategorie) {
-                    case 'Memes':  return 'CatMeme/'
-                    case 'Unies':  return 'CatUni/'
+                    case 'Memes': return 'CatMeme/'
+                    case 'Unies': return 'CatUni/'
                     case 'Motifs': return 'CatMotif/'
-                    default:       return ''
+                    default: return ''
                 }
             })()
 
@@ -53,17 +53,17 @@ const FavorisVue = {
 
                 // On prépare l'objet produit à ajouter au panier
                 PanierModele.ajouter({
-                    id:     c.IdProduit,
-                    nom:    c.NomProduit,
-                    prix:   c.Prix,
+                    id: c.IdProduit,
+                    nom: c.NomProduit,
+                    prix: c.Prix,
                     reduction: c.Reduction,
-                    image:  c.Image3D,
+                    image: c.Image3D,
                     dossier: (() => {
                         switch (c.NomCategorie) {
-                            case 'Memes':  return 'CatMeme/'
-                            case 'Unies':  return 'CatUni/'
+                            case 'Memes': return 'CatMeme/'
+                            case 'Unies': return 'CatUni/'
                             case 'Motifs': return 'CatMotif/'
-                            default:       return ''
+                            default: return ''
                         }
                     })()
                 })
@@ -113,7 +113,7 @@ const FavorisVue = {
             bouton.classList.add('btnProd')
 
             // Images avec hover
-            const src3D     = '/assets/imgchaussettes/' + dossier + c.Image3D
+            const src3D = '/assets/imgchaussettes/' + dossier + c.Image3D
             const srcPortee = '/assets/imgchaussettes/' + dossier + c.ImagePortee
 
             imgProd.src = src3D
@@ -142,9 +142,9 @@ const FavorisVue = {
                 reduction.textContent = (c.Prix * (1 - c.Reduction)).toFixed(2) + '€'
             }
             categorie.textContent = c.NomCategorie
-            genre.textContent     = c.Genre
-            bouton.textContent    = 'Ajouter au panier'
-            bouton.dataset.id     = c.IdProduit
+            genre.textContent = c.Genre
+            bouton.textContent = 'Ajouter au panier'
+            bouton.dataset.id = c.IdProduit
 
             // Assemblage
             prixReduction.appendChild(prix)

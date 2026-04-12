@@ -2,9 +2,9 @@
 const UtilisateurVue = {
     // ===== FONCTIONS =====
     // ----- AFFICHAGE -----
-    afficherProfil: function(res) {
+    afficherProfil: function (res) {
         const utilisateur = res.utilisateur;
-        
+
         // on cible la balise HTML où on veut afficher les infos
         const conteneur = document.getElementById('profil-utilisateur');
 

@@ -5,7 +5,7 @@
 
 // On récupère les éléments du burger
 const boutonBurger = document.getElementById('boutonburger')
-const menuBurger   = document.getElementById('listemenu')
+const menuBurger = document.getElementById('listemenu')
 
 // On gère l'ouverture et fermeture du menu burger au clic
 if (boutonBurger && menuBurger) {
@@ -28,12 +28,12 @@ document.addEventListener('click', (e) => {
 // On cherche le token dans localStorage d'abord, puis sessionStorage
 // localStorage.getItem — récupère la valeur persistante
 // sessionStorage.getItem — récupère la valeur de session
-const token  = localStorage.getItem('token')  || sessionStorage.getItem('token')
+const token = localStorage.getItem('token') || sessionStorage.getItem('token')
 const prenom = localStorage.getItem('prenom') || sessionStorage.getItem('prenom')
 
 // On récupère les éléments de la navbar
 const icones = document.querySelector('.icones')
-const menu   = document.getElementById('listemenu')
+const menu = document.getElementById('listemenu')
 
 if (token) {
     // ===== UTILISATEUR CONNECTÉ =====
@@ -46,10 +46,10 @@ if (token) {
     })
 
     // On ajoute le lien de déconnexion dans le menu burger
-    const liDeconnexion   = document.createElement('li')
+    const liDeconnexion = document.createElement('li')
     const lienDeconnexion = document.createElement('a')
 
-    lienDeconnexion.href        = '#'
+    lienDeconnexion.href = '#'
     lienDeconnexion.textContent = 'Se déconnecter'
     lienDeconnexion.classList.add('lien-deconnexion')
 
@@ -92,16 +92,16 @@ if (token) {
     })
 
     // On ajoute les boutons connexion/inscription dans le menu burger pour mobile
-    const liConnexion   = document.createElement('li')
+    const liConnexion = document.createElement('li')
     const liInscription = document.createElement('li')
-    const aConnexion    = document.createElement('a')
-    const aInscription  = document.createElement('a')
+    const aConnexion = document.createElement('a')
+    const aInscription = document.createElement('a')
 
-    aConnexion.href        = '/connexion'
+    aConnexion.href = '/connexion'
     aConnexion.textContent = 'Se connecter'
     aConnexion.classList.add('lien-menu-connexion')
 
-    aInscription.href        = '/inscription'
+    aInscription.href = '/inscription'
     aInscription.textContent = "S'inscrire"
     aInscription.classList.add('lien-menu-inscription')
 
@@ -112,19 +112,19 @@ if (token) {
     menu.appendChild(liInscription)
 
     // On ajoute les boutons dans les icônes pour desktop
-    const boutonConnexion   = document.createElement('a')
+    const boutonConnexion = document.createElement('a')
     const boutonInscription = document.createElement('a')
 
-    boutonConnexion.href        = '/connexion'
+    boutonConnexion.href = '/connexion'
     boutonConnexion.textContent = 'Se connecter'
     boutonConnexion.classList.add('btn-nav-connexion')
 
-    boutonInscription.href        = '/inscription'
+    boutonInscription.href = '/inscription'
     boutonInscription.textContent = "S'inscrire"
     boutonInscription.classList.add('btn-nav-inscription')
 
-// element.appendChild(enfant) — insère boutonConnexion à la fin de icones.
+    // element.appendChild(enfant) — insère boutonConnexion à la fin de icones.
     icones.appendChild(boutonConnexion)
-// element.appendChild(enfant) — insère boutonInscription à la fin de icones.
+    // element.appendChild(enfant) — insère boutonInscription à la fin de icones.
     icones.appendChild(boutonInscription)
 }

@@ -5,11 +5,11 @@
  */
 
 // On importe la connexion à la base de données
-const db     = require('../database/connexiondb.js')
+const db = require('../database/connexiondb.js')
 // On importe bcrypt pour hacher et comparer les mots de passe
 const bcrypt = require('bcrypt')
 // On importe jsonwebtoken pour créer et signer les jetons d'authentification
-const jwt    = require('jsonwebtoken')
+const jwt = require('jsonwebtoken')
 // On n'importe plus mysql2 directement — on passe uniquement par connexiondb.js
 
 // ===== Inscription =====
@@ -17,11 +17,11 @@ exports.inscrireClient = async (req, res) => {
 
     // On récupère les données envoyées par le formulaire d'inscription
     // Les noms correspondent aux id des inputs dans inscription.html
-    const nom        = req.body.nom
-    const prenom     = req.body.prenom
-    const adresse    = req.body.adresse
-    const mail       = req.body.email
-    const numeroTel  = req.body.numeroTel
+    const nom = req.body.nom
+    const prenom = req.body.prenom
+    const adresse = req.body.adresse
+    const mail = req.body.email
+    const numeroTel = req.body.numeroTel
     const motDePasse = req.body.mdp
 
     try {
@@ -65,7 +65,7 @@ exports.inscrireClient = async (req, res) => {
 exports.connecterClient = async (req, res) => {
 
     // On récupère les données envoyées par le formulaire de connexion
-    const mail       = req.body.email
+    const mail = req.body.email
     const motDePasse = req.body.mdp
 
     try {

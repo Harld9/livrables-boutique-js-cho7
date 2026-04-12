@@ -4,7 +4,7 @@
  * On vérifie le token JWT pour identifier le client connecté.
  */
 
-const db  = require('../database/connexiondb.js')
+const db = require('../database/connexiondb.js')
 const jwt = require('jsonwebtoken')
 
 // ===== POST /api/commande =====
@@ -17,9 +17,9 @@ exports.passerCommande = async (req, res) => {
         }
 
         // authHeader.split(' ')[1] — extrait le token en retirant "Bearer "
-        const token        = authHeader.split(' ')[1]
+        const token = authHeader.split(' ')[1]
         const decodedToken = jwt.verify(token, process.env.CLEJWT)
-        const idClient     = decodedToken.id
+        const idClient = decodedToken.id
 
         // On récupère les données envoyées par le front
         const { panier, adresse } = req.body
@@ -78,9 +78,9 @@ exports.getMesCommandes = async (req, res) => {
             return res.status(401).json({ code: 401, message: 'Non autorisé' })
         }
 
-        const token        = authHeader.split(' ')[1]
+        const token = authHeader.split(' ')[1]
         const decodedToken = jwt.verify(token, process.env.CLEJWT)
-        const idClient     = decodedToken.id
+        const idClient = decodedToken.id
 
         // On récupère toutes les commandes avec leurs produits via des jointures
         const sql = `
@@ -108,24 +108,24 @@ exports.getMesCommandes = async (req, res) => {
         resultat.forEach(ligne => {
             if (!commandes[ligne.IdCommande]) {
                 commandes[ligne.IdCommande] = {
-                    idCommande:        ligne.IdCommande,
-                    dateCommande:      ligne.DateCommande,
-                    adresseLivraison:  ligne.AdresseLivraison,
-                    produits:          []
+                    idCommande: ligne.IdCommande,
+                    dateCommande: ligne.DateCommande,
+                    adresseLivraison: ligne.AdresseLivraison,
+                    produits: []
                 }
             }
             commandes[ligne.IdCommande].produits.push({
-                idProduit:    ligne.IdProduit,
-                nomProduit:   ligne.NomProduit,
-                prix:         ligne.Prix,
-                image:        ligne.Image3D,
+                idProduit: ligne.IdProduit,
+                nomProduit: ligne.NomProduit,
+                prix: ligne.Prix,
+                image: ligne.Image3D,
                 nomCategorie: ligne.NomCategorie,
-                quantite:     ligne.Quantite
+                quantite: ligne.Quantite
             })
         })
 
         res.status(200).json({
-            code:      200,
+            code: 200,
             commandes: Object.values(commandes)
         })
 
