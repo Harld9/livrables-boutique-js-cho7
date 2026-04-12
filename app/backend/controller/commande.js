@@ -40,6 +40,8 @@ exports.passerCommande = async (req, res) => {
             INSERT INTO Commande (DateCommande, IdClient, AdresseLivraison)
             VALUES (NOW(), ?, ?)
         `
+
+        // On utilise la destrcuturation ici pour ne prendre uniquement le résultat intéressant et non les métadonnées renvoyées par la db
         const [resultatCommande] = await db.query(sqlCommande, [idClient, adresse])
 
         // On récupère l'id de la commande qui vient d'être créée

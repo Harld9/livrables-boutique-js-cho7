@@ -26,6 +26,7 @@ exports.inscrireClient = async (req, res) => {
     try {
         // On vérifie si un compte existe déjà avec cet email
         // pour éviter les doublons en base de données
+        // On utilise la destrcuturation ici pour ne prendre uniquement le résultat intéressant et non les métadonnées renvoyées par la db
         const [existant] = await db.query(
             'SELECT IdClient FROM Client WHERE Mail = ?', [mail]
         )
@@ -69,6 +70,8 @@ exports.connecterClient = async (req, res) => {
 
     try {
         // On cherche un client dans la base de données avec cet email
+        // Récupération directe des résultats de la requête (les données) via la déstructuration [existant].
+        // Cela permet d'ignorer le deuxième élément renvoyé par db.query (les métadonnées techniques).
         const [resultats] = await db.query(
             'SELECT * FROM Client WHERE Mail = ?', [mail]
         )

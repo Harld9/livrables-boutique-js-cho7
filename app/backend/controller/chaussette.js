@@ -24,6 +24,7 @@ exports.getChaussettes = async (req, res) => {
     `
 
         // Appel de la db avec la requête SQL et retourne un tableau d'objets
+        // On utilise la destrcuturation ici pour ne prendre uniquement le résultat intéressant et non les métadonnées renvoyées par la db
         const [resultat] = await db.query(sql)
         // Pareil qu'avec le code 500, on ajout le tableau d'objets qui va être convertis en json lui aussi.
         res.status(200).json({
