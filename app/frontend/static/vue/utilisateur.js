@@ -1,4 +1,3 @@
-// Namespace qui regroupe toutes les fonctions d'affichage
 const UtilisateurVue = {
     // ===== FONCTIONS =====
     // ----- AFFICHAGE -----

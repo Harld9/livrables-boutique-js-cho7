@@ -38,5 +38,19 @@ const CommandeModele = {
     // localStorage.removeItem — supprime l'adresse sauvegardée
     supprimerAdresse: () => {
         localStorage.removeItem('adresse_livraison')
+    },
+
+    // ----- RÉCUPÉRER MES COMMANDES -----
+    getMesCommandes: () => {
+        const token = localStorage.getItem('token') || sessionStorage.getItem('token')
+
+        return fetch('/api/commandes', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + token
+            }
+        })
+            .then(res => res.json().then(data => ({ status: res.status, data: data })))
     }
 }

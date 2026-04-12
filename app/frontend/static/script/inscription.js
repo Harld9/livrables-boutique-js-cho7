@@ -31,7 +31,7 @@ document.getElementById('formInscription').addEventListener('submit', async (e) 
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             // On convertit l'objet JS en JSON pour l'envoyer
-            body: JSON.stringify({ nom, prenom, adresse, email, numeroTel, mdp })
+            body: JSON.stringify({ nom, prenom, email, numeroTel, mdp })
         })
 
         // On convertit la réponse HTTP en objet JS

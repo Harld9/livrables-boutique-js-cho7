@@ -3,21 +3,33 @@ const UtilisateurController = {
         // On demande les données au modèle
         UtilisateurModele.getUtilisateur(1)
             .then(data => {
+                console.log('data reçue :', data);
                 if (data && data.code === 200) {
-                    // On demande à la vue d'afficher
                     UtilisateurVue.afficherProfil(data);
+                    // On récupère et affiche la dernière commande
+                    this.afficherDerniereCommande();
                 }
             })
             .catch(err => console.error("Erreur d'initialisation :", err));
+    },
+
+    afficherDerniereCommande: function () {
+        CommandeModele.getMesCommandes()
+            .then(response => {
+                if (response.status === 200 && response.data.commandes) {
+                    UtilisateurVue.afficherDerniereCommande(response.data.commandes);
+                } else {
+                    console.warn('Erreur lors de la récupération des commandes');
+                    document.getElementById('derniere-commande').innerHTML =
+                        '<p class="commandes-vide">Impossible de charger les commandes</p>';
+                }
+            })
+            .catch(err => {
+                console.error('Erreur:', err);
+                document.getElementById('derniere-commande').innerHTML =
+                    '<p class="commandes-vide">Erreur lors du chargement</p>';
+            });
     }
 };
 
-// On lance le script
 UtilisateurController.initialisation();
-
-const token = localStorage.getItem('token');
-
-// si pas de jeton, on bloque l'accès et on redirige l'utilsiateur vers connexion
-if (!token) {
-    window.location.href = '/connexion';
-}

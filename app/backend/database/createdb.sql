@@ -6,7 +6,6 @@ CREATE TABLE Client (
 IdClient   INT AUTO_INCREMENT,
 		Nom        VARCHAR(50),
 		Prenom     VARCHAR(50),
-		Adresse    VARCHAR(255),
 		Mail       VARCHAR(100) UNIQUE,
 		NumeroTel  VARCHAR(20),
 		MotDePasse VARCHAR(255) NOT NULL,
@@ -40,9 +39,10 @@ CREATE TABLE Produit (
 
 -- ===== TABLE COMMANDE =====
 CREATE TABLE Commande (
-    IdCommande    INT AUTO_INCREMENT,
-    DateCommande  DATETIME,
-    IdClient      INT NOT NULL,
+    IdCommande       INT AUTO_INCREMENT,
+    DateCommande     DATETIME,
+    IdClient         INT NOT NULL,
+    AdresseLivraison VARCHAR(255),
     PRIMARY KEY(IdCommande),
     FOREIGN KEY(IdClient) REFERENCES Client(IdClient)
 );

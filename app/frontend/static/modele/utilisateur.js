@@ -8,11 +8,13 @@ const UtilisateurModele = {
             return Promise.resolve(JSON.parse(cache));
         }
 
-        // On appelle ton API (Port 8080 + préfixe /api)
-        return fetch('http://localhost:8080/api/utilisateur/' + id)
-            .then((response) => response.json())
+        return fetch('/api/utilisateur/' + id, {
+            headers: {
+                'Authorization': 'Bearer ' + token //
+            }
+        })
+            .then(response => response.json())
             .then(data => {
-                // On stocke en cache pour la prochaine fois
                 localStorage.setItem(cacheKey, JSON.stringify(data));
                 return data;
             })

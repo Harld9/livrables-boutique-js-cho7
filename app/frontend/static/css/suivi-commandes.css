@@ -1,0 +1,225 @@
+/* CSS pour la page de suivi des commandes */
+
+.suivi-section {
+    display: flex;
+    flex-direction: column;
+    padding: 40px 20px;
+    background-color: var(--couleur-fond);
+    min-height: calc(100vh - 70px);
+}
+
+.suivi-titre {
+    font-size: 32px;
+    color: var(--couleur-texte);
+    margin-bottom: 6px;
+    font-weight: 600;
+}
+
+.suivi-soustitre {
+    color: var(--couleur-texte-leger);
+    font-size: 15px;
+    margin-bottom: 40px;
+}
+
+.suivi-conteneur {
+    max-width: 900px;
+    width: 100%;
+    margin-bottom: 40px;
+}
+
+.suivi-chargement {
+    color: var(--couleur-texte-leger);
+    font-size: 15px;
+    text-align: center;
+    padding: 40px 20px;
+}
+
+.suivi-vide {
+    text-align: center;
+    padding: 60px 20px;
+    background-color: var(--blanc);
+    border-radius: 15px;
+    box-shadow: 0 2px 8px var(--ombre);
+}
+
+.suivi-vide-icone {
+    font-size: 48px;
+    margin-bottom: 15px;
+}
+
+.suivi-vide-titre {
+    font-size: 18px;
+    color: var(--couleur-texte);
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.suivi-vide-texte {
+    color: var(--couleur-texte-leger);
+    font-size: 14px;
+}
+
+.commande-item {
+    background-color: var(--blanc);
+    border-radius: 15px;
+    padding: 24px;
+    box-shadow: 0 2px 8px var(--ombre);
+    margin-bottom: 20px;
+    border-left: 5px solid var(--couleur-primaire);
+}
+
+.commande-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px var(--ombre-hover);
+}
+
+.commande-entete {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.commande-numero {
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--couleur-texte-leger);
+}
+
+.commande-date {
+    font-size: 14px;
+    color: var(--couleur-texte);
+}
+
+.commande-statut {
+    display: inline-block;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.statut-en-cours {
+    background-color: #fff3e0;
+    color: #e65100;
+}
+
+.statut-livree {
+    background-color: #e8f5e9;
+    color: #2e7d32;
+}
+
+.progression-livraison {
+    margin-top: 12px;
+    height: 6px;
+    background-color: #f0f0f0;
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.progression-livraison-bar {
+    height: 100%;
+    background: linear-gradient(90deg, var(--couleur-primaire), #ff8a65);
+    border-radius: 3px;
+    transition: width 0.3s ease;
+}
+
+.commande-produits {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 16px 0;
+    padding: 16px 0;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+}
+
+.commande-produit {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+}
+
+.commande-produit-nom {
+    color: var(--couleur-texte);
+    font-weight: 500;
+}
+
+.commande-produit-qte {
+    color: var(--couleur-texte-leger);
+    font-size: 13px;
+}
+
+.commande-produit-prix {
+    color: var(--couleur-primaire);
+    font-weight: 600;
+}
+
+.commande-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 16px;
+}
+
+.commande-total {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--couleur-texte);
+}
+
+.commande-total-montant {
+    color: var(--couleur-primaire);
+    font-size: 18px;
+}
+
+.commande-adresse {
+    font-size: 13px;
+    color: var(--couleur-texte-leger);
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid #eee;
+}
+
+.suivi-actions {
+    text-align: center;
+}
+
+.btn-retour {
+    display: inline-block;
+    padding: 12px 24px;
+    background-color: var(--couleur-primaire);
+    color: var(--blanc);
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 14px;
+    transition: background-color 0.2s;
+}
+
+.btn-retour:hover {
+    background-color: #ff6b6b;
+}
+
+@media (min-width: 768px) {
+    .suivi-section {
+        align-items: center;
+        text-align: center;
+        padding: 60px 20px;
+    }
+
+    .suivi-titre {
+        font-size: 48px;
+    }
+
+    .suivi-conteneur {
+        max-width: 600px;
+    }
+}

@@ -89,7 +89,9 @@ const CommandeVue = {
         titre.classList.add('succes-titre')
         message.classList.add('succes-message')
         numero.classList.add('succes-numero')
-        bouton.classList.add('primaire', 'succes-bouton')
+        boutons.classList.add('succes-boutons')
+        btnSuivi.classList.add('primaire', 'succes-bouton')
+        btnCatalogue.classList.add('secondaire', 'succes-bouton')
 
         icone.textContent = '✅'
         titre.textContent = 'Commande confirmée !'
@@ -102,7 +104,14 @@ const CommandeVue = {
         succes.appendChild(titre)
         succes.appendChild(message)
         succes.appendChild(numero)
-        succes.appendChild(bouton)
+        boutons.appendChild(btnSuivi)
+        boutons.appendChild(btnCatalogue)
+        succes.appendChild(boutons)
         container.appendChild(succes)
+
+        // Redirection automatique vers le suivi après 5 secondes
+        setTimeout(() => {
+            window.location.href = '/suivi-commandes'
+        }, 5000)
     }
 }

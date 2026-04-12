@@ -19,7 +19,6 @@ exports.inscrireClient = async (req, res) => {
     // Les noms correspondent aux id des inputs dans inscription.html
     const nom = req.body.nom
     const prenom = req.body.prenom
-    const adresse = req.body.adresse
     const mail = req.body.email
     const numeroTel = req.body.numeroTel
     const motDePasse = req.body.mdp
@@ -43,12 +42,12 @@ exports.inscrireClient = async (req, res) => {
         // On prépare la requête d'insertion
         // On utilise des ? pour éviter les injections SQL
         const sql = `
-            INSERT INTO Client (Nom, Prenom, Adresse, Mail, NumeroTel, MotDePasse)
-            VALUES (?, ?, ?, ?, ?, ?)
+            INSERT INTO Client (Nom, Prenom, Mail, NumeroTel, MotDePasse)
+            VALUES (?, ?, ?, ?, ?)
         `
 
         // On envoie la requête à la base de données avec les valeurs dans le bon ordre
-        await db.query(sql, [nom, prenom, adresse, mail, numeroTel, motDePasseHache])
+        await db.query(sql, [nom, prenom, mail, numeroTel, motDePasseHache])
 
         // On confirme que l'inscription s'est bien passée avec un code 201 (créé)
         res.status(201).json({ message: 'Inscription réussie !' })
@@ -118,7 +117,7 @@ exports.connecterClient = async (req, res) => {
 exports.getUtilisateurById = async (req, res) => {
     try {
         const [result] = await db.query(
-            'SELECT IdClient, Nom, Prenom, Adresse, Mail, NumeroTel FROM Client WHERE IdClient = ?',
+            'SELECT IdClient, Nom, Prenom, Mail, NumeroTel FROM Client WHERE IdClient = ?',
             [req.params.id]
         )
 

@@ -72,7 +72,12 @@ app.get('/favoris', (req, res) =>
     res.sendFile(path.join(__dirname, 'frontend/pages/favoris.html'))
 )
 
-// On sert la page de suivi des commandes
+// On sert la page suivi des commandes (historique)
+app.get('/suivi-commandes', (req, res) =>
+    res.sendFile(path.join(__dirname, 'frontend/pages/suivi-commandes.html'))
+)
+
+// On sert la page de commande (validation + adresse)
 app.get('/commandes', (req, res) =>
     res.sendFile(path.join(__dirname, 'frontend/pages/commandes.html'))
 )

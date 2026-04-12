@@ -1,0 +1,284 @@
+/* CSS uniquement pour la page profil */
+
+/* ===== SECTION PRINCIPALE ===== */
+.profil-section {
+    display: flex;
+    flex-direction: column;
+    padding: 40px 20px;
+    background-color: var(--couleur-fond);
+    min-height: calc(100vh - 70px);
+}
+
+/* ===== BADGE ÉTIQUETTE ===== */
+.profil-etiquette {
+    background-color: #fbe9e7;
+    color: var(--couleur-primaire);
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+    width: fit-content;
+    margin-bottom: 15px;
+}
+
+/* ===== TITRE ===== */
+.profil-titre {
+    font-size: 32px;
+    color: var(--couleur-texte);
+    margin-bottom: 6px;
+    line-height: 1.2;
+}
+
+.profil-titre span {
+    font-style: italic;
+    color: var(--couleur-primaire);
+}
+
+.profil-soustitre {
+    color: var(--couleur-texte-leger);
+    font-size: 15px;
+    margin-bottom: 35px;
+}
+
+/* ===== GRILLE DE CARTES INFOS ===== */
+.profil-grille {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+    max-width: 700px;
+    width: 100%;
+}
+
+/* ===== CARTE INFO ===== */
+.profil-carte {
+    background-color: var(--blanc);
+    border-radius: 15px;
+    padding: 20px 24px;
+    box-shadow: 0 4px 10px var(--ombre);
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.profil-carte:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 25px var(--ombre-hover);
+}
+
+/* ===== ICONE DANS LA CARTE ===== */
+.profil-carte-icone {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    background-color: #fbe9e7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.profil-carte-icone svg {
+    width: 22px;
+    height: 22px;
+    fill: var(--couleur-primaire);
+}
+
+/* ===== CONTENU TEXTE CARTE ===== */
+.profil-carte-contenu {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.profil-carte-label {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--couleur-texte-leger);
+}
+
+.profil-carte-valeur {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--couleur-texte);
+}
+
+/* ===== BOUTONS ===== */
+.profil-boutons {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 40px;
+    width: 100%;
+    max-width: 700px;
+}
+
+/* ===== SECTION DERNIÈRES COMMANDES ===== */
+.profil-section-dernieres-commandes {
+    margin-top: 50px;
+    max-width: 700px;
+    width: 100%;
+}
+
+.commandes-titre {
+    font-size: 20px;
+    color: var(--couleur-texte);
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.derniere-commande-container {
+    background-color: var(--blanc);
+    border-radius: 15px;
+    padding: 24px;
+    box-shadow: 0 4px 10px var(--ombre);
+    margin-bottom: 20px;
+}
+
+.derniere-commande-item {
+    border-left: 4px solid var(--couleur-primaire);
+    padding-left: 16px;
+}
+
+.commande-numero {
+    font-size: 13px;
+    color: var(--couleur-texte-leger);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+}
+
+.commande-date {
+    font-size: 14px;
+    color: var(--couleur-texte);
+    margin-bottom: 12px;
+}
+
+.commande-produits {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+
+.commande-produit-item {
+    font-size: 14px;
+    color: var(--couleur-texte);
+    padding: 8px;
+    background-color: #f5f5f5;
+    border-radius: 8px;
+}
+
+.commande-produit-item strong {
+    color: var(--couleur-primaire);
+}
+
+.commande-total {
+    font-size: 14px;
+    color: var(--couleur-texte);
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid #eee;
+}
+
+.commandes-vide {
+    color: var(--couleur-texte-leger);
+    font-size: 15px;
+    text-align: center;
+    padding: 20px 0;
+}
+
+.btn-voir-commandes {
+    display: inline-block;
+    padding: 12px 20px;
+    background-color: var(--couleur-primaire);
+    color: var(--blanc);
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 14px;
+    transition: background-color 0.2s ease;
+    border: none;
+}
+
+.btn-voir-commandes:hover {
+    background-color: #ff6b6b;
+}
+
+/* ===== BOUTON DÉCONNEXION ===== */
+.btn-deconnexion {
+    padding: 12px 20px;
+    background-color: #f0f0f0;
+    color: var(--couleur-texte);
+    border: none;
+    border-radius: 8px;
+    font-weight: 500;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.btn-deconnexion:hover {
+    background-color: #e0e0e0;
+}
+
+/* ===== RESPONSIVE SECTION DERNIÈRES COMMANDES ===== */
+@media (min-width: 768px) {
+    .profil-section-dernieres-commandes {
+        margin-top: 60px;
+        text-align: center;
+    }
+
+    .commandes-titre {
+        font-size: 24px;
+    }
+
+    .derniere-commande-container {
+        max-width: 600px;
+        margin: 0 auto 20px auto;
+    }
+}
+
+/* ===== ETAT CHARGEMENT ===== */
+.profil-chargement {
+    color: var(--couleur-texte-leger);
+    font-size: 15px;
+    margin-top: 40px;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (min-width: 768px) {
+    .profil-section {
+        align-items: center;
+        text-align: center;
+        padding: 60px 20px;
+    }
+
+    .profil-etiquette {
+        margin: 0 auto 15px auto;
+    }
+
+    .profil-titre {
+        font-size: 48px;
+    }
+
+    .profil-grille {
+        grid-template-columns: 1fr 1fr;
+    }
+
+
+    .profil-carte-adresse {
+        grid-column: 1 / -1;
+    }
+
+    .profil-boutons {
+        align-items: center;
+    }
+
+    .profil-carte {
+        text-align: left;
+    }
+}
